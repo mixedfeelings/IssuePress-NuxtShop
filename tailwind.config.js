@@ -11,6 +11,7 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
+      serif: ["Inknut Antiqua", "serif"],
       sans: ["DM Mono", "sans-serif"],
       mono: ["DM Mono", "sans-serif"],
     },
