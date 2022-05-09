@@ -53,6 +53,14 @@ export const productByHandle = gql`
       title
       ...productVariants
       vendor
+      artist: metafield(namespace: "issuepress", key: "artist") {
+        value
+        type
+      }
+      date: metafield(namespace: "issuepress", key: "date") {
+        value
+        type
+      }
     }
   }
 `;

@@ -70,6 +70,14 @@ export const collectionByHandle = gql`
                 }
               }
             }
+            artist: metafield(namespace: "issuepress", key: "artist") {
+              value
+              type
+            }
+            date: metafield(namespace: "issuepress", key: "date") {
+              value
+              type
+            }
           }
         }
         pageInfo {
