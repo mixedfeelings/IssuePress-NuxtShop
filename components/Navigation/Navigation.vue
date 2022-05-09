@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="absolute left-0 right-0 hidden bg-white border-b-2 border-black top-12 md:static md:flex md:items-center md:justify-center md:border-b-0"
+    class="absolute left-0 right-0 hidden bg-white border-b-2 border-black top-12 md:static md:flex md:items-center md:justify-center md:border-b-0 md:mt-1"
     :class="{ isOpen: menuOpen }"
     ref="menu"
   >
@@ -8,7 +8,7 @@
       v-for="link in navLinks"
       :key="link.label"
       :to="link.path"
-      class="block py-4 px-4 text-sm font-medium tracking-wide uppercase border-b-[1px] md:flex md:py-2 md:px-2 md:border-b-0"
+      class="block py-4 px-4 text-sm font-medium tracking-wide border-b-[1px] md:flex md:py-0 md:px-6 md:border-b-0 hover:underline"
     >
       {{ link.label }}
     </NuxtLink>

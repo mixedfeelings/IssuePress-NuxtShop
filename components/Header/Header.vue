@@ -1,10 +1,10 @@
 <template>
   <header
-    class="sticky top-0 w-full h-12 px-4 font-serif bg-white border-b-2 border-b-black grid items-center grid-cols-[100px_auto_100px] md:grid-cols-[200px_auto_200px] md:h-16"
+    class="sticky flex top-0 w-full h-12 px-4 bg-white border-b-2 border-b-black  items-center md:h-14"
   >
-    <Hamburger class="md:hidden" />
+    <Hamburger class="md:hidden mr-4" />
     <Logo />
-    <Navigation />
-    <CartIcon />
+    <Navigation class="md:ml-4" />
+    <CartIcon class="ml-auto" />
   </header>
 </template>
