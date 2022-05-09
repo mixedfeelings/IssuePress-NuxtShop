@@ -1,7 +1,7 @@
 <template>
   <Header />
   <Cart />
-  <main class="min-h-[75vh] px-4">
+  <main class="min-h-[75vh] px-6">
     <div
       v-if="
         config.SHOPIFY_STOREFRONT_ENDPOINT &&
