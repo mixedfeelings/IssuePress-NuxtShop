@@ -1,7 +1,8 @@
 <template>
   <div v-if="variants && variants.length" class="mb-3">
     <select
-      class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+      v-if="has_variants"
+      class="form-select appearance-none block pl-3 pr-8 py-1.5 text-base font-normal bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
       :aria-label="label"
       @change="handleChange($event)"
     >
@@ -37,6 +38,8 @@ const props = defineProps<{
 const { label, variants } = toRefs(props);
 
 const productStore = useProductStore();
+
+const has_variants = computed(() => (variants.value.length > 1))
 
 const handleChange = (e: Event) => {
   productStore.setSelectedVariantId((<HTMLSelectElement>e.target).value);
