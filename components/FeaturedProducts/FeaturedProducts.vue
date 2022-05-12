@@ -1,5 +1,5 @@
 <template>
-  <div v-if="collection">
+  <div v-if="collection" class="py-6">
     <ProductGrid>
       <div v-if="title" class="col-span-2 font-bold border-b-2 md:col-span-4">
         {{ title }}

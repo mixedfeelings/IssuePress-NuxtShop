@@ -9,7 +9,7 @@
       {{ formatPrice(priceRange?.minVariantPrice?.amount) }}
     </div>
 
-    <div v-if="isOnSale" class="ml-2 text-gray-800 line-through">
+    <div v-if="isOnSale" class="ml-2 line-through">
       <div v-if="compareAtPriceVaries">
         {{ formatPrice(compareAtPriceRange?.minVariantPrice?.amount) }}
         -

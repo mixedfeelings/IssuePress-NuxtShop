@@ -8,7 +8,7 @@
       v-for="link in navLinks"
       :key="link.label"
       :to="link.path"
-      class="block py-4 px-4 text-sm font-medium tracking-wide border-b-[1px] md:flex md:py-0 md:px-6 md:border-b-0 hover:underline"
+      class="block py-4 px-4 text-sm font-medium tracking-wide border-b-[1px] md:flex md:py-0 md:px-6 md:border-b-0 "
     >
       {{ link.label }}
     </NuxtLink>

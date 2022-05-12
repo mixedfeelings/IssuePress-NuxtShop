@@ -1,9 +1,9 @@
 <template>
   <header
-    class="my-8 flex flex-col justify-center items-center p-4 min-h-[8rem] border-black border-2 md:min-h-[12rem]"
+    class="flex flex-col justify-center  border-b-2 border-black my-8 pb-8"
   >
-    <h1 class="mb-2 text-2xl font-bold">{{ title }}</h1>
-    <div v-html="description" class="text-sm text-center"></div>
+    <h1 class="text-3xl font-bold">{{ title }}</h1>
+    <div v-if="description" v-html="description" class="text-sm mt-1"></div>
   </header>
 </template>
 

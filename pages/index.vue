@@ -6,13 +6,9 @@
         <Meta name="description" :content="description" />
       </Head>
     </Html>
-    <div
-      class="flex items-center justify-center p-8 my-8 text-2xl border-2 border-black min-h-[8rem] md:min-h-[12rem]"
-    >
-      Welcome to NuxtShop
-    </div>
+
     <FeaturedProducts
-      collectionHandle="frontpage"
+      collectionHandle="cc"
       :numberProducts="4"
       title="Featured Products"
     />

@@ -1,43 +1,74 @@
 <template :key="handle">
-  <section class="container mx-auto">
-    <div
-      v-if="product"
-      class="grid grid-cols-1 mx-auto my-4 md:grid-cols-[auto_minmax(300px,_1fr)] md:gap-8 md:my-8"
-    >
+<div >
+  <div v-if="product" class="flex flex-col my-8" >
+    <section class="container mx-auto">
       <Html>
         <Head v-if="product?.title && product?.description">
           <Title>{{ product.title }}</Title>
           <Meta name="description" :content="product.description" />
         </Head>
       </Html>
-      <ProductImage
-        :alt="product.handle"
-        :sizes="sizes"
-        :srcset="srcset"
-        :width="product.images?.edges[0]?.node?.width ?? ''"
-        :height="product.images?.edges[0]?.node?.height ?? ''"
-        class=""
-      />
-      <div class="p-4 mt-4 border-2 border-black md:mt-0">
-        <ProductTitle
-          tag="h1"
-          :title="product.title"
-          variant="product"
-          class="text-xl"
-        />
-        <ProductPrice
-          :priceRange="product.priceRange"
-          :compareAtPriceRange="product.compareAtPriceRange"
-          class="mb-4 md:mb-8"
-        />
-        <ProductVariants label="Select option" :variants="variants" />
-        <ProductAddToCart />
-        <ProductDescription :description="product.descriptionHtml" />
+      <div class="flex flex-col md:flex-row ">
+        <div class="w-full md:w-1/2">
+          <div class="card-image-wrapper thumbnail ">
+            <div class="card-image-inner px-8">
+              <ProductImage
+                :alt="product.handle"
+                :sizes="sizes"
+                :srcset="srcset"
+                :width="auto"
+                :height="auto"
+                class=""
+              />
+            </div>
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 p-8 h-auto flex flex-col items-between justify-between">
+          <div>
+            <div v-if="artist" class="text-base md:text-xl mb-1 font-mono">
+              {{artist}}
+            </div>
+            <ProductTitle
+              tag="h1"
+              :title="product.title"
+              variant="product"
+              class="text-2xl md:text-3xl lg:text-4xl font-serif tracking-wide"
+            />
+            <ProductPrice
+              :priceRange="product.priceRange"
+              :compareAtPriceRange="product.compareAtPriceRange"
+              class="mt-4 "
+            />
+          </div>
+          <div class="mt-auto">
+            <ProductVariants label="Select option" :variants="variants" />
+            <ProductAddToCart />
+          </div>
+
+        </div>
       </div>
-    </div>
-    <div v-else></div>
-    <div v-if="error">Error</div>
-  </section>
+    </section>
+    <section class="bg-white p-6">
+      <ProductGrid>
+        <div class="card-image-wrapper" 
+          v-for="(image, index) in images" 
+          :index="index" 
+        >
+          <div class="card-image-inner">
+            <img :src="image.node.url" />
+          </div>
+        </div>
+      </ProductGrid>
+    </section>
+    <section class="container mx-auto px-8">
+      <div v-if="product" >
+        <ProductDescription :description="product.descriptionHtml" class="py-6 text-2xl" />
+      </div>
+    </section>
+  </div>    
+  <div v-else></div>
+  <div v-if="error">Error</div>
+</div>
 </template>
 
 <script setup lang="ts">
@@ -61,10 +92,17 @@ const initialVariants = useResult(
 );
 variants.value = initialVariants;
 
+const artist = computed(() => product.value.artist?.value ?? "");
+
+
 // Product Image
 const src = computed(() => product.value.images?.edges[0]?.node?.url ?? "");
 const sizes = `(max-width: ${breakpointsTailwind.md}px) 95vw, 40vw`;
 const srcset = computed(() => getSrcset(src.value || ""));
+
+
+const show_images = computed(() => (product.value.images?.edges.length > 1 ))
+const images = computed(() => product.value.images?.edges.slice(1));
 
 // Fetch fresh inventory on client
 onMounted(() => {
@@ -81,3 +119,24 @@ onMounted(() => {
   variants.value = clientVariants;
 });
 </script>
+
+<style scoped>
+.card-image-wrapper {
+   @apply relative block w-full z-0  ;
+   height: 0;
+   padding-bottom: 67.777777777%;
+}
+.card-image-wrapper.thumbnail {
+  padding-bottom: 100%;
+}
+.card-image-wrapper .card-image-inner {
+  @apply flex flex-1 absolute w-full h-full items-center justify-center;
+}
+
+.card-image-wrapper .card-image-inner img {
+   height: auto;
+   max-width: 85%;
+   max-height: 85%;
+   width: auto;
+}
+</style>

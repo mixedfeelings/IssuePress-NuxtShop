@@ -12,15 +12,22 @@
         :disabled="!variant.node.availableForSale"
         :value="variant.node.id"
       >
-        {{ variant.node.title }}
+        {{ variant.node.title }}  {{ formatPrice(variant.node.priceV2.amount) }}
       </option>
     </select>
   </div>
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 import { Ref } from "nuxt3/dist/app/compat/capi";
 import { useProductStore } from "~/stores/product";
+import { formatLocalePrice } from "~/utils/money";
+import { useShopStore } from "~/stores/shop";
+
+const shopStore = useShopStore();
+const { localization } = storeToRefs(shopStore);
+const currencyCode = localization.value?.country?.currency?.isoCode ?? "USD";
 
 const props = defineProps<{
   label: string;
@@ -34,4 +41,9 @@ const productStore = useProductStore();
 const handleChange = (e: Event) => {
   productStore.setSelectedVariantId((<HTMLSelectElement>e.target).value);
 };
+
+function formatPrice(price: number) {
+  return formatLocalePrice(price, "en-US", currencyCode);
+}
+
 </script>
