@@ -48,9 +48,8 @@
         </div>
       </div>
     </section>
-    <section v-if="images.length > 1" class="bg-white pt-8 pb-4">
 
-    <carousel :items-to-show="2.5" :wrap-around="true">
+    <carousel v-if="images.length > 1" :items-to-show="2.5" :wrap-around="true">
       <slide v-for="(image, index) in images" key="index">
         <div class="carousel__item">
           <img :src="image.node.url" />
@@ -62,9 +61,6 @@
       </template>
     </carousel>
 
-
-    
-    </section>
     <section class="container mx-auto px-8">
       <div v-if="product" >
         <ProductDescription :description="product.descriptionHtml" class="py-6 text-2xl" />
@@ -138,7 +134,7 @@ onMounted(() => {
 
 <style >
 .card-image-wrapper {
-   @apply relative block w-full z-0  ;
+   @apply relative block w-full z-0 bg-white ;
    height: 0;
    padding-bottom: 100%;
 }
@@ -151,9 +147,13 @@ onMounted(() => {
 
 .card-image-wrapper .card-image-inner img {
    height: auto;
-   max-width: 100;
-   max-height: 100%;
+   max-width:90%;
+   max-height: 90%;
    width: auto;
+}
+
+.carousel {
+  @apply relative bg-white pt-8 pb-4 my-6 ;
 }
 
 .carousel__item {
