@@ -61,6 +61,11 @@ export const productByHandle = gql`
         value
         type
       }
+      metadata: metafield(namespace: "issuepress", key: "metadata") {
+          value
+          type
+        }
+
     }
   }
 `;
