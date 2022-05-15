@@ -4,7 +4,7 @@
     <section class="container mx-auto">
       <Html>
         <Head v-if="product?.title && product?.description">
-          <Title>{{ product.title }}</Title>
+          <Title>{{ product.title }} | Issue Press</Title>
           <Meta name="description" :content="product.description" />
         </Head>
       </Html>
