@@ -48,17 +48,22 @@
         </div>
       </div>
     </section>
-    <section class="bg-white p-6">
-      <ProductGrid>
-        <div class="card-image-wrapper" 
-          v-for="(image, index) in images" 
-          :index="index" 
-        >
-          <div class="card-image-inner">
-            <img :src="image.node.url" />
-          </div>
-        </div>
-      </ProductGrid>
+    <section v-if="images.length > 1" class="bg-white pt-8 pb-4">
+
+    <carousel :items-to-show="2.5" :wrap-around="true">
+      <slide v-for="(image, index) in images" key="index">
+        <div class="carousel__item">
+          <img :src="image.node.url" />
+        </div>       
+      </slide>
+      <template #addons>
+        <navigation />
+        <pagination />
+      </template>
+    </carousel>
+
+
+    
     </section>
     <section class="container mx-auto px-8">
       <div v-if="product" >
@@ -77,8 +82,8 @@ import { breakpointsTailwind } from "@vueuse/core";
 import { getSrcset } from "~/utils/images";
 import { productByHandle } from "~/apollo/queries/productByHandle";
 import { productVariantsByHandle } from "~/apollo/queries/productVariantsByHandle";
-import { useProductStore } from "~/stores/product";
-
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
+import 'vue3-carousel/dist/carousel.css';
 
 
 const route = useRoute();
@@ -111,8 +116,7 @@ const default_variant = computed(() => {
   } else {
     return product.value?.variants?.edges[0]?.node?.id;
   }
-  });
-
+});
 
 
 // Fetch fresh inventory on client
@@ -136,7 +140,7 @@ onMounted(() => {
 .card-image-wrapper {
    @apply relative block w-full z-0  ;
    height: 0;
-   padding-bottom: 67.777777777%;
+   padding-bottom: 100%;
 }
 .card-image-wrapper.thumbnail {
   padding-bottom: 100%;
@@ -147,8 +151,51 @@ onMounted(() => {
 
 .card-image-wrapper .card-image-inner img {
    height: auto;
-   max-width: 85%;
-   max-height: 85%;
+   max-width: 100;
+   max-height: 100%;
    width: auto;
+}
+
+.carousel__item {
+  @apply flex items-center;
+  min-height: 200px;
+  width: 100%;
+  height: auto;
+
+}
+
+.carousel__item img {
+  @apply object-contain h-full w-auto;
+  max-height: 400px;
+  box-sizing: content-box;
+
+}
+
+button.carousel__next,
+button.carousel__prev,
+button.carousel__pagination-button {
+  background-color: var(--global-color);
+}
+
+button.carousel__next,
+button.carousel__prev {
+  @apply border border-white border-4 opacity-75;
+}
+
+button.carousel__next:hover,
+button.carousel__prev:hover {
+  @apply opacity-100;
+}
+
+button.carousel__next {
+  right: 5%;
+}
+
+button.carousel__prev {
+  left: 5%;
+}
+
+button.carousel__pagination-button {
+  background-color: var(--global-color);
 }
 </style>
