@@ -16,32 +16,32 @@
                 :alt="product.handle"
                 :sizes="sizes"
                 :srcset="srcset"
-                :width="auto"
-                :height="auto"
+                width="auto"
+                height="auto"
                 class=""
               />
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/2 p-8 h-auto flex flex-col items-between justify-between">
+        <div class="w-full md:w-1/2 p-8 h-auto flex flex-col ">
           <div>
-            <div v-if="artist" class="text-base md:text-xl mb-1 font-mono">
-              {{artist}}
-            </div>
             <ProductTitle
               tag="h1"
               :title="product.title"
               variant="product"
-              class="text-2xl md:text-3xl lg:text-4xl font-serif tracking-wide"
+              class="text-2xl md:text-3xl lg:text-4xl font-serif tracking-wide mb-2"
             />
+            <div v-if="artist" class="text-base md:text-lg my-1 font-mono">
+              by {{artist}}
+            </div>
             <ProductPrice
               :priceRange="product.priceRange"
               :compareAtPriceRange="product.compareAtPriceRange"
               class="mt-4 "
             />
           </div>
-          <div class="mt-auto">
-            <ProductVariants label="Select option" :variants="variants" />
+          <div class="pt-8">
+            <ProductVariants  label="Select option" :variants="variants" :default-variant="default_variant" />
             <ProductAddToCart />
           </div>
 
@@ -77,6 +77,9 @@ import { breakpointsTailwind } from "@vueuse/core";
 import { getSrcset } from "~/utils/images";
 import { productByHandle } from "~/apollo/queries/productByHandle";
 import { productVariantsByHandle } from "~/apollo/queries/productVariantsByHandle";
+import { useProductStore } from "~/stores/product";
+
+
 
 const route = useRoute();
 const handle = route.params.product;
@@ -94,15 +97,23 @@ variants.value = initialVariants;
 
 const artist = computed(() => product.value.artist?.value ?? "");
 
-
 // Product Image
 const src = computed(() => product.value.images?.edges[0]?.node?.url ?? "");
 const sizes = `(max-width: ${breakpointsTailwind.md}px) 95vw, 40vw`;
 const srcset = computed(() => getSrcset(src.value || ""));
 
-
-const show_images = computed(() => (product.value.images?.edges.length > 1 ))
+const show_images = computed(() => (product.value.images?.edges.length > 1 ));
 const images = computed(() => product.value.images?.edges.slice(1));
+
+const default_variant = computed(() => {
+  if (product.value.variants?.edges.length > 1 ) {
+    return "";
+  } else {
+    return product.value?.variants?.edges[0]?.node?.id;
+  }
+  });
+
+
 
 // Fetch fresh inventory on client
 onMounted(() => {
@@ -117,10 +128,11 @@ onMounted(() => {
     (data) => data.productByHandle.variants.edges
   );
   variants.value = clientVariants;
+
 });
 </script>
 
-<style scoped>
+<style >
 .card-image-wrapper {
    @apply relative block w-full z-0  ;
    height: 0;

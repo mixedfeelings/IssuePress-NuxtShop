@@ -1,7 +1,6 @@
 <template>
-  <div v-if="variants && variants.length" class="mb-3">
+  <div v-if="variants && variants.length > 1" class="mb-3">
     <select
-      v-if="has_variants"
       class="form-select appearance-none block pl-3 pr-8 py-1.5 text-base font-normal bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
       :aria-label="label"
       @change="handleChange($event)"
@@ -26,27 +25,31 @@ import { useProductStore } from "~/stores/product";
 import { formatLocalePrice } from "~/utils/money";
 import { useShopStore } from "~/stores/shop";
 
-const shopStore = useShopStore();
-const { localization } = storeToRefs(shopStore);
-const currencyCode = localization.value?.country?.currency?.isoCode ?? "USD";
-
 const props = defineProps<{
   label: string;
   variants: Ref;
+  defaultVariant: string;
 }>();
 
-const { label, variants } = toRefs(props);
+const { label, variants, defaultVariant } = toRefs(props);
 
 const productStore = useProductStore();
-
-const has_variants = computed(() => (variants.value.length > 1))
 
 const handleChange = (e: Event) => {
   productStore.setSelectedVariantId((<HTMLSelectElement>e.target).value);
 };
 
+//Add Price to variant list
+const shopStore = useShopStore();
+const { localization } = storeToRefs(shopStore);
+const currencyCode = localization.value?.country?.currency?.isoCode ?? "USD";
+
 function formatPrice(price: number) {
   return formatLocalePrice(price, "en-US", currencyCode);
 }
+
+onMounted(() => {
+  productStore.setSelectedVariantId(defaultVariant.value);
+});
 
 </script>
