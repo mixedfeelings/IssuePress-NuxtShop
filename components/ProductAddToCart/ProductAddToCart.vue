@@ -3,7 +3,8 @@
     @click="addToCart"
     @keyup.enter="addToCart"
     :disabled="!selectedVariantId"
-    class="w-full p-4 text-center text-white bg-black disabled:opacity-75"
+    class=" p-4 text-center text-white bg-black cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+    :class="button_class"
   >
     <span>{{ currentLabel }}</span>
   </button>
@@ -17,10 +18,11 @@ const productStore = useProductStore();
 const cartStore = useCartStore();
 
 const labelActive = "Add to Cart";
-const labelDisabled = "Select Variant";
+const labelDisabled = "Make a selection";
 const selectedVariantId = computed(() => productStore.selectedVariantId);
 const currentLabel = computed(() =>
-  selectedVariantId ? labelActive : labelDisabled
+  //selectedVariantId.value ? labelActive : labelDisabled
+  labelActive
 );
 
 const addToCart = () => {
@@ -29,6 +31,16 @@ const addToCart = () => {
     return;
   }
   cartStore.cartLinesAdd(selectedVariantId.value);
-  productStore.setSelectedVariantId("");
+  // productStore.setSelectedVariantId(selectedVariantId.value.id); //don't clear selected variant when adding to cart
 };
+
+const button_class = computed(() =>  
+  selectedVariantId.value != "" ? "not-disabled" : "disabled"
+); 
 </script>
+
+<style scoped>
+  button.not-disabled:hover {
+    background-color: var(--global-color);
+  }
+</style>
