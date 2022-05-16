@@ -31,8 +31,8 @@
               variant="product"
               class="text-2xl md:text-3xl lg:text-4xl font-serif tracking-wide mb-2"
             />
-            <div v-if="artist" class="text-base md:text-lg my-1 font-mono">
-              by {{artist}}
+            <div v-if="artist" class="artist text-base md:text-lg my-1 font-mono">
+              by <span v-html="artist" />
             </div>
             <ProductPrice
               :priceRange="product.priceRange"
@@ -44,6 +44,12 @@
             <ProductVariants  label="Select option" :variants="variants" :default-variant="default_variant" />
             <ProductAddToCart />
           </div>
+
+            <div class="metadata text-sm py-6 font-mono whitespace-pre-wrap">
+              <div v-if="sku" v-text="sku" />
+              <div v-if="year" v-text="year" />
+              <div v-if="metadata" v-text="metadata" />
+            </div>
 
         </div>
       </div>
@@ -97,6 +103,16 @@ const initialVariants = useResult(
 variants.value = initialVariants;
 
 const artist = computed(() => product.value.artist?.value ?? "");
+const sku = computed(() => product.value?.variants?.edges[0]?.node?.sku ?? "");
+
+const year = computed(() =>  {
+  if (product.value.date?.value) {
+    const date = new Date(`${product.value.date?.value}`);
+    return date.getUTCFullYear();
+  } 
+});
+const metadata = computed(() => product.value.metadata?.value ?? "");
+
 
 // Product Image
 const src = computed(() => product.value.images?.edges[0]?.node?.url ?? "");
@@ -113,7 +129,6 @@ const default_variant = computed(() => {
     return product.value?.variants?.edges[0]?.node?.id;
   }
 });
-
 
 // Fetch fresh inventory on client
 onMounted(() => {
@@ -133,6 +148,10 @@ onMounted(() => {
 </script>
 
 <style >
+
+.artist a {
+  @apply underline;
+}
 .card-image-wrapper {
    @apply relative block w-full z-0 bg-white ;
    height: 0;
@@ -152,12 +171,16 @@ onMounted(() => {
    width: auto;
 }
 
+.metadata {
+  white-space: pre-wrap;
+}
+
 .carousel {
   @apply relative bg-white pt-8 pb-4 my-6 ;
 }
 
 .carousel__item {
-  @apply flex items-center;
+  @apply flex items-center p-6;
   min-height: 200px;
   width: 100%;
   height: auto;

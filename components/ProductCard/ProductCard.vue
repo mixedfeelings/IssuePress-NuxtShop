@@ -15,9 +15,7 @@
       </div>
     </div>
 
-    <div v-if="artist" class="text-xs mt-3 font-mono">
-      {{artist}}
-    </div>
+    <div v-if="artist" class="text-xs mt-3 font-mono" v-html="artist" />
     <ProductTitle
       tag="span"
       :title="product.title"
