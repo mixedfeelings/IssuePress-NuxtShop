@@ -20,8 +20,6 @@
 <script lang="ts" setup>
 import "~/assets/css/tailwind.css";
 import { useShopStore } from "~/stores/shop";
-import { useColorStore } from "~/stores/colors";
-const colorStore = useColorStore();
 
 useMeta({
   htmlAttrs: {
@@ -36,12 +34,6 @@ const { pending, error } = await useAsyncData("shop", () => {
 });
 
 const config = useRuntimeConfig();
-
-
-onMounted(() => {
-  colorStore.setGlobalColor();
-  document.documentElement.style.setProperty('--global-color',`var(--color-${colorStore.globalColor})`);
-});
 
 
 </script>

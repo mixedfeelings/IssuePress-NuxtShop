@@ -31,6 +31,8 @@
 <script setup lang="ts">
 import { useQuery, useResult } from "@vue/apollo-composable";
 import { collectionByHandle } from "~/apollo/queries/collectionByHandle";
+import { useColorStore } from "~/stores/colors";
+const colorStore = useColorStore();
 
 const route = useRoute();
 const handle = route.params.collection;
@@ -40,4 +42,9 @@ const { result, error } = useQuery(collectionByHandle, {
   numProducts: 48,
 });
 const collection = useResult(result, null, (data) => data.collectionByHandle);
+
+onMounted(() => {
+  colorStore.setGlobalColor();
+  document.documentElement.style.setProperty('--global-color',`var(--color-${colorStore.globalColor})`);
+});
 </script>
