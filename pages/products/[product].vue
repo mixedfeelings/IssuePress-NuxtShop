@@ -12,7 +12,11 @@
     <carousel v-if="show_images" :settings="settings" :breakpoints="breakpoints" :wrap-around="true">
       <slide v-for="(image, index) in images" key="index">
         <div class="carousel__item">
-          <img :src="image.node.url" />
+          <img 
+            :src="image.node.url" 
+            @click="onImageClick(index)"
+            class="cursor-pointer"
+          />
         </div>       
       </slide>
       <template #addons>
@@ -51,13 +55,41 @@
 
     </section>
     </section>
-  </div>    
+    <div v-if="show_modal" class="modal flex flex-col bg-white z-20 fixed top-0 right-0 bottom-0 left-0 flex items-center justify-center h-screen w-screen overlflow-hidden bg-fixed">      
+        <button
+          class="flex items-center justify-center z-20 absolute top-4 right-4"
+          aria-label="close"
+          @click="toggleModal()"
+          @keyup.enter="toggleModal()"
+        >
+        <xIcon class="close-icon w-6" aria-hidden />
+      </button>
+      <carousel v-if="show_images" ref="myCarousel" :wrap-around="true">
+        <slide v-for="(image, index) in images" key="index">
+          <div class="p-6" >
+            <img 
+              :src="image.node.url" 
+              style="max-height: 90vh"
+            />
+          </div>       
+        </slide>
+        <template #addons>
+          <navigation v-if="has_more_than_one_image"/>
+        </template>
+      </carousel>
+
+    </div>
+  </div>  
   <div v-else></div>
   <div v-if="error">Error</div>
 </div>
 </template>
 
 <script setup lang="ts">
+import { ref, nextTick } from 'vue';
+
+import xIcon from "@heroicons/vue/solid/esm/xIcon.js";
+
 import { useQuery, useResult } from "@vue/apollo-composable";
 import { breakpointsTailwind } from "@vueuse/core";
 import { getSrcset } from "~/utils/images";
@@ -66,6 +98,12 @@ import { productVariantsByHandle } from "~/apollo/queries/productVariantsByHandl
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
 import { useColorStore } from "~/stores/colors";
+
+
+const fullWidthImageIndex = ref(null);
+const myCarousel = ref(null);
+const show_modal = ref(false);
+
 
 const settings = ref({
     itemsToShow: 1,
@@ -107,7 +145,6 @@ const year = computed(() =>  {
 });
 const metadata = computed(() => product.value.metadata?.value ?? "");
 
-
 // Product Image
 const src = computed(() => product.value.images?.edges[0]?.node?.url ?? "");
 const sizes = `(max-width: ${breakpointsTailwind.md}px) 95vw, 40vw`;
@@ -124,6 +161,30 @@ const default_variant = computed(() => {
     return product.value?.variants?.edges[0]?.node?.id;
   }
 });
+
+
+function onImageClick(i: number) {
+  this.toggleModal();
+  nextTick(() => {
+    this.myCarousel.slideTo(i);
+  });
+};
+
+function toggleModal() {
+  this.show_modal = !this.show_modal;
+}
+
+// function onImageClick(i: number) {
+//     this.
+//        if (this.fullWidthImageIndex === i) {
+//             this.fullWidthImageIndex = null;
+//         } else {
+//             this.fullWidthImageIndex = i;
+//             this.myCarousel.slideTo(i);
+
+//         }
+// }
+
 
 // Fetch fresh inventory on client
 onMounted(() => {
@@ -155,14 +216,17 @@ p a,
 .artist a {
   @apply underline;
 }
+
 .card-image-wrapper {
    @apply relative block w-full z-0 bg-white ;
    height: 0;
    padding-bottom: 100%;
 }
+
 .card-image-wrapper.thumbnail {
   padding-bottom: 100%;
 }
+
 .card-image-wrapper .card-image-inner {
   @apply flex flex-1 absolute w-full h-full items-center justify-center;
 }
@@ -221,4 +285,15 @@ button.carousel__prev {
 button.carousel__pagination-button {
   background-color: var(--global-color);
 }
+
+.close-icon:hover {
+  fill: var(--global-color); 
+}
+
+/* .fullWidthImage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: absolute;
+} */
 </style>
