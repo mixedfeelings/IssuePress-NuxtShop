@@ -1,7 +1,6 @@
 <template>
-  <NuxtLink v-if="product" :to="productPath">
-    
-    <div :class="`card-image-wrapper`" >
+  <NuxtLink class="block" v-if="product" :to="productPath">
+    <div class="card-image-wrapper" >
       <div class="card-image-inner">
         <ProductImage
           :alt="product.handle"

@@ -1,29 +1,24 @@
 <template>
-  <section class="container mx-auto">
-    <div v-if="collection">
+  <section class="container mx-auto"  v-if="collection">
       <Html>
         <Head>
           <Title>{{ `${collection?.title} | Issue Press` ?? "Issue Press" }}</Title>
           <Meta name="description" :content="collection?.description ?? ''" />
         </Head>
       </Html>
+
       <CollectionHeader
         :title="collection?.title ?? ''"
         :description="collection?.descriptionHtml ?? ''"
       />
-      <div v-if="collection?.products?.edges">
-        <ProductGrid>
-          <ProductCard
-            v-for="(product, index) in collection?.products?.edges"
-            :index="index"
-            :key="product.node.id"
-            :product="product.node"
-          />
-        </ProductGrid>
-      </div>
-      <div v-else></div>
-    </div>
-    <div v-else></div>
+      <ProductGrid v-if="collection?.products?.edges">
+        <ProductCard
+          v-for="(product, index) in collection?.products?.edges"
+          :index="index"
+          :key="product.node.id"
+          :product="product.node"
+        />
+      </ProductGrid>
     <div v-if="error">Error</div>
   </section>
 </template>

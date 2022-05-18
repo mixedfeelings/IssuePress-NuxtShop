@@ -1,61 +1,15 @@
 <template :key="handle">
 <div >
-  <div v-if="product" class="flex flex-col my-8" >
-    <section class="container mx-auto">
+  <div v-if="product">
+    <section >
       <Html>
         <Head v-if="product?.title && product?.description">
           <Title>{{ product.title }} | Issue Press</Title>
           <Meta name="description" :content="product.description" />
         </Head>
       </Html>
-      <div class="flex flex-col md:flex-row ">
-        <div class="w-full md:w-1/2">
-          <div class="card-image-wrapper thumbnail ">
-            <div class="card-image-inner px-8">
-              <ProductImage
-                :alt="product.handle"
-                :sizes="sizes"
-                :srcset="srcset"
-                width="auto"
-                height="auto"
-                class=""
-              />
-            </div>
-          </div>
-        </div>
-        <div class="w-full md:w-1/2 p-8 h-auto flex flex-col ">
-          <div>
-            <ProductTitle
-              tag="h1"
-              :title="product.title"
-              variant="product"
-              class="text-2xl md:text-3xl lg:text-4xl font-serif tracking-wide mb-2"
-            />
-            <div v-if="artist" class="artist text-base md:text-lg my-1 font-mono">
-              by <span v-html="artist" />
-            </div>
-            <ProductPrice
-              :priceRange="product.priceRange"
-              :compareAtPriceRange="product.compareAtPriceRange"
-              class="mt-4 "
-            />
-          </div>
-          <div class="pt-8">
-            <ProductVariants  label="Select option" :variants="variants" :default-variant="default_variant" />
-            <ProductAddToCart />
-          </div>
 
-            <div class="metadata text-sm py-6 font-mono whitespace-pre-wrap">
-              <div v-if="sku" v-text="sku" />
-              <div v-if="year" v-text="year" />
-              <div v-if="metadata" v-text="metadata" />
-            </div>
-
-        </div>
-      </div>
-    </section>
-
-    <carousel v-if="show_images" :items-to-show="2.5" :wrap-around="true">
+    <carousel v-if="show_images" :settings="settings" :breakpoints="breakpoints" :wrap-around="true">
       <slide v-for="(image, index) in images" key="index">
         <div class="carousel__item">
           <img :src="image.node.url" />
@@ -66,11 +20,41 @@
         <pagination v-if="has_more_than_one_image"/>
       </template>
     </carousel>
+    <section class="flex flex-col md:flex-row container mx-auto py-7 md:py-12 px-3">
+        <div class="w-full">
+          <ProductTitle
+            tag="h1"
+            :title="product.title"
+            variant="product"
+            class="text-2xl md:text-3xl lg:text-4xl font-serif tracking-wide mb-2"
+          />
+          <div v-if="artist" class="artist text-base md:text-lg my-1 font-mono">
+            by <span v-html="artist" />
+          </div>
 
-    <section class="container mx-auto px-8">
-      <div v-if="product" >
-        <ProductDescription :description="product.descriptionHtml" class="py-6 text-2xl" />
-      </div>
+          <div class="py-6">
+              <ProductPrice
+                :priceRange="product.priceRange"
+                :compareAtPriceRange="product.compareAtPriceRange"
+              />
+
+            <div class="flex items-center gap-6 flex-wrap pt-4">
+
+              <ProductVariants  label="Select option" :variants="variants" :default-variant="default_variant" />
+              <ProductAddToCart />
+            </div>
+
+          </div>
+
+
+          <ProductDescription :description="product.descriptionHtml" class="text-base md:text-2xl py-4" />
+          <div class="metadata text-sm md:text-lg py-6 font-mono whitespace-pre-wrap leading-loose">
+            <div v-if="year" v-text="year" />
+            <div v-if="metadata" v-text="metadata" />
+            <div v-if="sku" v-text="sku" />
+          </div>
+        </div>
+    </section>
     </section>
   </div>    
   <div v-else></div>
@@ -87,9 +71,22 @@ import { productVariantsByHandle } from "~/apollo/queries/productVariantsByHandl
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
 import { useColorStore } from "~/stores/colors";
+
+const settings = ref({
+    itemsToShow: 1,
+});
+
+const breakpoints = ref( {
+  700: {
+    itemsToShow: 1.5,
+  },
+  // 1024 and up
+  1024: {
+    itemsToShow: 2.5,
+  }
+});
+
 const colorStore = useColorStore();
-
-
 const route = useRoute();
 const handle = route.params.product;
 
@@ -123,7 +120,7 @@ const srcset = computed(() => getSrcset(src.value || ""));
 
 const show_images = computed(() => (product.value.images?.edges.length > 1 ));
 const has_more_than_one_image = computed(() => (product.value.images?.edges.length > 2 ));
-const images = computed(() => product.value.images?.edges.slice(1));
+const images = computed(() => product.value.images?.edges);
 
 const default_variant = computed(() => {
   if (product.value.variants?.edges.length > 1 ) {
@@ -155,6 +152,11 @@ onMounted(() => {
 
 <style >
 
+.container {
+  max-width: 1000px !important;
+}
+
+p a,
 .artist a {
   @apply underline;
 }
@@ -182,11 +184,11 @@ onMounted(() => {
 }
 
 .carousel {
-  @apply relative bg-white pt-8 pb-4 my-6 ;
+  @apply relative bg-white pt-8 pb-4 ;
 }
 
 .carousel__item {
-  @apply flex items-center p-6;
+  @apply flex items-center justify-center p-6;
   min-height: 200px;
   width: 100%;
   height: auto;

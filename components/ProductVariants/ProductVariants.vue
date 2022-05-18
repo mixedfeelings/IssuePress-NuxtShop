@@ -1,5 +1,5 @@
 <template>
-  <div v-if="variants && variants.length > 1" class="mb-3">
+  <div v-if="variants && variants.length > 1">
     <select
       class="form-select appearance-none block pl-3 pr-8 py-1.5 text-base font-normal bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
       :aria-label="label"
