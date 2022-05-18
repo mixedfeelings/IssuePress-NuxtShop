@@ -7849,11 +7849,6 @@ vue-loader@^17.0.0:
     hash-sum "^2.0.0"
     loader-utils "^2.0.0"
 
-vue-my-photos@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/vue-my-photos/-/vue-my-photos-3.0.1.tgz#4497645ba4e31b9632c69e15088dc2803887653d"
-  integrity sha512-zJjBttmDyF6+IKRp+QTDus2S8ESeiOl02UkAqCyW8iOkKQrwPA/SiTBmNGTY7z5Itcd+M4rHcDxCTVCOWL5s1A==
-
 vue-router@^4.0.12:
   version "4.0.12"
   resolved "https://registry.npmjs.org/vue-router/-/vue-router-4.0.12.tgz"
