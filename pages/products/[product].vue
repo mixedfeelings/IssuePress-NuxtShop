@@ -62,7 +62,7 @@
           @click="toggleModal()"
           @keyup.enter="toggleModal()"
         >
-        <xIcon class="close-icon w-6" aria-hidden />
+        <CloseIcon class="close-icon w-6" aria-hidden />
       </button>
       <carousel v-if="show_images" ref="myCarousel" :wrap-around="true">
         <slide v-for="(image, index) in images" key="index">
@@ -87,9 +87,7 @@
 
 <script setup lang="ts">
 import { ref, nextTick } from 'vue';
-
-import xIcon from "@heroicons/vue/solid/esm/xIcon.js";
-
+import CloseIcon from "@heroicons/vue/solid/XIcon.js";
 import { useQuery, useResult } from "@vue/apollo-composable";
 import { breakpointsTailwind } from "@vueuse/core";
 import { getSrcset } from "~/utils/images";
@@ -99,8 +97,6 @@ import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
 import { useColorStore } from "~/stores/colors";
 
-
-const fullWidthImageIndex = ref(null);
 const myCarousel = ref(null);
 const show_modal = ref(false);
 
@@ -173,18 +169,6 @@ function onImageClick(i: number) {
 function toggleModal() {
   this.show_modal = !this.show_modal;
 }
-
-// function onImageClick(i: number) {
-//     this.
-//        if (this.fullWidthImageIndex === i) {
-//             this.fullWidthImageIndex = null;
-//         } else {
-//             this.fullWidthImageIndex = i;
-//             this.myCarousel.slideTo(i);
-
-//         }
-// }
-
 
 // Fetch fresh inventory on client
 onMounted(() => {
