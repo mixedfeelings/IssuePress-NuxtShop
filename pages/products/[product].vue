@@ -20,39 +20,35 @@
         <pagination v-if="has_more_than_one_image"/>
       </template>
     </carousel>
-    <section class="flex flex-col md:flex-row container mx-auto py-7 md:py-12 px-3">
-        <div class="w-full">
-          <div v-if="sku" v-text="sku" class="pb-2" />
-          <ProductTitle
-            tag="h1"
-            :title="product.title"
-            variant="product"
-            class="text-2xl md:text-3xl lg:text-4xl font-serif tracking-wide mb-2"
-          />
-          <div v-if="artist" class="artist text-base md:text-lg my-1 font-mono">
-            by <span v-html="artist" />
-          </div>
+    <section class="container mx-auto py-6 md:py-8 px-6">
+      <div v-if="sku" v-text="sku" class="pb-2" />
+      <ProductTitle
+        tag="h1"
+        :title="product.title"
+        variant="product"
+        class="text-2xl md:text-3xl lg:text-4xl font-serif tracking-wide mb-2"
+      />
+      <div v-if="artist" class="artist text-base md:text-lg my-1 font-mono">
+        by <span v-html="artist" />
+      </div>
 
+      <div class="flex items-center gap-6 flex-wrap pt-4">
+        <ProductPrice
+          :priceRange="product.priceRange"
+          :compareAtPriceRange="product.compareAtPriceRange"
+        />
+        <ProductVariants  label="Select option" :variants="variants" :default-variant="default_variant" />
+        <ProductAddToCart />
+      </div>
 
-
-          <div class="flex items-center gap-6 flex-wrap pt-4">
-            <ProductPrice
-              :priceRange="product.priceRange"
-              :compareAtPriceRange="product.compareAtPriceRange"
-            />
-            <ProductVariants  label="Select option" :variants="variants" :default-variant="default_variant" />
-            <ProductAddToCart />
-          </div>
-
-          <div class="text-base md:text-2xl py-6">
-            <ProductDescription :description="product.descriptionHtml" />
-            <div class="metadata pt-6 font-mono whitespace-pre-wrap ">
-              <div v-if="year" v-text="year" />
-              <div v-if="metadata" v-text="metadata" />
-            </div>
-          </div>
-
+      <div class="text-base md:text-2xl pt-6">
+        <ProductDescription :description="product.descriptionHtml" class="leading-relaxed" />
+        <div class="metadata pt-2 font-mono whitespace-pre-wrap ">
+          <div v-if="year" v-text="year" />
+          <div v-if="metadata" v-text="metadata" />
         </div>
+      </div>
+
     </section>
     </section>
   </div>    
@@ -183,15 +179,12 @@ p a,
 }
 
 .carousel {
-  @apply relative bg-white pt-8 pb-4 ;
+  @apply relative pb-4  ;
 }
 
 .carousel__item {
-  @apply flex items-center justify-center p-6;
+  @apply flex items-center justify-center px-4 py-8 bg-white w-full h-full ;
   min-height: 200px;
-  width: 100%;
-  height: auto;
-
 }
 
 .carousel__item img {
