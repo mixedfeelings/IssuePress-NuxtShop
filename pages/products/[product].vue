@@ -22,6 +22,7 @@
     </carousel>
     <section class="flex flex-col md:flex-row container mx-auto py-7 md:py-12 px-3">
         <div class="w-full">
+          <div v-if="sku" v-text="sku" class="pb-2" />
           <ProductTitle
             tag="h1"
             :title="product.title"
@@ -32,27 +33,25 @@
             by <span v-html="artist" />
           </div>
 
-          <div class="py-6">
-              <ProductPrice
-                :priceRange="product.priceRange"
-                :compareAtPriceRange="product.compareAtPriceRange"
-              />
 
-            <div class="flex items-center gap-6 flex-wrap pt-4">
 
-              <ProductVariants  label="Select option" :variants="variants" :default-variant="default_variant" />
-              <ProductAddToCart />
+          <div class="flex items-center gap-6 flex-wrap pt-4">
+            <ProductPrice
+              :priceRange="product.priceRange"
+              :compareAtPriceRange="product.compareAtPriceRange"
+            />
+            <ProductVariants  label="Select option" :variants="variants" :default-variant="default_variant" />
+            <ProductAddToCart />
+          </div>
+
+          <div class="text-base md:text-2xl py-6">
+            <ProductDescription :description="product.descriptionHtml" />
+            <div class="metadata pt-6 font-mono whitespace-pre-wrap ">
+              <div v-if="year" v-text="year" />
+              <div v-if="metadata" v-text="metadata" />
             </div>
-
           </div>
 
-
-          <ProductDescription :description="product.descriptionHtml" class="text-base md:text-2xl py-4" />
-          <div class="metadata text-sm md:text-lg py-6 font-mono whitespace-pre-wrap leading-loose">
-            <div v-if="year" v-text="year" />
-            <div v-if="metadata" v-text="metadata" />
-            <div v-if="sku" v-text="sku" />
-          </div>
         </div>
     </section>
     </section>
