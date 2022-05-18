@@ -40,6 +40,7 @@
     "tailwindcss": "^3.0.8"
   },
   "dependencies": {
+    "vue-easy-lightbox": "^1.4.1",
     "vue3-carousel": "^0.1.40"
   }
 }
