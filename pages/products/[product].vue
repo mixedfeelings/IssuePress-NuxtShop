@@ -1,7 +1,6 @@
 <template :key="handle">
-<div >
+<div class="bg-natural">
   <div v-if="product">
-    <section >
       <Html>
         <Head v-if="product?.title && product?.description">
           <Title>{{ product.title }} | Issue Press</Title>
@@ -24,7 +23,8 @@
         <pagination v-if="has_more_than_one_image"/>
       </template>
     </carousel>
-    <section class="container mx-auto py-6 md:py-8 px-6">
+    <section class="py-6 md:py-8 px-6 bg-natural">
+      <div class="container mx-auto">
       <div v-if="sku" v-text="sku" class="pb-2" />
       <ProductTitle
         tag="h1"
@@ -53,9 +53,13 @@
         </div>
       </div>
 
+      </div>
+
     </section>
-    </section>
-    <div v-if="show_modal" class="modal flex flex-col bg-white z-20 fixed top-0 right-0 bottom-0 left-0 flex items-center justify-center h-screen w-screen overlflow-hidden bg-fixed">      
+  </div>  
+  <div v-else></div>
+  <div v-if="error">Error</div>
+      <div v-if="show_modal" class="modal flex flex-col bg-white z-20 fixed top-0 right-0 bottom-0 left-0 flex items-center justify-center h-screen w-screen overlflow-hidden bg-fixed">      
         <button
           class="flex items-center justify-center z-20 absolute top-4 right-4"
           aria-label="close"
@@ -79,9 +83,6 @@
       </carousel>
 
     </div>
-  </div>  
-  <div v-else></div>
-  <div v-if="error">Error</div>
 </div>
 </template>
 
@@ -246,6 +247,14 @@ button.carousel__next,
 button.carousel__prev,
 button.carousel__pagination-button {
   background-color: var(--global-color);
+}
+
+button.carousel__pagination-button {
+  opacity: .4;
+}
+
+button.carousel__pagination-button.carousel__pagination-button--active {
+  @apply opacity-100;
 }
 
 button.carousel__next,

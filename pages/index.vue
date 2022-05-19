@@ -2,15 +2,15 @@
   <div class="container mx-auto">
     <Html>
       <Head>
-        <Title>NuxtShop</Title>
+        <Title>Issue Press</Title>
         <Meta name="description" :content="description" />
       </Head>
     </Html>
 
     <FeaturedProducts
-      collectionHandle="cc"
+      collectionHandle="new"
       :numberProducts="4"
-      title="Featured Products"
+      title="New Releases"
     />
   </div>
 </template>

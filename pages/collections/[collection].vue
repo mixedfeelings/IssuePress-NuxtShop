@@ -1,5 +1,5 @@
 <template>
-  <section class="container mx-auto"  v-if="collection">
+  <section class=""  v-if="collection">
       <Html>
         <Head>
           <Title>{{ `${collection?.title} | Issue Press` ?? "Issue Press" }}</Title>

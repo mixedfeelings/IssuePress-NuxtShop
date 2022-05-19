@@ -1,5 +1,12 @@
 <template>
-  <div class="grid grid-cols-2 gap-6 md:grid-cols-3">
+  <div class="flex flex-row flex-wrap justify-center">
     <slot></slot>
   </div>
 </template>
+
+<style scoped>
+.product-grid {
+
+}
+
+</style>

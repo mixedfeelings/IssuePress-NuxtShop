@@ -1,6 +1,6 @@
 <template>
   <div v-if="collection">
-      <div v-if="title" class="col-span-2 font-bold md:col-span-3 py-6">
+      <div v-if="title" class="col-span-2 font-bold md:col-span-3 py-6 text-center font-serif">
         {{ title }}
       </div>
     <ProductGrid>

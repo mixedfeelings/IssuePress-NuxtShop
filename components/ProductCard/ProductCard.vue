@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink class="block" v-if="product" :to="productPath">
+  <NuxtLink class="card w-1/2 md:w-1/3 lg:w-1/4" v-if="product" :to="productPath">
     <div class="card-image-wrapper" >
       <div class="card-image-inner">
         <ProductImage
@@ -13,18 +13,19 @@
         />
       </div>
     </div>
-
-    <div v-if="artist" class="text-xs mt-3 font-mono" v-html="artist" />
-    <ProductTitle
-      tag="span"
-      :title="product.title"
-      class="font-serif"
-    />
-    <ProductPrice
-      :priceRange="product.priceRange"
-      :compareAtPriceRange="product.compareAtPriceRange"
-      class="text-sm"
-    />
+    <div class="card-body">
+      <div v-if="artist" class="text-xs mt-3 font-mono" v-html="artist" />
+      <ProductTitle
+        tag="span"
+        :title="product.title"
+        class="font-serif"
+      />
+      <ProductPrice
+        :priceRange="product.priceRange"
+        :compareAtPriceRange="product.compareAtPriceRange"
+        class="text-sm justify-center"
+      />
+    </div>
   </NuxtLink>
 </template>
 
@@ -54,15 +55,18 @@ const artist = props.product?.artist?.value ?? "";
 
 <style scoped>
 
+.card {
+  @apply block text-center;
+}
+
+.card-body {
+  @apply px-6 pb-6;
+}
 
 .card-image-wrapper {
-   @apply relative block w-full mb-2 z-0 bg-white ;
+   @apply relative block w-full mb-2 z-0 ;
    height: 0;
-   padding-bottom: 75%;
-}
-.card-image-wrapper:after {
-  @apply block;
-  padding-top: 100%;
+   padding-bottom: 100%;
 }
 .card-image-wrapper .card-image-inner {
   @apply flex flex-1 absolute w-full h-full items-center justify-center;
