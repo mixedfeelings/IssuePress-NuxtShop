@@ -40,6 +40,7 @@ import { useColorStore } from "~/stores/colors";
 const props = defineProps<{
   product: ProductCard;
   index?: number;
+  hideArtist?: boolean;
 }>();
 
 const productPath = `/products/${props.product.handle}`;
@@ -50,7 +51,11 @@ const width = props.product?.images?.edges[0]?.node?.width ?? "";
 const height = props.product?.images?.edges[0]?.node?.height ?? "";
 const sizes = ``;
 const srcset = getSrcset(src);
-const artist = props.product?.artist?.value ?? "";
+const artist = computed(() => {
+  if (!props.hideArtist) {
+    return props.product?.artist?.value ?? "";
+  }
+});
 
 </script>
 

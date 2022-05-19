@@ -1,5 +1,5 @@
 <template>
-  <section class="container mx-auto py-6">
+  <section class=" py-6">
     <div v-if="collection">
       <Html>
         <Head>
@@ -18,6 +18,7 @@
             :index="index"
             :key="product.node.id"
             :product="product.node"
+            hide-artist
           />
         </ProductGrid>
       </div>
