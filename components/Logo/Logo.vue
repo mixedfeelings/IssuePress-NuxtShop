@@ -3,7 +3,7 @@
     to="/"
     class="flex items-center max-h-8 font-serif text-lg tracking-wider leading-none"
   >
-    <svg class="h-8 w-8 mr-2" viewBox="0 0 144 144" enable-background="new 0 0 144 144" xmlns="http://www.w3.org/2000/svg" xml:space="preserve">
+    <svg class="h-8 w-8 mr-2" viewBox="0 0 144 144" enable-background="new 0 0 144 144" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" aria-hidden>
 			<g>
 				<path d="M89.002,61.865c-0.046,0-0.095-0.023-0.132-0.051h-7.126v21.814h7.258c5.56-0.556,9.759-5.233,9.759-10.883
 					C98.761,67.098,94.562,62.416,89.002,61.865z"/>
