@@ -33,7 +33,7 @@
         class="text-2xl md:text-3xl lg:text-4xl font-serif tracking-wide mb-2"
       />
       <div v-if="artist" class="artist text-base md:text-lg my-1 font-mono">
-        by <span v-html="artist" />
+        by <a :href="`/artists/${formatText(artist)}`">{{artist}}</a>
       </div>
 
       <div class="flex items-center gap-6 flex-wrap pt-4">
@@ -97,6 +97,12 @@ import { productVariantsByHandle } from "~/apollo/queries/productVariantsByHandl
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
 import { useColorStore } from "~/stores/colors";
+import { slugify } from "~/utils/strings";
+
+function formatText(text: string) {
+  return slugify(text);
+}
+
 
 const myCarousel = ref(null);
 const show_modal = ref(false);
