@@ -153,7 +153,7 @@ const src = computed(() => product.value.images?.edges[0]?.node?.url ?? "");
 const sizes = `(max-width: ${breakpointsTailwind.md}px) 95vw, 40vw`;
 const srcset = computed(() => getSrcset(src.value || ""));
 
-const show_images = computed(() => (product.value.images?.edges.length > 1 ));
+const show_images = computed(() => (product.value.images?.edges.length > 0 ));
 const has_more_than_one_image = computed(() => (product.value.images?.edges.length > 2 ));
 const images = computed(() => product.value.images?.edges);
 
@@ -237,8 +237,12 @@ p a,
   @apply relative pb-4  ;
 }
 
+.carousel__viewport {
+  @apply bg-white;
+}
+
 .carousel__item {
-  @apply flex items-center justify-center px-4 py-8 bg-white w-full h-full ;
+  @apply flex items-center justify-center px-4 py-8  w-full h-full ;
   min-height: 200px;
 }
 
