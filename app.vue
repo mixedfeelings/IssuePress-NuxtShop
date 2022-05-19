@@ -1,7 +1,7 @@
 <template v-if="colorStore.globalColor" >
   <Header />
   <Cart />
-  <main class="min-h-[75vh] ">
+  <main class="min-h-[75vh]">
     <div
       v-if="
         config.SHOPIFY_STOREFRONT_ENDPOINT &&
@@ -39,9 +39,7 @@ const config = useRuntimeConfig();
 </script>
 
 <style >
-body {
-  @apply bg-natural;
-}
+
 header {@apply bg-white;}
 a:hover {
   color: var(--global-color) !important;
