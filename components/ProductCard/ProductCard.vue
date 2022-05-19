@@ -1,31 +1,32 @@
 <template>
-  <NuxtLink class="card w-1/2 md:w-1/3 lg:w-1/4" v-if="product" :to="productPath">
-    <div class="card-image-wrapper" >
-      <div class="card-image-inner">
-        <ProductImage
-          :alt="product.handle"
-          :height="height"
-          :lazy="index > lazyLoadingThreshold"
-          :sizes="sizes"
-          :srcset="srcset"
-          :width="width"
-          class=""
+  <NuxtLink class="card w-1/2 md:w-1/3 lg:w-1/4" :to="productPath">
+      <div class="card-image-wrapper" >
+        <div class="card-image-inner">
+          <ProductImage
+            :alt="product.handle"
+            :height="height"
+            :lazy="index > lazyLoadingThreshold"
+            :sizes="sizes"
+            :srcset="srcset"
+            :width="width"
+            class=""
+          />
+        </div>
+      </div>
+      <div class="card-body">
+        <div v-if="artist" class="text-xs mt-3 font-mono" v-html="artist" />
+        <ProductTitle
+          tag="span"
+          :title="product.title"
+          class="font-serif"
+        />
+        <ProductPrice
+          :priceRange="product.priceRange"
+          :compareAtPriceRange="product.compareAtPriceRange"
+          class="text-sm justify-center"
         />
       </div>
-    </div>
-    <div class="card-body">
-      <div v-if="artist" class="text-xs mt-3 font-mono" v-html="artist" />
-      <ProductTitle
-        tag="span"
-        :title="product.title"
-        class="font-serif"
-      />
-      <ProductPrice
-        :priceRange="product.priceRange"
-        :compareAtPriceRange="product.compareAtPriceRange"
-        class="text-sm justify-center"
-      />
-    </div>
+
   </NuxtLink>
 </template>
 

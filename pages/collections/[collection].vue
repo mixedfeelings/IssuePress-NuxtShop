@@ -1,5 +1,6 @@
 <template>
-  <section class=""  v-if="collection">
+  <section >
+    <div v-if="collection" >
       <Html>
         <Head>
           <Title>{{ `${collection?.title} | Issue Press` ?? "Issue Press" }}</Title>
@@ -19,6 +20,9 @@
           :product="product.node"
         />
       </ProductGrid>
+      <div v-else></div>
+    </div>
+    <div v-else></div>
     <div v-if="error">Error</div>
   </section>
 </template>
