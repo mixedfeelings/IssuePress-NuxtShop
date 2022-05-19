@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <section class="py-8">
     <Html>
       <Head>
         <Title>Issue Press</Title>
@@ -12,7 +12,7 @@
       :numberProducts="4"
       title="New Releases"
     />
-  </div>
+  </section>
 </template>
 
 <script setup>
