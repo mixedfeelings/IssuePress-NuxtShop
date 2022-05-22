@@ -1,5 +1,6 @@
 @import 'animations';
 @import 'cards';
+@import 'collections';
 
 /* Forms */
 .form-select {
