@@ -20,7 +20,17 @@
             :product="product.node"
             hide-artist
           />
+          <InfiniteLoading v-if="hasNextPage" :firstLoad="false" :identifier="collection?.products?.edges" @infinite="loadMore" >
+            <template #spinner>
+              <div class="loading-container">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+            </template>
+          </InfiniteLoading>
         </ProductGrid>
+
       </div>
     </div>
     <div v-else></div>
@@ -32,13 +42,15 @@
 import { useQuery, useResult } from "@vue/apollo-composable";
 import { collectionByHandle } from "~/apollo/queries/collectionByHandle";
 import { useColorStore } from "~/stores/colors";
-const colorStore = useColorStore();
+import InfiniteLoading from "v3-infinite-loading";
 
+const colorStore = useColorStore();
 const route = useRoute();
 const handle = route.params.collection;
 
 const { result, error, fetchMore } = useQuery(collectionByHandle, { handle, numProducts: 12, cursor: null });
 const collection = useResult(result, null, (data) => data.collectionByHandle);
+const hasNextPage = computed(() => result.value.collectionByHandle.products?.pageInfo.hasNextPage )
 
 function loadMore () {
   fetchMore({

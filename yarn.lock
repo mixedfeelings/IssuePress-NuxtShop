@@ -7811,6 +7811,11 @@ uuid@^8.3.2:
   resolved "https://registry.npmjs.org/uuid/-/uuid-8.3.2.tgz"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
+v3-infinite-loading@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/v3-infinite-loading/-/v3-infinite-loading-1.0.6.tgz#c3c59506721bf92fcdd97fb854b927098643a190"
+  integrity sha512-ZkZ9A1NJgab2VSigiHp13Y06bUJIjQ3gxtzjzd5eiByIrqQbDYFhqnD8bQEhjDznzh9cTe/QCc4S3jcwJNP0Vw==
+
 vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz"

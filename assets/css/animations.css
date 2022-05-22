@@ -1,0 +1,17 @@
+.loading-container {
+    @apply flex space-x-2 p-6 rounded-full justify-center items-center;
+}
+
+.loading-container .dot {
+    @apply p-2 w-2 h-2 rounded-full animate-bounce;
+    background-color: var(--global-color);
+    animation-delay: 0.2s;
+}
+
+.loading-container .dot:first-child{
+    animation-delay: 0.1s;
+}
+
+.loading-container .dot:last-child {
+    animation-delay: 0.3s;
+}
