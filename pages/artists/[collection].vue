@@ -37,11 +37,7 @@ const colorStore = useColorStore();
 const route = useRoute();
 const handle = route.params.collection;
 
-const { result, error, fetchMore } = useQuery(collectionByHandle, {
-  handle,
-  numProducts: 2,
-});
-
+const { result, error, fetchMore } = useQuery(collectionByHandle, { handle, numProducts: 12, cursor: null });
 const collection = useResult(result, null, (data) => data.collectionByHandle);
 
 function loadMore () {
