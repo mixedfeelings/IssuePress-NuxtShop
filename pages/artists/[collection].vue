@@ -1,6 +1,6 @@
 <template>
   <section class=" py-6">
-    <div v-if="collection">
+    <div v-if="collection?.products?.edges">
       <Html>
         <Head>
           <Title>{{ collection?.title ?? "" }}</Title>
@@ -11,7 +11,7 @@
         :title="collection?.title ?? ''"
         :description="collection?.descriptionHtml ?? ''"
       />
-      <div v-if="collection?.products?.edges">
+      <div >
         <ProductGrid>
           <ProductCard
             v-for="(product, index) in collection?.products?.edges"
@@ -22,7 +22,6 @@
           />
         </ProductGrid>
       </div>
-      <div v-else></div>
     </div>
     <div v-else></div>
     <div v-if="error">Error</div>
@@ -38,11 +37,42 @@ const colorStore = useColorStore();
 const route = useRoute();
 const handle = route.params.collection;
 
-const { result, error } = useQuery(collectionByHandle, {
+const { result, error, fetchMore } = useQuery(collectionByHandle, {
   handle,
-  numProducts: 48,
+  numProducts: 2,
 });
+
 const collection = useResult(result, null, (data) => data.collectionByHandle);
+
+function loadMore () {
+  fetchMore({
+    variables: {
+      cursor: result.value.collectionByHandle.products?.pageInfo.endCursor,
+    },
+    updateQuery: (previousResult, { fetchMoreResult }) => {
+      const newEdges = fetchMoreResult.collectionByHandle.products.edges
+      const pageInfo = fetchMoreResult.collectionByHandle.products.pageInfo
+
+      return newEdges.length ? {
+        ...previousResult,
+        collectionByHandle: {   
+          ...previousResult.collectionByHandle,       
+          products: {
+            ...previousResult.collectionByHandle.products,
+            // Concat edges
+            edges: [
+              ...previousResult.collectionByHandle.products.edges,
+              ...newEdges
+            ],
+            // Override with new pageInfo
+            pageInfo,
+          }
+        }
+      } : previousResult
+
+    },
+  });
+};
 
 onMounted(() => {
   colorStore.setGlobalColor();

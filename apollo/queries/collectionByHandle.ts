@@ -6,6 +6,7 @@ export const collectionByHandle = gql`
     $numProducts: Int
     $sortKey: ProductCollectionSortKeys
     $reverse: Boolean
+    $cursor: String
   ) {
     collectionByHandle(handle: $handle) {
       description
@@ -19,7 +20,7 @@ export const collectionByHandle = gql`
         width
       }
       title
-      products(first: $numProducts, sortKey: $sortKey, reverse: $reverse) {
+      products(first: $numProducts, sortKey: $sortKey, reverse: $reverse, after: $cursor) {
         edges {
           cursor
           node {
@@ -83,6 +84,7 @@ export const collectionByHandle = gql`
         pageInfo {
           hasNextPage
           hasPreviousPage
+          endCursor
         }
       }
     }
