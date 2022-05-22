@@ -58,35 +58,3 @@ const artist = computed(() => {
 });
 
 </script>
-
-<style scoped>
-
-.card {
-  @apply block text-center;
-  transition: all 1.5s cubic-bezier(.23,1,.32,1);
-}
-
-.card:hover {
-  transform: translateY(-3px);
-}
-
-.card-body {
-  @apply px-6 pb-6;
-}
-
-.card-image-wrapper {
-   @apply relative block w-full mb-2 z-0 ;
-   height: 0;
-   padding-bottom: 100%;
-}
-.card-image-wrapper .card-image-inner {
-  @apply flex flex-1 absolute w-full h-full items-center justify-center;
-}
-.card-image-wrapper .card-image-inner img {
-   height: auto;
-   max-width: 85%;
-   max-height: 85%;
-   width: auto;
-}
-
-</style>
