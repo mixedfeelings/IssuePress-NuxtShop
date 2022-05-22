@@ -7,10 +7,9 @@
       </Head>
     </Html>
     <div v-if="collectionList" class="py-6">
-        <div class="collection-header">
-          <h1>{{filtered_collections.length}} Artists</h1>
-        </div>
-
+      <CollectionHeader
+        title="Artists"
+      />
         <ProductGrid class="gap-y-8">
           <NuxtLink v-for="(collection) in filtered_collections" class="card w-1/2 md:w-1/3 lg:w-1/4 text-center" :to="`/artists/${collection.node.handle}`">
             <div class="card-image-wrapper" >
