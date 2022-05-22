@@ -57,3 +57,15 @@
   font-display: swap;
   src: url(~/assets/fonts/InknutAntiqua-Regular.woff2) format("woff2");
 }
+
+/* LINKS */
+
+p a:hover,
+a:hover {
+  color: var(--global-color) !important;
+}
+
+button:hover svg,
+a:hover svg {
+  fill: var(--global-color);
+}

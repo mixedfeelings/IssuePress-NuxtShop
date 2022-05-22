@@ -37,16 +37,3 @@ const config = useRuntimeConfig();
 
 
 </script>
-
-<style >
-
-header {@apply bg-white;}
-a:hover {
-  color: var(--global-color) !important;
-}
-
-button:hover svg,
-a:hover svg {
-  fill: var(--global-color);
-}
-</style>

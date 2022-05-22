@@ -45,6 +45,9 @@ module.exports = {
         'sunflower': 'var(--color-sunflower)',
         'yellow': 'var(--color-yellow)',
         'natural': 'var(--color-natural)',
+      },
+      lineHeight: {
+        '12': '3rem'
       } 
     },
     fontFamily: {
