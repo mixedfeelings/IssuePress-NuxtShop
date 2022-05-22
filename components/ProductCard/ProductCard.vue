@@ -63,6 +63,11 @@ const artist = computed(() => {
 
 .card {
   @apply block text-center;
+  transition: all 1.5s cubic-bezier(.23,1,.32,1);
+}
+
+.card:hover {
+  transform: translateY(-3px);
 }
 
 .card-body {
