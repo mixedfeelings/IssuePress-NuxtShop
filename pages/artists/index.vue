@@ -3,10 +3,15 @@
     <Html>
       <Head>
         <Title>Artists | Issue Press</Title>
-        <Meta name="description" content="Lorem ipsum" />
+        <Meta property="og:title" content="Artists | Issue Press" />
+        <Meta property="og:type" content="article" />
+        <Meta property="og:description"  name="description" content="Directory of artists who have created projects with Issue Press" />
+        <Meta property="og:image" content="/public/issue-press.png" />
+        <Meta property="og:url" :content="$route" />
+        <Meta name="twitter:card" content="/public/issue-press.png" />
       </Head>
     </Html>
-    <div v-if="collectionList" class="py-6">
+    <div v-if="collectionList" class="pb-6">
       <CollectionHeader
         title="Artists"
       />
