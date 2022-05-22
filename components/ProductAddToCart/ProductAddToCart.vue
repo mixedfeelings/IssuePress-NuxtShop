@@ -6,13 +6,19 @@
     class=" p-4 text-center text-white bg-black cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
     :class="button_class"
   >
-    <span>{{ currentLabel }}</span>
+    <span>{{ label ? label : currentLabel }}</span>
   </button>
 </template>
 
 <script setup lang="ts">
 import { useProductStore } from "~/stores/product";
 import { useCartStore } from "~/stores/cart";
+
+const props = defineProps<{
+  label?: string;
+}>();
+
+const { label } = toRefs(props);
 
 const productStore = useProductStore();
 const cartStore = useCartStore();

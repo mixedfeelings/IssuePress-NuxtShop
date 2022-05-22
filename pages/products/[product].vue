@@ -42,7 +42,7 @@
           :compareAtPriceRange="product.compareAtPriceRange"
         />
         <ProductVariants  label="Select option" :variants="variants" :default-variant="default_variant" />
-        <ProductAddToCart />
+        <ProductAddToCart :label="button_label" />
       </div>
 
       <div class="text-base md:text-2xl pt-6">
@@ -158,12 +158,20 @@ const has_more_than_one_image = computed(() => (product.value.images?.edges.leng
 const images = computed(() => product.value.images?.edges);
 
 const default_variant = computed(() => {
-  if (product.value.variants?.edges.length > 1 ) {
+  if (product.value.variants?.edges.length > 1 || !product.value.availableForSale ) {
     return "";
   } else {
     return product.value?.variants?.edges[0]?.node?.id;
   }
 });
+
+const button_label = computed(() => {
+  if (!product.value.availableForSale) {
+    return "Sold Out";
+  } else {
+    return "";
+  }
+})
 
 
 function onImageClick(i: number) {
