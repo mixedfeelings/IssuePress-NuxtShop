@@ -3,7 +3,7 @@
     <div v-if="collection?.products?.edges">
       <Html>
         <Head>
-          <Title>{{ collection?.title ?? "" }}</Title>
+          <Title>{{ `${collection?.title} | Issue Press` ?? "Issue Press" }}</Title>
           <Meta name="description" :content="collection?.description ?? ''" />
         </Head>
       </Html>
