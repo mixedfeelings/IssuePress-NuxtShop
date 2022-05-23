@@ -8,24 +8,20 @@
     </Html>
     <div class="collection-header text-center pb-0">
         <h1 class="">Catalog</h1>
-        <div class="buttons flex gap-1 justify-center pt-4 ">
+        <div class="catalog-toggle-buttons ">
             <button 
-                class="flex items-center justify-center w-8 h-8 border border-black"
                 @click="setTable"
                 @keyup.enter="setTable"
+                :class="table_class"
             >
-                <TableIcon
-                    class="inline w-5"
-                />
+                <TableIcon class="inline w-5" />
             </button>
             <button 
-                class="flex items-center justify-center w-8 h-8 border border-black"
                 @click="setGrid"
                 @keyup.enter="setGrid"
+                :class="grid_class"
             >
-                <ViewGridIcon
-                    class="inline w-5"
-                    />
+                <ViewGridIcon class="inline w-5" />
             </button>
         </div>
     </div>
@@ -44,32 +40,48 @@ import TableIcon from "@heroicons/vue/solid/TableIcon.js";
 import ViewGridIcon from "@heroicons/vue/solid/ViewGridIcon.js";
 import { useColorStore } from "~/stores/colors";
 
-const currentView = ref("ProductTable");
+const currentView = ref("");
+const table_class = ref("");
+const grid_class = ref("");
 const colorStore = useColorStore();
 
 function setGrid() {
     currentView.value = "FeaturedProducts";
+    table_class.value = "";
+    grid_class.value = "active"
 }
 
 function setTable() {
     currentView.value = "ProductTable";
+    grid_class.value = "";
+    table_class.value = "active";
 }
 
 onMounted(() => {
   colorStore.setGlobalColor();
   document.documentElement.style.setProperty('--global-color',`var(--color-${colorStore.globalColor})`);
+  setTable();
 });
 
 </script>
 
-<style>
-    button.active {
+<style scoped>
+    .catalog-toggle-buttons {
+        @apply flex gap-1 justify-center pt-4;
+    }
+    .catalog-toggle-buttons button {
+        @apply flex items-center justify-center w-8 h-8 border border-black;
+    }
+    .catalog-toggle-buttons button:hover {
+        border-color: var(--global-color);
+    }
+    .catalog-toggle-buttons button.active {
         @apply bg-black;    
     }
-    button.active svg {
-        fill: #FFFF;
+    .catalog-toggle-buttons button.active svg {
+        fill: #FFFFFF;
     }
-    button:hover {
-        border-color: var(--global-color);
+    .catalog-toggle-buttons button.active:hover {
+        @apply border-black
     }
 </style>
