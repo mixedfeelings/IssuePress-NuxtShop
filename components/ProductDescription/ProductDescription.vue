@@ -9,7 +9,3 @@ const props = defineProps<{
 
 const { description } = toRefs(props);
 </script>
-
-<style >
-p { @apply pb-4;}
-</style>
