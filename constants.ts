@@ -6,7 +6,7 @@ interface NavLink {
 export const navLinks: NavLink[] = [
   {
     label: "Catalog",
-    path: "/collections/all",
+    path: "/catalog",
   },
   {
     label: "Artists",
