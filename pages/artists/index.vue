@@ -8,9 +8,16 @@
     <div v-if="collectionList" class="pb-6">
       <CollectionHeader
         title="Artists"
+        description=""
       />
         <ProductGrid class="gap-y-8">
-          <NuxtLink v-for="(collection) in filtered_collections" class="card w-1/2 md:w-1/3 lg:w-1/4 text-center" :to="`/artists/${collection.node.handle}`">
+          <NuxtLink 
+            v-for="(collection, index) in filtered_collections" 
+            :index="index"
+            :key="collection.node.id"
+            class="card w-1/2 md:w-1/3 lg:w-1/4 text-center" 
+            :to="`/artists/${collection.node.handle}`"
+          >
             <div class="card-image-wrapper" >
               <div class="card-image-inner">
                 <img
