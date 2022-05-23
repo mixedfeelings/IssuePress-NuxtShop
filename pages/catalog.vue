@@ -8,22 +8,26 @@
     </Html>
     <div class="collection-header text-center pb-0">
         <h1 class="">Catalog</h1>
-        <div class="catalog-toggle-buttons ">
-            <button 
-                @click="setTable"
-                @keyup.enter="setTable"
-                :class="table_class"
-            >
-                <TableIcon class="inline w-5" />
-            </button>
-            <button 
-                @click="setGrid"
-                @keyup.enter="setGrid"
-                :class="grid_class"
-            >
-                <ViewGridIcon class="inline w-5" />
-            </button>
+        <div class="w-full flex justify-center sm:justify-between px-4">
+            <div></div>
+            <div class="catalog-toggle-buttons ">
+                <button 
+                    @click="setTable"
+                    @keyup.enter="setTable"
+                    :class="table_class"
+                >
+                    <TableIcon class="inline w-5" />
+                </button>
+                <button 
+                    @click="setGrid"
+                    @keyup.enter="setGrid"
+                    :class="grid_class"
+                >
+                    <ViewGridIcon class="inline w-5" />
+                </button>
+            </div>
         </div>
+
     </div>
     <component 
         :is="currentView"
@@ -57,10 +61,11 @@ function setTable() {
     table_class.value = "active";
 }
 
+
 onMounted(() => {
-  colorStore.setGlobalColor();
-  document.documentElement.style.setProperty('--global-color',`var(--color-${colorStore.globalColor})`);
-  setTable();
+    setTable();
+    colorStore.setGlobalColor();
+    document.documentElement.style.setProperty('--global-color',`var(--color-${colorStore.globalColor})`);
 });
 
 </script>
