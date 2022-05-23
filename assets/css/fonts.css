@@ -69,3 +69,11 @@ button:hover svg,
 a:hover svg {
   fill: var(--global-color);
 }
+
+/* Paragraph */
+
+p { @apply pb-4;}
+
+p:last-child {
+  @apply pb-0;
+}
