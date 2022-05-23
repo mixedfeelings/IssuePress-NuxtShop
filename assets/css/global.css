@@ -1,6 +1,7 @@
 @import 'animations';
 @import 'cards';
 @import 'collections';
+@import 'tables';
 
 /* Forms */
 .form-select {
@@ -9,3 +10,17 @@
   background-size: 16px 12px;
 }
 
+
+.desktop-only {
+  @apply hidden;
+}
+
+@media (min-width: 640px) {
+  .mobile-only {
+    @apply hidden;
+  }
+
+  .desktop-only {
+    display: revert;
+  }
+}

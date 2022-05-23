@@ -103,10 +103,8 @@ function formatText(text: string) {
   return slugify(text);
 }
 
-
 const myCarousel = ref(null);
 const show_modal = ref(false);
-
 
 const settings = ref({
     itemsToShow: 1,
@@ -146,6 +144,7 @@ const year = computed(() =>  {
     return date.getUTCFullYear();
   } 
 });
+
 const metadata = computed(() => product.value.metadata?.value ?? "");
 
 // Product Image
@@ -172,7 +171,6 @@ const button_label = computed(() => {
     return "";
   }
 })
-
 
 function onImageClick(i: number) {
   this.toggleModal();

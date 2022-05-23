@@ -6,11 +6,9 @@
         <Meta name="description" :content="description" />
       </Head>
     </Html>
-
     <FeaturedProducts
-      collectionHandle="new"
-      :numberProducts="4"
-      title="New Releases"
+      collectionHandle="in-stock"
+      :numberProducts="12"
     />
   </section>
 </template>
