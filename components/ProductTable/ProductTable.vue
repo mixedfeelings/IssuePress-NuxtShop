@@ -33,7 +33,7 @@
                 <div class="number mobile-only">{{product.node.variants?.edges[0]?.node?.sku}}</div>
                 <NuxtLink :to="`/products/${product.node.handle}`"><h3>{{product.node.title}}</h3></NuxtLink>
                 <div class="artist mobile-only">
-                    {{product.node.artist?.value}}
+                    {{product.node.artist?.value}}<span v-if="product.node.artist2?.value">, {{product.node.artist2?.value}}</span>
                 </div>
                 <div class="project-type mobile-only">
                     {{product.node.productType}}<span v-if="product.node.date?.value">, {{formateYear(product.node.date?.value)}}</span>
@@ -44,6 +44,12 @@
                 <NuxtLink v-if="product.node.artist?.value" :to="`/artists/${formatArtist(product.node.artist?.value)}`">
                     {{product.node.artist?.value}}
                 </NuxtLink>
+                <span v-if="product.node.artist2?.value">,
+                 <NuxtLink  :to="`/artists/${formatArtist(product.node.artist2?.value)}`">
+                    {{product.node.artist2?.value}}
+                </NuxtLink>
+                </span>
+
             </td>
             <td class="project-type desktop-only">
                 {{product.node.productType}}

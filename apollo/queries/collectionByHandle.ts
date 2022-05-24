@@ -75,6 +75,10 @@ export const collectionByHandle = gql`
               value
               type
             }
+            artist2: metafield(namespace: "issuepress", key: "artist2") {
+              value
+              type
+            }
             date: metafield(namespace: "issuepress", key: "date") {
               value
               type

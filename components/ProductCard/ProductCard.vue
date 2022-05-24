@@ -53,6 +53,9 @@ const sizes = ``;
 const srcset = getSrcset(src);
 const artist = computed(() => {
   if (!props.hideArtist) {
+    if (props.product?.artist2?.value) {
+        return `${props.product?.artist?.value} & ${props.product?.artist2?.value}`;
+    }
     return props.product?.artist?.value ?? "";
   }
 });

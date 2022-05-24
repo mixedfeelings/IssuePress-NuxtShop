@@ -33,7 +33,7 @@
         class="text-2xl md:text-3xl lg:text-4xl font-serif tracking-wide mb-2"
       />
       <div v-if="artist" class="artist text-base md:text-lg my-1 font-mono">
-        by <NuxtLink :to="`/artists/${formatText(artist)}`">{{artist}}</NuxtLink>
+        by <NuxtLink :to="`/artists/${formatText(artist)}`">{{artist}}</NuxtLink> <span v-if="artist2">& <NuxtLink :to="`/artists/${formatText(artist2)}`">{{artist2}}</NuxtLink> </span>
       </div>
 
       <div class="flex items-center gap-6 flex-wrap pt-4">
@@ -136,6 +136,7 @@ const initialVariants = useResult(
 variants.value = initialVariants;
 
 const artist = computed(() => product.value.artist?.value ?? "");
+const artist2 = computed(() => product.value.artist2?.value ?? "");
 const sku = computed(() => product.value?.variants?.edges[0]?.node?.sku ?? "");
 
 const year = computed(() =>  {

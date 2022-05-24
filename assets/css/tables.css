@@ -36,10 +36,6 @@ td.number {
     @apply font-mono;
 }
 
-td.artist {
-    width: 15%;
-}
-
 td.artist, td.year, td.number, td.project-type {
     @apply text-sm;
 }
