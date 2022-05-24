@@ -9,6 +9,7 @@
         :index="index"
         :key="product.node.id"
         :product="product.node"
+        :catalog-item="catalogItem"
       />
     </ProductGrid>
     <InfiniteLoading v-if="hasNextPage" :firstLoad="false" :identifier="collection?.products?.edges" @infinite="loadMore" >
@@ -34,6 +35,7 @@ const props = defineProps<{
   collectionHandle: string;
   numberProducts?: number;
   title?: string;
+  catalogItem?: boolean;
 }>();
 
 const handle = props.collectionHandle;

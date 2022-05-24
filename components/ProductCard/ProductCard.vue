@@ -15,17 +15,28 @@
       </div>
       <div class="card-body">
         <div v-if="artist" class="text-xs mt-3 font-mono" v-html="artist" />
+        <div v-if="catalogItem" class="text-xs mt-3 font-mono pb-1" v-html="product?.variants?.edges[0]?.node?.sku" />
         <ProductTitle
           tag="span"
           :title="product.title"
           class="font-serif"
         />
         <ProductPrice
+          v-if="!catalogItem"
           :priceRange="product.priceRange"
           :compareAtPriceRange="product.compareAtPriceRange"
           class="text-sm justify-center"
         />
+        <div v-if="catalogItem" class="catalog-data pt-1">
+          <div class="artist text-sm">
+              {{product.artist?.value}}<span v-if="product.artist2?.value">, {{product.artist2?.value}}</span>
+          </div>
+          <div class="project-type text-xs pt-1">
+              {{product.productType}}<span v-if="product.date?.value">, {{formateYear(product.date?.value)}}</span>
+          </div>
+        </div>
       </div>
+
 
   </NuxtLink>
 </template>
@@ -41,6 +52,7 @@ const props = defineProps<{
   product: ProductCard;
   index?: number;
   hideArtist?: boolean;
+  catalogItem?: boolean;
 }>();
 
 const productPath = `/products/${props.product.handle}`;
@@ -52,12 +64,17 @@ const height = props.product?.images?.edges[0]?.node?.height ?? "";
 const sizes = ``;
 const srcset = getSrcset(src);
 const artist = computed(() => {
-  if (!props.hideArtist) {
+  if (!props.hideArtist && !props.catalogItem) {
     if (props.product?.artist2?.value) {
         return `${props.product?.artist?.value} & ${props.product?.artist2?.value}`;
     }
     return props.product?.artist?.value ?? "";
   }
 });
+    function formateYear(date: string)  {
+        const newDate = new Date(date);
+        return newDate.getUTCFullYear();
+    };
+
 
 </script>

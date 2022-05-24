@@ -33,6 +33,7 @@
         :is="currentView"
         collectionHandle="all"
         :numberProducts="12"
+        catalog-item
         class="py-4"
     />
   </section>
