@@ -17,7 +17,15 @@
             <td class="number desktop-only">{{product.node.variants?.edges[0]?.node?.sku}}</td>
             <td class="image">
                 <NuxtLink :to="`/products/${product.node.handle}`" class="table-image">
-                    <img loading="lazy" :src="product.node.images?.edges[0]?.node?.url"/>
+                    <ProductImage
+                        :alt="product.handle"
+                        :height="64"
+                        :lazy="index > lazyLoadingThreshold"
+                        :sizes="sizes"
+                        :srcset="setSrc(`${product.node.images?.edges[0]?.node?.url || ''}`)"
+                        :width="64"
+                        class=""
+                    />
                 </NuxtLink>
             </td>
             <td class="title">
@@ -29,6 +37,21 @@
             <td class="year desktop-only">{{product.node.date?.value ? formateYear(product.node.date?.value) : ""}}</td>   
         </tr>
     </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="5">
+                <InfiniteLoading v-if="hasNextPage" :firstLoad="false" :identifier="collection?.products?.edges" @infinite="loadMore" >
+                <template #spinner>
+                    <div class="loading-container">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    </div>
+                </template>
+                </InfiniteLoading>
+            </th>
+        </tr>
+    </tfoot>
   </table>
 </template>
 
@@ -37,14 +60,61 @@
     import { useQuery, useResult } from "@vue/apollo-composable";
     import { collectionByHandle } from "~~/apollo/queries/collectionByHandle";
     import { slugify } from "~/utils/strings";
+    import { getSrcset } from "~/utils/images";
+    import InfiniteLoading from "v3-infinite-loading";
+
 
     const props = defineProps<{
         collectionHandle: string;
+        numberProducts?: number;
+
     }>();
     
     const handle = props.collectionHandle;
-    const { result, error, fetchMore } = useQuery(collectionByHandle, { handle, numProducts: 100 });
+    const numProducts = props.numberProducts || 12;
+
+    const lazyLoadingThreshold = 7;
+    const width = "widt";
+    const height = "64";
+    const sizes = ``;
+
+    function setSrc(src) {
+        return getSrcset(src);
+    } 
+
+    const { result, error, fetchMore } = useQuery(collectionByHandle, { handle, numProducts: numProducts, cursor: null });
     const collection = useResult(result, null, (data) => data.collectionByHandle);
+    const hasNextPage = computed(() => result.value.collectionByHandle.products?.pageInfo.hasNextPage )
+    
+    function loadMore () {
+    fetchMore({
+        variables: {
+        cursor: result.value.collectionByHandle.products?.pageInfo.endCursor,
+        },
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+        const newEdges = fetchMoreResult.collectionByHandle.products.edges
+        const pageInfo = fetchMoreResult.collectionByHandle.products.pageInfo
+
+        return newEdges.length ? {
+            ...previousResult,
+            collectionByHandle: {   
+            ...previousResult.collectionByHandle,       
+            products: {
+                ...previousResult.collectionByHandle.products,
+                // Concat edges
+                edges: [
+                ...previousResult.collectionByHandle.products.edges,
+                ...newEdges
+                ],
+                // Override with new pageInfo
+                pageInfo,
+            }
+            }
+        } : previousResult
+
+        },
+    });
+    };
     
     function formateYear(date: string)  {
         const newDate = new Date(date);
