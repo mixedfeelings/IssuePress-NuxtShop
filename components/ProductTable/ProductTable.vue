@@ -6,6 +6,7 @@
             <th class="image"></th>
             <th class="title">Title</th>
             <th class="artist">Artist</th>
+            <th class="project-type">Type</th>
             <th class="year">Year</th>
         </tr>
     </thead>
@@ -31,15 +32,28 @@
             <td class="title">
                 <div class="number mobile-only">{{product.node.variants?.edges[0]?.node?.sku}}</div>
                 <NuxtLink :to="`/products/${product.node.handle}`"><h3>{{product.node.title}}</h3></NuxtLink>
-                <div class="artist mobile-only">{{product.node.artist?.value}}<span v-if="product.node.date?.value">, {{formateYear(product.node.date?.value)}}</span></div>
+                <div class="artist mobile-only">
+                    {{product.node.artist?.value}}
+                </div>
+                <div class="project-type mobile-only">
+                    {{product.node.productType}}<span v-if="product.node.date?.value">, {{formateYear(product.node.date?.value)}}</span>
+                </div>
+
             </td>
-            <td class="artist desktop-only"><NuxtLink v-if="product.node.artist?.value" :to="`/artists/${formatArtist(product.node.artist?.value)}`">{{product.node.artist?.value}}</NuxtLink></td>
+            <td class="artist desktop-only">
+                <NuxtLink v-if="product.node.artist?.value" :to="`/artists/${formatArtist(product.node.artist?.value)}`">
+                    {{product.node.artist?.value}}
+                </NuxtLink>
+            </td>
+            <td class="project-type desktop-only">
+                {{product.node.productType}}
+            </td>
             <td class="year desktop-only">{{product.node.date?.value ? formateYear(product.node.date?.value) : ""}}</td>   
         </tr>
     </tbody>
     <tfoot>
         <tr>
-            <th colspan="5">
+            <th colspan="6">
                 <InfiniteLoading v-if="hasNextPage" :firstLoad="false" :identifier="collection?.products?.edges" @infinite="loadMore" >
                 <template #spinner>
                     <div class="loading-container">
