@@ -37,10 +37,10 @@ td.number {
 }
 
 td.artist {
-    @apply w-1/5;
+    width: 15%;
 }
 
-td.artist, td.year, td.number {
+td.artist, td.year, td.number, td.project-type {
     @apply text-sm;
 }
 
@@ -48,12 +48,16 @@ td.title h3 {
     @apply font-serif py-1;
 }
 
-td.title .number {
+td.title .number,
+td.title .project-type  {
     @apply text-xs;
 }
 td.title .artist, 
-td.title .year {
+td.title .year{
     @apply text-sm;
+}
+td.title .project-type {
+    @apply pt-1;
 }
 
 @media (min-width: 640px) {
