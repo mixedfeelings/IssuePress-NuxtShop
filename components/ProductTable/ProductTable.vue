@@ -14,10 +14,11 @@
         <tr v-for="(product, index) in collection?.products.edges"
             :index="index"
             :key="product.node.id"
+            @click="onRowClick(product.node.handle)"
         >            
             <td class="number desktop-only">{{product.node.variants?.edges[0]?.node?.sku}}</td>
             <td class="image">
-                <NuxtLink :to="`/products/${product.node.handle}`" class="table-image">
+                <div class="table-image">
                     <ProductImage
                         :alt="product.handle"
                         :height="64"
@@ -27,11 +28,11 @@
                         :width="64"
                         class=""
                     />
-                </NuxtLink>
+                </div>
             </td>
             <td class="title">
                 <div class="number mobile-only">{{product.node.variants?.edges[0]?.node?.sku}}</div>
-                <NuxtLink :to="`/products/${product.node.handle}`"><h3>{{product.node.title}}</h3></NuxtLink>
+                <h3>{{product.node.title}}</h3>
                 <div class="artist mobile-only">
                     {{product.node.artist?.value}}<span v-if="product.node.artist2?.value">, {{product.node.artist2?.value}}</span>
                 </div>
@@ -41,15 +42,7 @@
 
             </td>
             <td class="artist desktop-only">
-                <NuxtLink v-if="product.node.artist?.value" :to="`/artists/${formatArtist(product.node.artist?.value)}`">
-                    {{product.node.artist?.value}}
-                </NuxtLink>
-                <span v-if="product.node.artist2?.value">,
-                 <NuxtLink  :to="`/artists/${formatArtist(product.node.artist2?.value)}`">
-                    {{product.node.artist2?.value}}
-                </NuxtLink>
-                </span>
-
+                {{product.node.artist?.value}}<span v-if="product.node.artist2?.value">,{{product.node.artist2?.value}}</span>
             </td>
             <td class="project-type desktop-only">
                 {{product.node.productType}}
@@ -77,6 +70,7 @@
 
 <script setup lang="ts">
 
+    import { useRouter } from "vue-router";
     import { useQuery, useResult } from "@vue/apollo-composable";
     import { collectionByHandle } from "~~/apollo/queries/collectionByHandle";
     import { slugify } from "~/utils/strings";
@@ -135,7 +129,13 @@
         },
     });
     };
+
+    const router = useRouter();
     
+    function onRowClick(path){
+       router.push({ path: `/products/${path}` })
+    }
+
     function formateYear(date: string)  {
         const newDate = new Date(date);
         return newDate.getUTCFullYear();
