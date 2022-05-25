@@ -28,9 +28,7 @@
           class="text-sm justify-center"
         />
         <div v-if="catalogItem" class="catalog-data pt-1">
-          <div v-if="!hideArtist" class="artist text-sm">
-              {{product.artist?.value}}<span v-if="product.artist2?.value">, {{product.artist2?.value}}</span>
-          </div>
+          <div v-if="!hideArtist" class="artist text-sm" v-html="artist" />
           <div class="project-type text-xs pt-1">
               {{product.productType}}<span v-if="product.date?.value">, {{formateYear(product.date?.value)}}</span>
           </div>
