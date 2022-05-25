@@ -40,7 +40,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import TableIcon from "@heroicons/vue/solid/TableIcon.js";
 import ViewGridIcon from "@heroicons/vue/solid/ViewGridIcon.js";
 import { useColorStore } from "~/stores/colors";
