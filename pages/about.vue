@@ -15,14 +15,14 @@
       </p>
     </section>
     <section class="bg-natural font-sans py-8">
-      <div class="flex flex-col md:flex-row  md:container md:mx-auto">
-        <div class="w-full md:w-1/2 px-6 pb-4 md:pb-0 flex flex-col items-center justify-center">
-            <img src="https://cdn.shopify.com/s/files/1/0268/1772/4598/files/issue-press_bergen-art-book-fair-2022.jpg?v=1653453757" height="auto" width="100%"/>
+      <div class="flex flex-col md:flex-row ">
+        <div class="w-full md:w-1/2 px-6 pb-4 md:pb-0">
+            <img src="/images/issue-press_bergen-art-book-fair-2022.jpg" height="auto" width="100%"/>
             <div class="text-center font-mono text-sm px-6">Issue Press at Bergen Art Book Fair 2022</div>
         </div>
-        <div class="w-full flex flex-col lg:flex-row px-6">
+        <div class="w-full md:w-1/2 lg:w-full flex flex-col lg:flex-row px-6">
           <div class="flex flex-col items-center md:items-start h-full ">
-            <div class="text-base md:text-lg lg:text-2xl text-center md:text-left">
+            <div class="text-base md:text-lg lg:text-2xl text-center md:text-left md:pr-6">
               <h3 class="font-semibold font-serif">Issue Press</h3>
                 Tanglefoot Building<br/>
                 314 Straight Ave. SW<br/>
@@ -38,7 +38,7 @@
             <!-- Begin MailChimp Signup Form -->
             <div id="mc_embed_signup" class="w-full text-center md:text-left mt-6 lg:mt-0">
               <form action="https://issue-press.us2.list-manage.com/subscribe/post?u=4804e7056fcf0c786d917a302&amp;id=a733fd0da9" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate w-full" target="_blank">
-                <h3 class="font-serif text-xl">Mailing List</h3>
+                <h3 class="font-serif text-base md:text-lg lg:text-xl ">Mailing List</h3>
                 <p>Infrequent, but fun! </p>
                 <div class="flex gap-1 justify-center md:justify-start  ">
                   <div class="mc-field-group">
@@ -54,6 +54,7 @@
               </form>
             </div>
             <!--End mc_embed_signup-->
+            <SocialMedia large class="pt-8 justify-center md:justify-start" />
           </div>
         </div>
 
