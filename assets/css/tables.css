@@ -6,14 +6,17 @@ thead {
 }
 
 tr {
-    @apply border-b cursor-pointer;
+    @apply border-b ;
 }
 
 tr:last-child {
     @apply border-b-0;
 }
 
-tr:hover {
+tbody tr {
+    @apply cursor-pointer;
+}
+tbody tr:hover {
     color: var(--global-color);
 }
 th, td { 
