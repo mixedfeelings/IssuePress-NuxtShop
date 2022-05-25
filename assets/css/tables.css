@@ -4,12 +4,14 @@ table {
 thead {
     @apply border-b-2 border-black;
 }
+
 tr {
-    @apply border-b;    
+    @apply border-b cursor-pointer;
+    
 }
 
 tr:hover {
-    text: var(--global-color)
+    color: var(--global-color);
 }
 th, td { 
     @apply p-4 text-left;
