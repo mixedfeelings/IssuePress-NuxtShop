@@ -40,11 +40,12 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import TableIcon from "@heroicons/vue/solid/TableIcon.js";
 import ViewGridIcon from "@heroicons/vue/solid/ViewGridIcon.js";
 import { useColorStore } from "~/stores/colors";
 
-const currentView = ref("");
+const currentView = ref("ProductTable");
 const table_class = ref("");
 const grid_class = ref("");
 const colorStore = useColorStore();
@@ -63,7 +64,6 @@ function setTable() {
 
 
 onMounted(() => {
-    setTable();
     colorStore.setGlobalColor();
     document.documentElement.style.setProperty('--global-color',`var(--color-${colorStore.globalColor})`);
 });
