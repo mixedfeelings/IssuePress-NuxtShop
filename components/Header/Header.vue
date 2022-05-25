@@ -1,6 +1,6 @@
 <template>
   <header
-    class="sticky flex top-0 w-full h-12 px-4 bg-white shadow-md items-center md:h-16 z-10"
+    class="header sticky flex top-0 w-full px-6 bg-white items-center z-10 height-ease" :class="isSticky ? 'h-12 shadow-md ' : 'h-16 shadow-none'"
   >
     <Hamburger class="md:hidden mr-4" />
     <Logo />
@@ -12,3 +12,41 @@
 
   </header>
 </template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+
+const isSticky = ref(false);
+const scrollPosition = ref(0);
+
+function handleScroll(){
+  scrollPosition.value = window.scrollY;
+  if(scrollPosition.value >= 30 ){
+      isSticky.value = true;
+  }else{
+      isSticky.value = false;
+  }
+}
+
+onBeforeMount(() => {
+    if (process.client) {
+      window.addEventListener('scroll', handleScroll);
+    }
+});
+onUnmounted(() => {
+    if (process.client) {
+      window.removeEventListener('scroll', handleScroll);
+    }
+});
+
+</script>
+
+<style scoped>
+  .header {
+      -webkit-transition: height 1s ease;
+      -moz-transition: height 1s ease;
+      -o-transition: height 1s ease;
+      -ms-transition: height 1s ease;
+      transition: height 1s ease;
+  }
+</style>
