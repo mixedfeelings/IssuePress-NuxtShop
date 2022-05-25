@@ -12,6 +12,8 @@
     >
       {{ link.label }}
     </NuxtLink>
+    <SocialMedia class="mobile-only py-4 px-4 text-sm font-medium tracking-wide border-b-[1px] " />
+
   </nav>
 </template>
 
