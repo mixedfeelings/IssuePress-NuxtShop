@@ -28,7 +28,7 @@
           class="text-sm justify-center"
         />
         <div v-if="catalogItem" class="catalog-data pt-1">
-          <div class="artist text-sm">
+          <div v-if="!hideArtist" class="artist text-sm">
               {{product.artist?.value}}<span v-if="product.artist2?.value">, {{product.artist2?.value}}</span>
           </div>
           <div class="project-type text-xs pt-1">

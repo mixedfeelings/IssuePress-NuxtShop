@@ -19,6 +19,7 @@
             :key="product.node.id"
             :product="product.node"
             hide-artist
+            catalog-item
           />
           <InfiniteLoading v-if="hasNextPage" :firstLoad="false" :identifier="collection?.products?.edges" @infinite="loadMore" >
             <template #spinner>
