@@ -6,7 +6,7 @@
         <Meta name="description" content="Lorem ipsum" />
       </Head>
     </Html>
-    <section class="px-6 my-8 font-serif text-lg md:text-2xl lg:text-3xl md:leading-10 lg:leading-12 text-center md:text-left">
+    <section class="px-6 my-8 font-serif text-lg md:text-2xl lg:text-3xl md:leading-10 lg:leading-12 ">
       <p>
         Issue Press is a tiny publisher and Risograph print shop operated by George Wietor in Grand Rapids, Michigan. Since 2010, it has worked with an elastic mandate to publish captivating works by artists of all mediums that trade in humor, history, and exploration of place. 
       </p>  
@@ -17,7 +17,7 @@
     <section class="bg-natural font-sans py-8">
       <div class="flex flex-col md:flex-row ">
         <div class="w-full md:w-1/2 px-6 pb-4 md:pb-0">
-            <img src="/images/issue-press_bergen-art-book-fair-2022.jpg" height="auto" width="100%"/>
+            <img src="/images/issue-press_bergen-art-book-fair-2022.jpg" class="mb-1"/>
             <div class="text-center font-mono text-sm px-6">Issue Press at Bergen Art Book Fair 2022</div>
         </div>
         <div class="w-full md:w-1/2 lg:w-full flex flex-col lg:flex-row px-6">
