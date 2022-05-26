@@ -1,11 +1,12 @@
 <template>
   <header
-    class="header sticky flex top-0 w-full px-6 bg-white items-center z-10 height-ease" :class="isSticky ? 'h-12 shadow-md ' : 'h-16 shadow-none'"
+    class="header sticky flex top-0 w-full px-4 items-center z-10 height-ease" :class="isSticky ? 'h-12 shadow-md ' : 'h-16 shadow-none'"
   >
     <Hamburger class="md:hidden mr-4" />
     <Logo />
     <Navigation class="md:ml-4" />
     <div class="flex items-center ml-auto">
+      <ColorModePicker />
       <SocialMedia class="px-6 desktop-only" />
       <CartIcon />
     </div>
@@ -49,4 +50,9 @@ onUnmounted(() => {
       -ms-transition: height 1s ease;
       transition: height 1s ease;
   }
+
+  .light .header {
+    @apply bg-white;
+  }
+
 </style>

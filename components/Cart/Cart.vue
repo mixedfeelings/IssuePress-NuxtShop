@@ -1,14 +1,14 @@
 <template>
   <section v-if="cartStore.cartOpen" ref="cart">
     <div
-      class="fixed top-0 bottom-0 right-0 z-20 px-4 pb-4 bg-white border-l-2 border-black w-[90vw] md:w-[400px]"
+      class="cart w-[90vw] md:w-[400px]"
     >
       <CartHeader />
       <div v-if="lineItems.length">
         <CartItem
           v-for="item in lineItems"
           :key="item?.node?.id"
-          class="pb-4 mb-4 border-b-2 border-black"
+          class="pb-4 mb-4 border-b-2"
           :item="item?.node ?? {}"
         />
         <CartSummary />
@@ -34,3 +34,14 @@ const cart = ref(null);
 const closeCart = () => cartStore.toggleCart(false);
 onClickOutside(cart, () => closeCart);
 </script>
+
+<style scoped>
+.cart {
+  @apply fixed top-0 bottom-0 right-0 z-20 px-4 pb-4 border-l-2 ;
+}
+
+.light .cart {
+  @apply bg-white border-black;
+}
+
+</style>

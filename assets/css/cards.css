@@ -4,7 +4,7 @@
 }
 
 .card-body {
-  @apply px-6 pb-6 bg-white;
+  @apply px-6 pb-6;
 }
 
 .card-image-wrapper {

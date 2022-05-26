@@ -6,10 +6,20 @@
         <Meta name="description" :content="description" />
       </Head>
     </Html>
+
+
+    <!-- <template>
+  <ColorScheme placeholder="..." tag="span">
+    Color mode: <b>{{ $colorMode.preference }}</b>
+    <span v-if="$colorMode.preference === 'system'">(<i>{{ $colorMode.value }}</i> mode detected)</span>
+  </ColorScheme>
+</template> -->
+
     <FeaturedProducts
       collectionHandle="in-stock"
       :numberProducts="12"
     />
+
   </section>
 </template>
 
@@ -19,6 +29,7 @@ import { useShopStore } from "~/stores/shop";
 import { useColorStore } from "~/stores/colors";
 
 const colorStore = useColorStore();
+const colorMode = useColorMode()
 
 const shopStore = useShopStore();
 const { description } = storeToRefs(shopStore);

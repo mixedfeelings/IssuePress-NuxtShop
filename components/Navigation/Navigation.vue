@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="absolute left-0 right-0 hidden bg-white border-b-2 border-black top-12 md:static md:flex md:items-center md:justify-center md:border-b-0 md:mt-1"
+    class="absolute left-0 right-0 bg-white hidden border-b-2 border-black top-12 md:static md:flex md:items-center md:justify-center md:border-b-0 md:mt-1"
     :class="{ isOpen: menuOpen }"
     ref="menu"
   >
@@ -12,7 +12,7 @@
     >
       {{ link.label }}
     </NuxtLink>
-    <SocialMedia class="mobile-only py-4 px-4 text-sm font-medium tracking-wide border-b-[1px] " />
+    <SocialMedia class="mobile-only py-4 px-4 text-sm font-medium tracking-wide " />
 
   </nav>
 </template>
@@ -37,4 +37,10 @@ watch(route, () => (isMobileUI ? shopStore.toggleMenu(false) : null));
 .isOpen {
   display: block !important;
 }
+
+.light nav {
+  @apply bg-white;
+}
+
+
 </style>

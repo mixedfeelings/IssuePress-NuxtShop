@@ -1,0 +1,35 @@
+.dark body,
+.dark .header,
+.dark .carousel__viewport,
+.dark .cart,
+.dark nav {
+    @apply bg-darkest text-natural border-darker;
+}
+
+.dark .cart,
+.dark .cart div,
+.dark nav a {
+    @apply border-darker;
+}
+
+.dark .cart .bg-black {
+    @apply bg-darker;
+}
+
+.dark .bg-natural {
+    @apply bg-darker;
+}
+
+button.bg-black,
+.button.bg-black {
+    @apply text-natural bg-darkest;
+}
+
+.dark input {
+    @apply text-darkest;
+}
+
+.dark tr,
+.dark thead {
+    @apply border-darker;
+}

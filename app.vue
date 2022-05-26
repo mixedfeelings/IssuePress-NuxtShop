@@ -10,9 +10,7 @@
     >
       <NuxtPage />
     </div>
-    <div v-else>
-      <GettingStarted />
-    </div>
+
   </main>
   <Footer />
 </template>
@@ -26,6 +24,10 @@ useMeta({
     lang: "en",
   },
 });
+
+ definePageMeta({
+   colorMode: 'auto',
+})
 
 // Global Store Actions
 const { pending, error } = await useAsyncData("shop", () => {

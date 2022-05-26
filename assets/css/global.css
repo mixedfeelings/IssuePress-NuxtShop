@@ -2,6 +2,7 @@
 @import 'cards';
 @import 'collections';
 @import 'tables';
+@import 'dark';
 
 /* Forms */
 .form-select {
@@ -10,7 +11,10 @@
   background-size: 16px 12px;
 }
 
-
+body,
+.header {
+  transition: background-color .3s;
+}
 .desktop-only {
   @apply hidden;
 }

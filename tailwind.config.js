@@ -8,6 +8,7 @@ function withOpacityValue(variable) {
 }
 
 module.exports = {
+  darkMode: 'class',
   content: [
     "./app.vue",
     "./components/**/*.{vue,js}",
@@ -45,6 +46,9 @@ module.exports = {
         'sunflower': 'var(--color-sunflower)',
         'yellow': 'var(--color-yellow)',
         'natural': 'var(--color-natural)',
+        'dark': '#424242',
+        'darker': '#202020',
+        'darkest': '#121212',
       },
       lineHeight: {
         '12': '3rem'

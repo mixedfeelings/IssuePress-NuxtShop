@@ -216,7 +216,7 @@ p a,
 }
 
 .card-image-wrapper {
-   @apply relative block w-full z-0 bg-white ;
+   @apply relative block w-full z-0 ;
    height: 0;
    padding-bottom: 100%;
 }
@@ -244,7 +244,7 @@ p a,
   @apply relative pb-4  ;
 }
 
-.carousel__viewport {
+.light .carousel__viewport {
   @apply bg-white;
 }
 
