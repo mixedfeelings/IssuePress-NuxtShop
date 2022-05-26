@@ -12,7 +12,7 @@
     </div>
 
   </main>
-  <Footer />
+  <!-- <Footer /> -->
 </template>
 
 <script lang="ts" setup>
