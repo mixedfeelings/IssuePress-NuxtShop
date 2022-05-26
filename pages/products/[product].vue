@@ -281,7 +281,7 @@ button.carousel__prev {
 
 button.carousel__next:hover,
 button.carousel__prev:hover {
-  @apply opacity-100;
+  @apply opacity-100 text-white;;
 }
 
 button.carousel__next {

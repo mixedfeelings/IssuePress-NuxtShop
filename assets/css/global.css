@@ -12,7 +12,8 @@
 }
 
 body,
-.header {
+.header,
+button {
   transition: background-color .3s;
 }
 .desktop-only {

@@ -1,6 +1,6 @@
 <template>
   <header
-    class="header sticky flex top-0 w-full px-4 items-center z-10 height-ease" :class="isSticky ? 'h-12 shadow-md ' : 'h-16 shadow-none'"
+    class="header bg-white sticky flex top-0 w-full px-4 items-center z-10 height-ease" :class="isSticky ? 'h-12 shadow-md ' : 'h-16 shadow-none'"
   >
     <Hamburger class="md:hidden mr-4" />
     <Logo />
