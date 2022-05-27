@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink class="card w-1/2 md:w-1/3 lg:w-1/4" :to="productPath">
+  <NuxtLink class="card " :to="productPath">
       <div class="card-image-wrapper" >
         <div class="card-image-inner">
           <ProductImage
@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="card-body">
-        <div v-if="artist && !catalogItem" class="text-xs mt-3 font-mono" v-html="artist" />
+        <div v-if="artist && !catalogItem" class="text-xs mt-3 mb-1 font-mono" v-html="artist" />
         <div v-if="catalogItem" class="text-xs mt-3 font-mono pb-1" v-html="product?.variants?.edges[0]?.node?.sku" />
         <ProductTitle
           tag="span"
@@ -25,7 +25,7 @@
           v-if="!catalogItem"
           :priceRange="product.priceRange"
           :compareAtPriceRange="product.compareAtPriceRange"
-          class="text-sm justify-center"
+          class="text-sm justify-center mt-1"
         />
         <div v-if="catalogItem" class="catalog-data pt-1">
           <div v-if="!hideArtist" class="artist text-sm" v-html="artist" />
