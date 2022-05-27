@@ -1,5 +1,5 @@
 <template>
-    <button class="flex items-center justify-center mr-6" @click="changeColorMode">
+    <button class="flex items-center justify-center mr-3 md:mr-1 mb-px" @click="changeColorMode">
         <MoonIcon v-if="colorMode == 'light'" class="h-5" />
         <SunIcon v-else class="h-5" />
     </button>
