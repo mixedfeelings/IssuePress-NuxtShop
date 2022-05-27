@@ -31,7 +31,7 @@
                 <br/>
                 info@issue.press<br/>
                 <br/>
-                <em>Studio open by appointment only.</em>
+                <em>Studio visits by appointment only.</em>
             </div>
           </div>
           <div class="lg:pl-6">
@@ -39,7 +39,7 @@
             <div id="mc_embed_signup" class="w-full text-center md:text-left mt-6 lg:mt-0">
               <form action="https://issue-press.us2.list-manage.com/subscribe/post?u=4804e7056fcf0c786d917a302&amp;id=a733fd0da9" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate w-full" target="_blank">
                 <h3 class="font-serif text-base md:text-lg lg:text-xl ">Mailing List</h3>
-                <p>Infrequent, but fun! </p>
+                <p>Infrequent, but fun maybe! </p>
                 <div class="flex gap-1 justify-center md:justify-start  ">
                   <div class="mc-field-group">
                     <input type="email" value="Email address" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email address':this.value;" name="EMAIL" class="required email p-4 border border-black border-2" id="mce-EMAIL">
