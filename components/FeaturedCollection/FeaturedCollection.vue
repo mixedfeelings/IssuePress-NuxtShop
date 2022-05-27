@@ -69,17 +69,4 @@ const numProducts = props.numberProducts || 4;
 const { result, error } = useQuery(collectionByHandle, { handle, numProducts: numProducts, cursor: null });
 const collection = useResult(result, null, (data) => data.collectionByHandle);
 
-
 </script>
-
-<style scoped>
-    .collection-slider .carousel .carousel__viewport {
-        @apply bg-transparent ;
-        padding: 0 !important;
-    }
-
-    .collection-slider .carousel-prev,
-    .collection-slider .carousel-next {
-        @apply p-3;
-    }
-</style>
