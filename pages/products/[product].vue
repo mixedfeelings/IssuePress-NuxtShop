@@ -51,7 +51,7 @@
 
       <div class="text-base md:text-2xl pt-6">
         <ProductDescription :description="product.descriptionHtml" class="leading-relaxed" />
-        <div class="metadata pt-2 font-mono whitespace-pre-wrap ">
+        <div class="metadata pt-6 font-mono whitespace-pre-wrap ">
           <div v-if="year" v-text="year" />
           <div v-if="metadata" v-text="metadata" />
         </div>
@@ -63,7 +63,7 @@
   </div>  
   <div v-else></div>
   <div v-if="error">Error</div>
-      <div v-if="show_modal" class="modal flex flex-col bg-white z-20 fixed top-0 right-0 bottom-0 left-0 flex items-center justify-center h-screen w-screen overlflow-hidden bg-fixed">      
+      <div v-if="show_modal" class="modal ">      
         <button
           class="flex items-center justify-center z-20 absolute top-4 right-4"
           aria-label="close"
@@ -212,16 +212,7 @@ onMounted(() => {
 });
 </script>
 
-<style >
-
-.container {
-  max-width: 1000px !important;
-}
-
-p a,
-.artist a {
-  @apply underline;
-}
+<style scoped>
 
 .card-image-wrapper {
    @apply relative block w-full z-0 ;
@@ -248,65 +239,9 @@ p a,
   white-space: pre-wrap;
 }
 
-.carousel {
-  @apply relative pb-4  ;
-}
-
-.carousel__viewport {
-  @apply bg-white;
-}
-
-.carousel__item {
-  @apply flex items-center justify-center px-4 py-8  w-full h-full ;
-  min-height: 200px;
-}
-
-.carousel__item img {
-  @apply object-contain h-full w-auto;
-  max-height: 400px;
-  box-sizing: content-box;
-
-}
-
-button.carousel__next,
-button.carousel__prev,
-button.carousel__pagination-button {
-  background-color: var(--global-color);
-}
-
-button.carousel__pagination-button {
-  opacity: .4;
-}
-
-button.carousel__pagination-button.carousel__pagination-button--active {
-  @apply opacity-100;
-}
-
-button.carousel__next,
-button.carousel__prev {
-  @apply border border-white border-4 opacity-75;
-}
-
-button.carousel__next:hover,
-button.carousel__prev:hover {
-  @apply opacity-100;
-}
-
-button.carousel__next {
-  right: 5%;
-}
-
-button.carousel__prev {
-  left: 5%;
-}
-
-button.carousel__pagination-button {
-  background-color: var(--global-color);
-}
-
-.close-icon:hover {
+/* .close-icon:hover {
   fill: var(--global-color); 
-}
+} */
 
 /* .fullWidthImage {
   width: 100vw;

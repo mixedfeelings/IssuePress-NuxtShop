@@ -2,7 +2,8 @@
 .dark .header,
 .dark .carousel__viewport,
 .dark .cart,
-.dark nav {
+.dark nav,
+.dark .modal {
     @apply bg-darkest text-natural border-darker;
 }
 
