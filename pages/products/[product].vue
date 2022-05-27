@@ -9,7 +9,11 @@
       </Html>
 
     <carousel v-if="show_images" :settings="settings" :breakpoints="breakpoints" :wrap-around="true">
-      <slide v-for="(image, index) in images" key="index">
+      <slide 
+        v-for="(image, index) in images" 
+        :index="index"
+        :key="image.node.id"
+      >
         <div class="carousel__item">
           <img 
             :src="image.node.url" 
@@ -69,7 +73,11 @@
         <CloseIcon class="close-icon w-6" aria-hidden />
       </button>
       <carousel v-if="show_images" ref="myCarousel" :wrap-around="true">
-        <slide v-for="(image, index) in images" key="index">
+        <slide 
+          v-for="(image, index) in images" 
+          :index="index"
+          :key="image.node.id"
+        >
           <div class="p-6" >
             <img 
               :src="image.node.url" 
@@ -244,7 +252,7 @@ p a,
   @apply relative pb-4  ;
 }
 
-.light .carousel__viewport {
+.carousel__viewport {
   @apply bg-white;
 }
 
@@ -281,7 +289,7 @@ button.carousel__prev {
 
 button.carousel__next:hover,
 button.carousel__prev:hover {
-  @apply opacity-100 text-white;;
+  @apply opacity-100;
 }
 
 button.carousel__next {
