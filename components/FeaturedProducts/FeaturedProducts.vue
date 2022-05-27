@@ -10,6 +10,7 @@
         :key="product.node.id"
         :product="product.node"
         :catalog-item="catalogItem"
+        class="w-1/2 md:w-1/3 lg:w-1/4"
       />
     </ProductGrid>
     <InfiniteLoading v-if="hasNextPage" :firstLoad="false" :identifier="collection?.products?.edges" @infinite="loadMore" >

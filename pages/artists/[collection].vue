@@ -18,6 +18,7 @@
             :index="index"
             :key="product.node.id"
             :product="product.node"
+            class="w-1/2 md:w-1/3 lg:w-1/4"
             hide-artist
             catalog-item
           />
