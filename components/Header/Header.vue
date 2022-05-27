@@ -1,14 +1,17 @@
 <template>
   <header
-    class="header bg-white sticky flex top-0 w-full px-4 items-center z-10 height-ease" :class="isSticky ? 'h-12 shadow-md ' : 'h-16 shadow-none'"
+    class="header sticky block top-0 w-full z-10 height-ease" :class="isSticky ? 'h-12 shadow-md ' : 'h-16 shadow-none'"
   >
-    <Hamburger class="md:hidden mr-4" />
-    <Logo />
-    <Navigation class="md:ml-4" />
-    <div class="flex items-center ml-auto">
-      <ColorModePicker />
-      <SocialMedia class="px-6 desktop-only" />
-      <CartIcon />
+    <div class="header-inner flex items-center bg-white px-4 w-full h-full">
+      <Hamburger class="md:hidden mr-4" />
+      <Logo />
+      <Navigation class="md:ml-4" />
+      <div class="flex items-center ml-auto">
+        <ColorModePicker />
+        <SocialMedia class="px-6 desktop-only" />
+        <CartIcon />
+    </div>
+
     </div>
 
   </header>
