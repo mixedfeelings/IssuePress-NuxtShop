@@ -5,6 +5,10 @@ interface NavLink {
 
 export const navLinks: NavLink[] = [
   {
+    label: "Shop",
+    path: "/shop"
+  },
+  {
     label: "Catalog",
     path: "/catalog",
   },
