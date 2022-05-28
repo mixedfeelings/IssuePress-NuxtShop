@@ -3,6 +3,7 @@ import { useApolloClient } from "@vue/apollo-composable";
 import { cartCreate } from "~/apollo/mutations/cartCreate";
 import { cartLinesAdd } from "~/apollo/mutations/cartLinesAdd";
 import { cartLinesRemove } from "~/apollo/mutations/cartLinesRemove";
+import { cartLinesUpdate } from "~/apollo/mutations/cartLinesUpdate";
 import { checkoutUrl } from "~/apollo/queries/checkoutUrl";
 import { formatLocalePrice } from "~/utils/money";
 
@@ -144,6 +145,37 @@ export const useCartStore = defineStore("cart", {
           throw "cartLinesRemove: error";
         }
         this.cart = data.cartLinesRemove.cart;
+        this.cartOpen = true;
+      } catch (e) {
+        return e;
+      } finally {
+        this.loading = false;
+      }
+    },
+    async cartLinesUpdate(merchandiseId: string, quantity: any) {
+      try {
+        const { resolveClient } = useApolloClient();
+        const apolloClient = resolveClient();
+        const cartId = this.cart.id;
+        if (!cartId) {
+          throw "cartLinesUpdate: no cartId";
+        }
+        const { data } = await apolloClient.mutate({
+          mutation: cartLinesUpdate,
+          variables: {
+            lines: [
+              {
+                id: merchandiseId,
+                quantity: quantity,
+              },
+            ],
+            cartId: this.cart.id,            
+          },
+        });
+        if (!data.cartLinesUpdate) {
+          throw "cartLinesUpdate: error";
+        }
+        this.cart = data.cartLinesUpdate.cart;
         this.cartOpen = true;
       } catch (e) {
         return e;
