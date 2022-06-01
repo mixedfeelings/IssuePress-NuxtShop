@@ -3,7 +3,7 @@
     <Html>
       <Head>
         <Title>About Page</Title>
-        <Meta name="description" content="Lorem ipsum" />
+        <Meta name="description" content="Issue Press is a tiny publisher and Risograph print shop based in Grand Rapids, Michigan" />
       </Head>
     </Html>
     <section class="px-6 my-8 font-serif text-lg md:text-2xl lg:text-3xl md:leading-10 lg:leading-12 ">
