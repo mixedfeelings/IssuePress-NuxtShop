@@ -30,7 +30,19 @@ button.bg-black,
     @apply text-darkest;
 }
 
+.dark select {
+    @apply text-natural bg-dark border-darkest;
+}
+
+.dark select .select-icon svg {
+    @apply text-natural;
+}
+
 .dark tr,
 .dark thead {
     @apply border-darker;
+}
+
+.dark .disabled {
+    @apply opacity-30;  
 }

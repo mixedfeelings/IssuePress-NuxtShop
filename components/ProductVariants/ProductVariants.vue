@@ -1,7 +1,7 @@
 <template>
-  <div v-if="variants && variants.length > 1">
     <select
-      class="form-select appearance-none block pl-3 pr-8 py-1.5 text-base font-normal bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+      v-if="variants && variants.length > 1"
+      class="form-select appearance-none block pl-3 pr-8 py-1.5 text-base font-normal bg-clip-padding bg-no-repeat border border-solid border-gray-300 bg-white focus:outline-none"
       :aria-label="label"
       @change="handleChange($event)"
     >
@@ -15,7 +15,6 @@
         {{ variant.node.title }}  {{ formatPrice(variant.node.priceV2.amount) }}
       </option>
     </select>
-  </div>
 </template>
 
 <script setup lang="ts">
