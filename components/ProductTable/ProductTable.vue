@@ -133,7 +133,7 @@
     const router = useRouter();
     
     function onRowClick(path){
-       router.push({ path: `/products/${path}` })
+       router.push({ path: `/item/${path}` })
     }
 
     function formateYear(date: string)  {

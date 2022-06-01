@@ -53,7 +53,7 @@ const props = defineProps<{
   catalogItem?: boolean;
 }>();
 
-const productPath = `/products/${props.product.handle}`;
+const productPath = `/item/${props.product.handle}`;
 
 const lazyLoadingThreshold = 7;
 const src = props.product?.images?.edges[0]?.node?.url ?? "";
