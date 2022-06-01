@@ -11,18 +11,10 @@
           <Meta property="og:type" content="product" />
           <Meta Propety="product:price" :content="product?.priceRange?.minVariantPrice?.amount" />
           <Meta property="product:price.currency" :content="product?.priceRange?.minVariantPrice?.currencyCode" />
-          <Meta v-if="product.images?.edges[0]?.node?.url" property="og:image" :content="product.images?.edges[0]?.node?.url" />
-          <Meta v-if="product.images?.edges[0]?.node?.width" property="og:image:width" :content="product.images?.edges[0]?.node?.width" />
-          <Meta v-if="product.images?.edges[0]?.node?.height" property="og:image:height" :content="product.images?.edges[0]?.node?.height" />
-          <Meta v-if="product.images?.edges[0]?.node?.altText" property="og:image:alt" :content="product.images?.edges[0]?.node?.altText" />
-          <Meta v-if="product.images?.edges[1]?.node?.url" property="og:image" :content="product.images?.edges[1]?.node?.url" />
-          <Meta v-if="product.images?.edges[1]?.node?.width" property="og:image:width" :content="product.images?.edges[1]?.node?.width" />
-          <Meta v-if="product.images?.edges[1]?.node?.height" property="og:image:height" :content="product.images?.edges[1]?.node?.height" />
-          <Meta v-if="product.images?.edges[1]?.node?.altText" property="og:image:alt" :content="product.images?.edges[1]?.node?.altText" />
-          <Meta v-if="product.images?.edges[2]?.node?.url" property="og:image" :content="product.images?.edges[2]?.node?.url" />
-          <Meta v-if="product.images?.edges[2]?.node?.width" property="og:image:width" :content="product.images?.edges[2]?.node?.width" />
-          <Meta v-if="product.images?.edges[2]?.node?.height" property="og:image:height" :content="product.images?.edges[2]?.node?.height" />
-          <Meta v-if="product.images?.edges[2]?.node?.altText" property="og:image:alt" :content="product.images?.edges[2]?.node?.altText" />
+          <Meta v-if="product?.images?.edges[0].node.url" property="og:image" :content="product?.images.edges[0]?.node.url" />
+          <Meta v-if="product?.images?.edges[0].node.width" property="og:image:width" :content="product?.images.edges[0]?.node.width" />
+          <Meta v-if="product?.images?.edges[0].node.height" property="og:image:height" :content="product?.images.edges[0]?.node.height" />
+          <Meta v-if="product?.images?.edges[0].node.altText" property="og:image:alt" :content="product?.images.edges[0]?.node.altText" />
         </Head>
       </Html>
 
@@ -30,7 +22,7 @@
       <slide 
         v-for="(image, index) in images" 
         :index="index"
-        :key="image.node.id"
+        :key="index"
       >
         <div class="carousel__item">
           <img 
@@ -218,7 +210,7 @@ const meta_title = computed (() => {
   } else if (artist2.value) {
     tc += ` & ${artist2.value}`;
   }
-  return tc;
+  return `${tc} | Issue Press`;
 });
 
 // Fetch fresh inventory on client
