@@ -37,11 +37,11 @@ const { localization } = storeToRefs(shopStore);
 const currencyCode = localization.value?.country?.currency?.isoCode ?? "USD";
 
 const priceVaries =
-  props?.priceRange?.minVariantPrice?.amount <
+  props?.priceRange?.minVariantPrice?.amount != 
   props?.priceRange?.maxVariantPrice?.amount;
 
 const compareAtPriceVaries =
-  props?.compareAtPriceRange?.minVariantPrice?.amount <
+  props?.compareAtPriceRange?.minVariantPrice?.amount !=
   props?.compareAtPriceRange?.maxVariantPrice?.amount;
 
 const isOnSale =
