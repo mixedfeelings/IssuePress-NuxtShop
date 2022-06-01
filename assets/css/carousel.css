@@ -70,7 +70,7 @@ button.carousel__pagination-button {
     padding: 0 !important;
 }
 
-.collection-slider. .carousel .carousel__item {
+.collection-slider .carousel .carousel__item {
     @apply p-0;
 }
 
