@@ -5,16 +5,19 @@
         <Head v-if="product?.title && product?.description">
           <Title>{{ product.title }} | Issue Press</Title>
           <Meta name="description" :content="product.description" />
-          <Meta property="og:title" :content="meta_title" />
-          <Meta propert="og:description" :content="product.description" />
-          <Meta property="og:url" :content="`https://issue.press${route.path}`" />
-          <Meta property="og:type" content="product" />
-          <Meta Propety="product:price" :content="product?.priceRange?.minVariantPrice?.amount" />
-          <Meta property="product:price.currency" :content="product?.priceRange?.minVariantPrice?.currencyCode" />
-          <Meta v-if="product?.images?.edges[0].node.url" property="og:image" :content="product?.images.edges[0]?.node.url" />
-          <Meta v-if="product?.images?.edges[0].node.width" property="og:image:width" :content="product?.images.edges[0]?.node.width" />
-          <Meta v-if="product?.images?.edges[0].node.height" property="og:image:height" :content="product?.images.edges[0]?.node.height" />
-          <Meta v-if="product?.images?.edges[0].node.altText" property="og:image:alt" :content="product?.images.edges[0]?.node.altText" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@issuepress" />
+          <meta property="twitter:image" content="">
+          <meta property="og:title" :content="meta_title" />
+          <meta propert="og:description" :content="product.description" />
+          <meta property="og:url" :content="`https://issue.press${route.path}`" />
+          <meta property="og:type" content="product" />
+          <meta Propety="product:price" :content="product?.priceRange?.minVariantPrice?.amount" />
+          <meta property="product:price.currency" :content="product?.priceRange?.minVariantPrice?.currencyCode" />
+          <meta v-if="product?.images?.edges[0].node.url" property="og:image" :content="product?.images.edges[0]?.node.url" />
+          <meta v-if="product?.images?.edges[0].node.width" property="og:image:width" :content="product?.images.edges[0]?.node.width" />
+          <meta v-if="product?.images?.edges[0].node.height" property="og:image:height" :content="product?.images.edges[0]?.node.height" />
+          <meta v-if="product?.images?.edges[0].node.altText" property="og:image:alt" :content="product?.images.edges[0]?.node.altText" />
         </Head>
       </Html>
 
