@@ -1,0 +1,42 @@
+<template>
+  <div class="form-item">
+     <label class="label" :for="props.name" :aria-label="props.name">{{props.name}}</label>     
+    <select
+      class="form-select bg-clip-padding bg-no-repeat appearance-none "
+      @change="updateValue($event.target.value)"
+      v-model="selected"
+    >
+      <option disabled>Select</option>
+      <option
+        v-for="(option, index) in props.options"
+        :key="index"
+        :value="option"
+        :selected="selected"
+      >
+        {{ option }}
+      </option>
+    </select>
+  </div>
+</template>
+<script setup lang="ts">
+import { ref, toRefs } from 'vue';
+
+const uuid = ref(0);
+
+const props = defineProps<{
+    modelValue: any;
+    options: Array<string>;
+    name?: string;
+}>();
+
+const { modelValue, options, name } = toRefs(props);
+
+const selected = props.modelValue || "Select";
+
+const emit = defineEmits(['update:modelValue'])
+
+function updateValue(value) {
+  emit('update:modelValue', value)
+}
+
+</script>
