@@ -20,4 +20,8 @@ export const navLinks: NavLink[] = [
     label: "About",
     path: "/about",
   },
+  {
+    label: "Printing",
+    path: "/printing",
+  },
 ];
