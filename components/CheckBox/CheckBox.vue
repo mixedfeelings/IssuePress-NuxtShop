@@ -1,6 +1,6 @@
 <template>
   <div class="form-item">
-     <label class="label" :for="props.name" :aria-label="props.name">{{props.name}}</label>  
+     <label v-if="props.name" class="label" :for="props.name" :aria-label="props.name">{{props.name}}</label>  
      <div :class="`checkbox-wrapper ${multi ? 'multi' : ''}`">
         <label
             v-for="(option, i) of options" :key="i"
@@ -25,7 +25,7 @@ import { ref, toRefs } from 'vue';
 const uuid = ref(0);
 const picked = ref([]);
 const props = defineProps<{
-    modelValue: Array<string> | string;
+    modelValue: Array<string> | boolean | string;
     options: Array<string>;
     name?: string;
     multi?: boolean;
@@ -56,11 +56,11 @@ function checkbox_class(option) {
 }
 
 .checkbox {
-    @apply flex gap-2 font-normal text-base font-mono items-center;
+    @apply gap-2 font-normal text-base font-mono items-center cursor-pointer inline-flex p-0;
 }
 
 .multi .checkbox {
-    @apply p-2 rounded cursor-pointer text-sm font-normal capitalize flex gap-2 items-center bg-gray-100 font-mono;
+    @apply p-2 rounded text-sm font-normal capitalize flex gap-2 items-center bg-gray-100 font-mono bg-white;
 }
 
 .circle {
@@ -72,8 +72,8 @@ function checkbox_class(option) {
     @apply bg-black;
 }
 
-.dark .checkbox {
-    @apply bg-darker;
+.dark .multi .checkbox {
+    @apply text-natural bg-darkest;
 }
 
 .dark .circle {
