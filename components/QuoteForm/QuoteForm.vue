@@ -1,6 +1,5 @@
 <template>
     <form class="flex flex-col">
-        <h2 class="text-2xl text-center font-serif pb-6">Request a Quote</h2>
         <fieldset legend="Basic Info">
             <h3>Basic Info</h3>
             <TextField v-model="project.name" name="Project Name" required class="col-span-2" placeholder="My kickass zine, print, or whatever!"/>
@@ -161,11 +160,11 @@ fieldset {
 }
 
 fieldset h3 {
-    @apply text-xl text-center font-serif col-span-2 pt-2;
+    @apply text-xl font-serif col-span-2 pt-2;
 }
 
 fieldset h4 {
-    @apply text-lg text-center font-serif col-span-2 ;
+    @apply text-lg font-serif col-span-2 ;
 }
 
 fieldset fieldset {
