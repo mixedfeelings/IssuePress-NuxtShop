@@ -46,7 +46,7 @@ module.exports = {
         'sunflower': 'var(--color-sunflower)',
         'yellow': 'var(--color-yellow)',
         'natural': 'var(--color-natural)',
-        'dark': '#424242',
+        'dark': '#232323',
         'darker': '#202020',
         'darkest': '#121212',
       },
