@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     to="/"
-    class="flex items-center max-h-8 font-serif text-lg tracking-wider leading-none"
+    class="flex items-center max-h-8 font-serif text-lg tracking-wider leading-none whitespace-nowrap"
   >
     <svg class="h-8 w-8 mr-2" viewBox="0 0 144 144" enable-background="new 0 0 144 144" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" aria-hidden fill="currentColor">
 			<g>
