@@ -98,7 +98,8 @@
 <style>
 
 fieldset {
-   @apply flex flex-col py-6 border-b-2 grid gap-6 grid-cols-2 mb-6 ;
+   @apply flex flex-col border-b-2 grid gap-6 grid-cols-2 mb-6 ;
+   padding: 1.5rem 0 !important;
 }
 
 fieldset:last-child {
