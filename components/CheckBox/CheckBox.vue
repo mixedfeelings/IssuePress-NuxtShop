@@ -52,7 +52,7 @@ function checkbox_class(option) {
 </script>
 <style scoped>
 .form-item .checkbox-wrapper.multi {
-    @apply flex flex-wrap gap-1;
+    @apply flex flex-wrap gap-2;
 }
 
 .checkbox {
@@ -60,7 +60,7 @@ function checkbox_class(option) {
 }
 
 .multi .checkbox {
-    @apply py-2 pl-2 pr-3 cursor-pointer text-base font-normal capitalize flex gap-2 items-center bg-gray-100 font-mono;
+    @apply p-2 rounded cursor-pointer text-sm font-normal capitalize flex gap-2 items-center bg-gray-100 font-mono;
 }
 
 .circle {
