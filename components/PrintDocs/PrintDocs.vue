@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="print-doc-header pt-6 px-6 font-sans text-base md:text-lg lg:text-xl md:leading-10 sm:border-b-2">
-            <h1 class="text-3xl font-serif text-center mb-6 pb-2">Printing</h1>
+            <h1 class="text-3xl font-serif text-center mb-6 py-2">Printing</h1>
         </div>
         <div class="print-docs flex flex-col sm:flex-row flex-grow flex-1 ">
             <aside class="w-full sm:w-1/4 desktop-only px-6 py-8 sticky border-r-2 flex-auto text-sm md:text-base">
