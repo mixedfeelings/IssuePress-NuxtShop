@@ -7,10 +7,10 @@
             <aside class="w-full md:w-1/4 desktop-only px-6 py-8 sticky border-r-2 flex-auto">
                 <ul>
                     <li><NuxtLink to="/printing">Printing with Issue Press</NuxtLink></li>
-                    <li>Introduction to RISO</li>
-                    <li>Another Heading</li>
-                    <li>More Stuff...</li>
-                    <li>Equipment List</li>
+                    <!-- <li>Introduction to RISO</li> -->
+                    <li><NuxtLink to="/printing/colors">Ink Colors</NuxtLink></li>
+                    <!-- <li>More Stuff...</li> -->
+                    <!-- <li>Equipment List</li> -->
                     <li><NuxtLink to="/printing/request-quote">Request a Quote</NuxtLink></li>
                 </ul>
             </aside>
