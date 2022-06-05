@@ -1,20 +1,20 @@
 <template>
     <section>
-        <div class="print-doc-header pt-6 px-6 font-sans text-base md:text-lg lg:text-xl md:leading-10 md:border-b-2">
+        <div class="print-doc-header pt-6 px-6 font-sans text-base md:text-lg lg:text-xl md:leading-10 sm:border-b-2">
             <h1 class="text-3xl font-serif text-center mb-6 pb-2">Printing</h1>
         </div>
-        <div class="print-docs flex flex-col md:flex-row flex-grow flex-1 ">
-            <aside class="w-full md:w-1/4 desktop-only px-6 py-8 sticky border-r-2 flex-auto">
+        <div class="print-docs flex flex-col sm:flex-row flex-grow flex-1 ">
+            <aside class="w-full sm:w-1/4 desktop-only px-6 py-8 sticky border-r-2 flex-auto text-sm md:text-base">
                 <ul>
                     <li><NuxtLink to="/printing">Printing with Issue Press</NuxtLink></li>
-                    <!-- <li>Introduction to RISO</li> -->
+                    <li><NuxtLink to="/printing/intro-to-riso">Introduction to Risograph Printing</NuxtLink></li>
                     <li><NuxtLink to="/printing/colors">Ink Colors</NuxtLink></li>
-                    <!-- <li>More Stuff...</li> -->
-                    <!-- <li>Equipment List</li> -->
+                    <li><NuxtLink to="/printing/paper">Paper Options</NuxtLink></li>
+                    <li><NuxtLink to="/printing/file-prep">File Prep</NuxtLink></li>
                     <li><NuxtLink to="/printing/request-quote">Request a Quote</NuxtLink></li>
                 </ul>
             </aside>
-            <div class="w-full md:w-3/4 px-6 py-8">
+            <div class="w-full sm:w-3/4 px-6 py-8">
                 <slot></slot>
             </div>
         </div>
