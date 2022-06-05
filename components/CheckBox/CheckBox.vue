@@ -60,7 +60,7 @@ function checkbox_class(option) {
 }
 
 .multi .checkbox {
-    @apply p-2 rounded text-sm font-normal capitalize flex gap-2 items-center bg-gray-100 font-mono bg-white;
+    @apply p-2 rounded text-sm font-normal capitalize flex gap-2 items-center bg-gray-100 font-mono;
 }
 
 .circle {
@@ -73,7 +73,7 @@ function checkbox_class(option) {
 }
 
 .dark .multi .checkbox {
-    @apply text-natural bg-darkest;
+    @apply text-natural bg-dark;
 }
 
 .dark .circle {

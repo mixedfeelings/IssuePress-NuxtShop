@@ -86,6 +86,7 @@
                     <textarea v-model="project.delivery.address" name="Address" rows="3" placeholder="Issue Press&#10;314 Straight SW&#10;Grand Rapids, MI &#10;" />
                 </div>            
             </transition>
+            <TextField v-model="project.experience" name="Describe your experience with Riso Printing" class="col-span-2" placeholder="..."/>
             <TextField v-model="project.referral" name="How'd You Find us?" class="col-span-2" placeholder="Funny story, actually..."/>
         </fieldset>
     </form>
@@ -102,6 +103,7 @@
         name: null,
         submitterName: null,
         submitterEmail: null,
+        experience: null,
         notes: null,
         type: null,
         quantity: 100,
@@ -154,13 +156,13 @@
 <style>
 
 fieldset {
-    @apply flex bg-gray-100 flex-col grid gap-x-6 gap-y-4 grid-cols-2 mb-6 ;
-    padding: 1rem 1.5rem !important;
+    @apply flex flex-col gap-x-6 gap-y-4  mb-6 ;
+    padding: 1rem 0 !important;
     transition: all 0.3s;
 }
 
 fieldset h3 {
-    @apply text-xl font-serif col-span-2 pt-2;
+    @apply text-xl font-serif col-span-2 pt-2 pb-4 border-b-2;
 }
 
 fieldset h4 {
@@ -168,7 +170,7 @@ fieldset h4 {
 }
 
 fieldset fieldset {
-    @apply border-none mb-0 bg-gray-200 mb-2; 
+    @apply border-none mb-0 mb-2; 
 }
 
 .form-item {
@@ -184,13 +186,14 @@ fieldset fieldset {
 .form-item textarea {
   @apply border p-4 bg-white font-mono bg-white rounded;
 }
-.dark fieldset { @apply bg-dark; }
 
-.dark fieldset fieldset { @apply bg-darker; }
+
+/* .dark fieldset fieldset { @apply bg-dark; } */
 
 .dark .form-item input,
-.dark .form-item select {
-    @apply bg-darkest border-darker text-natural;
+.dark .form-item select,
+.dark .form-item textarea {
+    @apply bg-dark border-darker text-natural;
 }
 
 .fade-enter-active,
@@ -201,6 +204,12 @@ fieldset fieldset {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+@media (min-width: 640px) {
+    fieldset {
+        @apply grid grid-cols-2;
+    }
 }
 
 </style>
