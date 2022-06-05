@@ -7,8 +7,9 @@
         </Html>
         <PrintDocs>
             <h2 class="text-2xl font-serif pb-6">Ink Colors</h2>
-            <p>Unlike copy machines, Risograph duplicators use liquid ink similar to offset press. They are applied to the paper via an ink cylinder, or "drum," with a thin stencil wrapped around them.</p>
-            <p>Risograph inks require a dedicated drum, and are only able to be printed one or two colors at a time depending on the machine. At Issue Press, I print primarily with a Risograph MZ 790U, which is a two-color duplicator. </p>
+            <p>Unlike copy machines, Risograph duplicators use liquid ink similar to offset press. They are applied to the paper via an ink cylinder, or "drum," with a thin stencil wrapped around them.</p>   
+            <p>Risograph ink is vegetable-based (soy or rice), which alongside the great ecological benefits, present some technical challenges. Soy and Rice-based inks cannot be cured by heat like oil-based offset inks, and only dry through absorption into uncoated paper. This limits the type of paper that can be used in Risograph printing. It also means that that the ink can take a long time to dry, and may not be fully set for days or even weeks after printed. </p>
+            <p>Each color requires a dedicated drum, and are only able to be printed one or two colors at a time depending on the machine. At Issue Press, I print primarily with a Risograph MZ 790U, which is a two-color duplicator. </p>
             <p>Issue Press currently stocks 27 drums:</p>
             <div class="color-wrapper">
                 <div class="color-ramp bg-black">
