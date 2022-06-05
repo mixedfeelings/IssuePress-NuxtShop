@@ -8,7 +8,7 @@
       <Navigation class="md:ml-4" />
       <div class="flex items-center ml-auto">
         <ColorModePicker />
-        <SocialMedia class="md:px-4 lg:px-6 desktop-only" />
+        <SocialMedia class="px-4 lg:px-6 desktop-only" />
         <CartIcon />
     </div>
 
