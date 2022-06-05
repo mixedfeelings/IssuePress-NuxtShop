@@ -9,7 +9,8 @@
 
 .dark .cart,
 .dark .cart div,
-.dark nav a {
+.dark nav a,
+.dark fieldset h3 {
     @apply border-darker;
 }
 
