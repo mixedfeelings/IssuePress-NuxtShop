@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="absolute left-0 right-0 bg-white hidden shadow-lg md:shadow-none  top-12 md:static md:flex md:items-center md:justify-center md:border-b-0 md:mt-1"
+    class="absolute left-0 right-0 bg-white md:bg-transparent hidden shadow-lg md:shadow-none top-12 md:static md:flex md:flex-row md:items-center md:justify-center md:border-b-0 md:mt-1"
     :class="{ isOpen: menuOpen }"
     ref="menu"
   >

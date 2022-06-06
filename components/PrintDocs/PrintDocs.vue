@@ -20,7 +20,7 @@
 }
 
 .print-docs .print-docs-body {
-    @apply p-6;
+    @apply bg-transparent p-6;
 }
 
 .dark .print-docs-header,

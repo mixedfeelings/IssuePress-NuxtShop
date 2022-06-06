@@ -1,6 +1,6 @@
 <template>
     <aside 
-        class="hidden w-full md:w-1/4 absolute md:relative md:block md:pt-6 font-sans text-base md:text-lg md:text-xl shadow-lg md:shadow-none md:border-r-2"
+        class="hidden bg-white md:bg-transparent w-full md:w-1/4 absolute md:relative md:block md:pt-6 font-sans text-base md:text-lg md:text-xl shadow-lg md:shadow-none md:border-r-2"
         :class="{ isOpen: menuOpen }"
         ref="menu"
     >
@@ -8,7 +8,7 @@
             v-for="link in printNavLinks"
             :key="link.label"
             :to="link.path"
-            class="block p-4 text-sm font-medium tracking-wide border-b-[1px] lg:px-6 lg:py-2 md:border-b-0 "
+            class="block p-4 text-sm font-medium tracking-wide border-b-[1px] lg:px-6 md:py-2 md:border-b-0 "
         >
             {{ link.label }}
         </NuxtLink>
@@ -31,7 +31,7 @@
     watch(route, () => (isMobileUI ? shopStore.togglePrintMenu(false) : null));
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 
 .router-link-active {
     color: var(--global-color);
