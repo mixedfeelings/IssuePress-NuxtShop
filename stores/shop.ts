@@ -15,6 +15,7 @@ export const useShopStore = defineStore("shop", {
         },
       },
       menuOpen: false,
+      printMenuOpen: false,
       moneyFormat: "$",
     };
   },
@@ -48,5 +49,16 @@ export const useShopStore = defineStore("shop", {
         this.menuOpen = !this.menuOpen;
       }
     },
+    togglePrintMenu(state?: boolean) {
+      if (typeof state === "boolean") {
+        this.printMenuOpen = state;
+      } else {
+        this.printMenuOpen = !this.printMenuOpen;
+      }
+    },
   },
+  getters: {
+    printMenu: (state) => state.printMenuOpen,
+  }
+  
 });

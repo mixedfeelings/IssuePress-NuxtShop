@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="absolute left-0 right-0 bg-white hidden border-b-2 border-black top-12 md:static md:flex md:items-center md:justify-center md:border-b-0 md:mt-1"
+    class="absolute left-0 right-0 bg-white hidden shadow-lg md:shadow-none  top-12 md:static md:flex md:items-center md:justify-center md:border-b-0 md:mt-1"
     :class="{ isOpen: menuOpen }"
     ref="menu"
   >
@@ -12,7 +12,7 @@
     >
       {{ link.label }}
     </NuxtLink>
-    <SocialMedia class="mobile-only py-4 px-4 text-sm font-medium tracking-wide " />
+    <SocialMedia class="mobile-only py-4 px-4 text-sm font-medium tracking-wide border-b " />
 
   </nav>
 </template>
