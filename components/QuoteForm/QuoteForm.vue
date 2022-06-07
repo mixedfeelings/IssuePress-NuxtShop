@@ -1,6 +1,6 @@
 <template>
     <form 
-        name="quotes" 
+        name="Quotes" 
         netlify-honeypot="bot-field"
         data-netlify="true"        
         action="/"
@@ -8,7 +8,7 @@
         class="flex flex-col pb-6"
     >
 
-        <input type="hidden" name="form-name" value="quotes" />
+        <input type="hidden" name="form-name" value="Quotes" />
         <input value="/printing/request-quote" name="location" type="hidden" />
 
           <p class="hidden">
@@ -119,8 +119,6 @@
 </template>
 <script setup lang="ts">
     import { ref, toRefs } from 'vue';
-    import { useColorStore } from "~/stores/colors";
-    const colorStore = useColorStore();
 
     const inkColors = ['aqua','black','blue','burgundy','copper','coral','cornflower','flat-gold','fluorescent-orange','fluorescent-pink','fluorescent-red','fluorescent-yellow','green','kelly-green','light-gray','metallic-gold','mint','moss','orange','orchid','risofederal-blue','scarlet','sunflower','white','yellow'];
 
