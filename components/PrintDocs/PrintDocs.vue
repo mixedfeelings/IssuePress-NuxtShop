@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="print-docs-header">
-            <Chevron class="md:hidden m-4 absolute left-0" />
+            <Chevron class="md:hidden my-2 mx-4 absolute right-0" />
             <h1 class="text-3xl font-serif text-center mb-6 py-2 ">Printing</h1>
         </div>
         <div class="print-docs flex flex-col md:flex-row">
