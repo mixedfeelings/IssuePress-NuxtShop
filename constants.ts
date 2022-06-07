@@ -32,7 +32,7 @@ export const printNavLinks: NavLink[] = [
     path: "/printing"
   },
   {
-    label: "Intro to Risograph Printing",
+    label: "Intro to Stencil Printing",
     path: "/printing/intro-to-riso"
   },
   {
@@ -40,11 +40,11 @@ export const printNavLinks: NavLink[] = [
     path: "/printing/colors"
   },
   {
-    label: "Print Area & Paper Options",
+    label: "Paper",
     path: "/printing/paper"
   },
   {
-    label: "File Prep Basics",
+    label: "File Prep",
     path: "/printing/file-prep"
   },
   {
