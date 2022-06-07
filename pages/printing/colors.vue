@@ -383,7 +383,7 @@
                 </div>
             </div>
             <div class="color-wrapper white">
-                <div class="color-ramp bg-gray-100">
+                <div class="color-ramp bg-gray-200">
                     <div class="p100"><span>100%</span></div>
                     <div class="p75"><span>75%</span></div>
                     <div class="p50"><span>50%</span></div>
@@ -442,6 +442,7 @@ onMounted(() => {
     @apply w-2/12 bg-white;
 }
 
+
 .color-wrapper .color-ramp .p75 {
     @apply bg-opacity-25;
 }
@@ -452,6 +453,23 @@ onMounted(() => {
 
 .color-wrapper .color-ramp .p25 {
     @apply bg-opacity-75;
+}
+
+
+.color-wrapper.white .color-ramp .p100 {
+   @apply bg-opacity-90 bg-white;
+}
+
+.color-wrapper.white .color-ramp .p75 {
+    @apply bg-opacity-75;
+}
+
+.color-wrapper.white .color-ramp .p50 {
+    @apply bg-opacity-50;
+}
+
+.color-wrapper.white .color-ramp .p25 {
+    @apply bg-opacity-25;
 }
 
 .color-info {
@@ -468,6 +486,10 @@ onMounted(() => {
 .white .color-ramp, 
 .yellow .color-ramp {
     @apply text-black;
+}
+
+.dark .color-wrapper.white .color-ramp {
+    @apply bg-darker;
 }
 
 </style>
