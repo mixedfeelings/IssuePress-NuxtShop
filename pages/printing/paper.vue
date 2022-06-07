@@ -35,14 +35,14 @@
                 <li class="py-1 pl-2"><strong>Bond</strong> - At 20#, this is your typical familiar copy machine paper. The lightest paper we offer, but also has the highest <em>dot gain</em> (the spread of ink as it sets in the paper). Honestly, I don't use this much. </li>
             </ul>
             <h4 class="text-lg font-serif pt-6 pb-2">Finish</h4>
-            <p>Uncoated paper is available in many paper finishes, but I have found that Vellum and Smooth work the best in most applications. They are both great for stencil printing, but also both have their own benefits and drawbacks.</p>
+            <p>Uncoated paper is available in many paper finishes, but I have found that Vellum and Smooth work the best in most applications. They are both great for stencil printing, but also each have their own benefits and drawbacks.</p>
             <ul class="list-disc list-outside ml-4">
                 <li class="py-1 pl-2"><strong>Vellum</strong> - A rough, bulky finish that works really well for projects with a lot of ink because it dries to the touch more quickly - but can also <em>potentially</em> take much longer to completely set than smooth paper. The toothiness of the paper can also <em>possibly</em> lend itself to splotchier fills and a bit more dot gain. The roughness of the finish, however, helps gives the finished product that great "tactile" feel Riso is known for. </li>
                 <li class="py-1 pl-2"><strong>Smooth</strong> - Smooth paper is, well, smooth, and is great for work that needs a brigher, more intricate print. It is slower to dry than vellum paper, and can therefore be prone to set off (the wet ink of a print marking the back of the next sheet). Despite this, I have found that it can dry more thoroughly in the long run.</li>
             </ul>
             
 
-            <h3 class="text-2xl font-serif py-4 mt-6">Some Recommended Papers Stencil Printing</h3>
+            <h3 class="text-2xl font-serif py-4 mt-6">Some Recommended Stocks for Stencil Printing</h3>
             <h4 class="text-lg font-serif pb-4 underline"><a href="https://frenchpaper.com" target="_blank">French Paper Co.</a></h4>
             <p class="italic text-xs pb-2">TL;DR: Top-tier, recycled, locally made, "artisinal," expensive!</p>
             <p>In Michigan, we are lucky to have one of the best Family-run paper mills in the United States. Located in Niles, just about 90 minutes South of the Issue Press studio, the French family has milled fine uncoated paper for 5 generations.</p>
