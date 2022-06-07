@@ -4,6 +4,7 @@
 @import 'tables';
 @import 'carousel';
 @import 'forms';
+@import 'accordions';
 
 /* Dark Mode */
 @import 'dark';

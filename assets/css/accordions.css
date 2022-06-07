@@ -1,0 +1,16 @@
+.accordion-wrapper {
+    @apply bg-gray-100 mb-[2px];
+}
+
+.accordion-wrapper .accordion-header button {
+    @apply flex p-4 justify-between cursor-pointer;
+}
+
+.accordion-wrapper .accordion-header .accordion-title {
+    @apply text-base font-bold font-serif;
+}
+
+.accordion-wrapper .accordion-content { 
+    @apply hidden px-4 pb-4;
+    transition: 150ms ease-out;
+}
