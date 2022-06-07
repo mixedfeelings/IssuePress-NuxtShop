@@ -12,22 +12,3 @@
         </div>
     </section>
 </template>
-
-<style scoped>
-
-.print-docs-header {
-    @apply relative pt-6 px-6 border-b-2;
-}
-
-.print-docs .print-docs-body {
-    @apply bg-transparent p-6;
-}
-
-.dark .print-docs-header,
-.dark .print-docs-body,
-.dark .print-docs aside {
-    @apply border-darker bg-darkest;
-}
-
-
-</style>
