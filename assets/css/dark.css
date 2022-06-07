@@ -48,6 +48,12 @@ button.bg-black,
     @apply border-darker;
 }
 
+
+
+
+
+/* FORMS */
+
 .dark .disabled {
     @apply opacity-30;  
 }
@@ -64,10 +70,13 @@ button.bg-black,
    background-color: var(--color-natural);
 }
 
-/* FORMS */
-
 .dark .form-item input,
 .dark .form-item select,
-.dark .form-item textarea {
+.dark .form-item textarea,
+.dark .mc-field-group input {
     @apply bg-dark border-darker text-natural;
+}
+
+.dark .mc-field-group input {
+    @apply bg-darkest;
 }
