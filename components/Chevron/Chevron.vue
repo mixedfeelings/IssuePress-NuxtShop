@@ -1,12 +1,12 @@
 <template>
   <button
-    class="flex items-center"
+    class="flex items-center justify-center h-8 w-8 rounded-lg bg-opacity-50 bg-gray-200"
     aria-label="Menu"
     @click="handleClick"
     @keyup.enter="handleClick"
   >
-    <DownIcon v-if="!menuOpen" class="w-6" aria-hidden />
-    <UpIcon v-else class="w-6" aria-hidden />
+    <DownIcon v-if="!menuOpen" class="w-6 h-6" aria-hidden />
+    <UpIcon v-else class="w-6 h-6" aria-hidden />
   </button>
 </template>
 
