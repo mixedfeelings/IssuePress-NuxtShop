@@ -57,8 +57,4 @@ export const useShopStore = defineStore("shop", {
       }
     },
   },
-  getters: {
-    printMenu: (state) => state.printMenuOpen,
-  }
-  
 });
