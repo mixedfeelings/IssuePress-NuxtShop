@@ -1,17 +1,21 @@
 <template>
     <form 
         name="quotes" 
-        method="POST" 
-        enctype="multipart/form-data"
-        class="flex flex-col pb-6"
-        data-netlify-honeypot="bot-field"
         netlify-honeypot="bot-field"
-        data-netlify="true"
-        netlify
+        data-netlify="true"        
+        action="/"
+        method="POST"
+        class="flex flex-col pb-6"
     >
 
         <input type="hidden" name="form-name" value="quotes" />
         <input value="/printing/request-quote" name="location" type="hidden" />
+
+          <p class="hidden">
+            <label>
+            Don’t fill this out if you’re human: <input name="bot-field" />
+            </label>
+        </p>
 
         <fieldset legend="Basic Info">
             <h3>Basic Info</h3>
