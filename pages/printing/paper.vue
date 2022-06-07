@@ -4,6 +4,13 @@
             <Head>
                 <Title>Paper | Issue Press</Title>
                 <Meta name="description" content="Learn more about papers for Risograph printing."/>
+                <meta property="og:title" content="Paper | Issue Press" />
+                <meta property="og:site_name" content="Issue Press" />
+                <meta property="og:type" content="article" />
+                <meta property="og:url" content="https://issue.press/printing/paper" />
+                <meta property="og:image" content="/images/issue-press.png" />
+                <meta name="twitter:card" content="summary" />
+                <meta name="twitter:site" content="@issuepress" />          
             </Head>
         </Html>
         <PrintDocs>
@@ -18,7 +25,9 @@
             <p>Coated, metallic, and hologram paper are not available for stencil printing.</p>
 
             <h4 class="text-lg font-serif pt-6 pb-2">Paper Weight</h4>
-            Paper thickness in North America is measured in <em>basis weight</em>: the weight of a ream of paper, in pounds (#'s'), at its parent sheet size. There are many types of paper each with their own basis weight. It's honestly confusing, and best not to think about too much. Just know that that higher the number, the thicker the paper. Risograph printers can comfortably print on papers between 20# bond and 80# cover.  
+            <p>Paper thickness in North America is measured in <em>basis weight</em>: the weight of a ream of paper, in pounds (#), at its parent sheet size. There are many types of paper each with their own basis weight. This means that the weight scale resets for each type and, for example, 80# text is not the same as 80# cover. It's honestly confusing, and best not to think about too much. Just know that that higher the number, the thicker the paper and that the type is an important part of the description.</p> 
+            <p>Risograph printers can comfortably print on papers between 20# bond and 80# cover.</p>  
+            <h5>Common Paper Types:</h5>
             <ul class="list-disc list-outside ml-4">
                 <li class="py-1 pl-2"><strong>Cover</strong> - Thick paper, used for publication covers and prints.</li>
                 <li class="py-1 pl-2"><strong>Bristol</strong> - Although similar to cover, a bristol is classified differently as it is technically an uncoated "paperboard" because of the way it is created.</li>
@@ -28,7 +37,7 @@
             <h4 class="text-lg font-serif pt-6 pb-2">Finish</h4>
             <p>Uncoated paper is available in many paper finishes, but I have found that Vellum and Smooth work the best in most applications. They are both great for stencil printing, but also both have their own benefits and drawbacks.</p>
             <ul class="list-disc list-outside ml-4">
-                <li class="py-1 pl-2"><strong>Vellum</strong> - A rough, bulky finish that works really well for projects with a lot of ink because it dries to the touch more quickly - but can also <em>potentially</em> take much longer to completely set than smooth paper. The toothiness of the paper can also <em>potentially</em> lend it self to splotchier prints and dot gain than smooth feel. The roughness of the finish gives the paper a great "tactile" feel. </li>
+                <li class="py-1 pl-2"><strong>Vellum</strong> - A rough, bulky finish that works really well for projects with a lot of ink because it dries to the touch more quickly - but can also <em>potentially</em> take much longer to completely set than smooth paper. The toothiness of the paper can also <em>possibly</em> lend itself to splotchier fills and a bit more dot gain. The roughness of the finish, however, helps gives the finished product that great "tactile" feel Riso is known for. </li>
                 <li class="py-1 pl-2"><strong>Smooth</strong> - Smooth paper is, well, smooth, and is great for work that needs a brigher, more intricate print. It is slower to dry than vellum paper, and can therefore be prone to set off (the wet ink of a print marking the back of the next sheet). Despite this, I have found that it can dry more thoroughly in the long run.</li>
             </ul>
             
@@ -83,11 +92,11 @@
             <p></p>
             <p></p>
             <h3 class="text-xl font-serif pb-4 underline"><a href="https://www.domtar.com/en" target="_blank">Domtar Paper</a></h3>
-            <p class="italic text-xs">TLDR: high-quality, often some recycled content, budget-friendly</p>
-            <p>While Domtar no longer operates mills in Michigan (😢), this Americaan / Canadian paper company still mills many of its paper products here in the Great Lakes region. It is reccommended for budget-conscious projects that still require a high quality stock that works well with stencil printing. Fun fact: Domtar used to run a gypsum mine here in Grand Rapids, a spooky tour of which looms heavily on my grade school experience.</p>             
+            <p class="italic text-xs">TLDR: high-quality, budget-friendly</p>
+            <p>While Domtar no longer operates mills in Michigan (😢), this American / Canadian paper company still mills many of its paper products here in the Great Lakes region. It is reccommended for budget-conscious projects that still require a high quality stock that works well with stencil printing. Fun fact: Domtar used to run a gypsum mine here in Grand Rapids, a spooky tour of which looms heavily on my grade school experience.</p>             
             <AccordionPanel title="Cougar">                
                 <template v-slot:post-title>
-                    <div class="text-xs text-mono pt-1">70#, 80# text / 80# cover | Smooth & Vellum | Acid-free</div>
+                    <div class="text-xs text-mono pt-1 text-left">70#, 80# text / 80# cover | Smooth & Vellum | Acid-free</div>
                 </template>   
                 <p>Domtar's flagship paper. Comes in any color you like, as long as it is white or natural (kind of a creamy off-white). Cougar Smooth has more or less become my house paper, and I use it on many projects.</p>         
                 <a class="underline" href="https://www.domtar.com/en/what-we-make/paper/printing-and-publishing-papers/digital-printing-papers/cougar-digital" target="_blank">Website</a>

@@ -3,6 +3,14 @@
         <Html>
             <Head>
                 <Title>File Prep | Issue Press</Title>
+                <Meta name="description" content="Learn more about prepping files for printing with Issue Press."/>
+                <meta property="og:title" content="File Prep | Issue Press" />
+                <meta property="og:site_name" content="Issue Press" />
+                <meta property="og:type" content="article" />
+                <meta property="og:url" content="https://issue.press/printing/file-prep" />
+                <meta property="og:image" content="/images/issue-press.png" />
+                <meta name="twitter:card" content="summary" />
+                <meta name="twitter:site" content="@issuepress" />  
             </Head>
         </Html>
         <PrintDocs>
