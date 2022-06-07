@@ -1,5 +1,17 @@
 <template>
-    <form class="flex flex-col">
+    <form 
+        name="quotes" 
+        method="POST" 
+        enctype="multipart/form-data"
+        class="flex flex-col pb-6"
+        data-netlify-honeypot="bot-field"
+        netlify-honeypot="bot-field"
+        data-netlify="true"
+    >
+
+        <input type="hidden" name="form-name" value="quotes" />
+        <input value="/printing/request-quote" name="location" type="hidden" />
+
         <fieldset legend="Basic Info">
             <h3>Basic Info</h3>
             <TextField v-model="project.name" name="Project Name" required class="col-span-2" placeholder="My kickass zine, print, or whatever!"/>
@@ -75,6 +87,10 @@
         <fieldset>
             <h3>Final Details</h3>
             <div class="form-item col-span-2">
+                <label for="file">Sample Image</label>
+                <input name="file" type="file"/>
+            </div>
+            <div class="form-item col-span-2">
                 <label for="Notes / Additional info" aria-label="Notes / Additional info">Description</label>
                 <textarea v-model="project.other.description" name="Notes / Additional info" placeholder="..." />
             </div>
@@ -83,12 +99,16 @@
             <transition name="fade">
                 <div v-if="project.delivery.type == 'Ship'" class="form-item col-span-2">
                     <label for="Address" aria-label="Address">Address</label>
-                    <textarea v-model="project.delivery.address" name="Address" rows="3" placeholder="Issue Press&#10;314 Straight SW&#10;Grand Rapids, MI &#10;" />
+                    <textarea v-model="project.delivery.address" name="Address" rows="3" placeholder="Issue Press&#10;314 Straight SW&#10;Grand Rapids, MI &#10;" class="whitespace-pre-wrap" />
                 </div>            
             </transition>
             <TextField v-model="project.experience" name="Describe your experience with Riso Printing" class="col-span-2" placeholder="..."/>
             <TextField v-model="project.referral" name="How'd You Find us?" class="col-span-2" placeholder="Funny story, actually..."/>
         </fieldset>
+        <div class="flex flex-col md:flex-row justify-center md:justify-between w-full items-center py-4">
+            <h3 class="py-2">Phew... You made it to the end!</h3>
+            <input type="submit" value="Submit" class="submit-button">
+        </div>
     </form>
 
 </template>

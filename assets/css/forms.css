@@ -31,7 +31,14 @@ fieldset fieldset {
 }
 
 
-/* .dark fieldset fieldset { @apply bg-dark; } */
+input.submit-button {
+    @apply inline-flex text-xl rounded px-4 py-2 font-serif w-auto text-natural cursor-pointer bg-darker;
+    color: var(--color-natural) !important;
+}
+
+input.submit-button:hover {
+    color: var(--global-color) !important;
+}
 
 .fade-enter-active,
 .fade-leave-active {
