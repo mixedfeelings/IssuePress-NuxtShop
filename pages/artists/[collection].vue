@@ -4,7 +4,14 @@
       <Html>
         <Head>
           <Title>{{ `${collection?.title} | Issue Press` ?? "Issue Press" }}</Title>
-          <Meta name="description" :content="collection?.description ?? ''" />
+          <Meta name="description" :content="`Browse projects by ${collection?.title} in the Issue Press catalog.`" />
+          <Meta property="og:title" :content=" `${collection?.title} | Issue Press`" />
+          <Meta property="og:site_name" content="Issue Press" />
+          <Meta property="og:type" content="article" />
+          <Meta property="og:url" :content="`https://issue.press${route.path}`" />          
+          <Meta property="og:image" content="/issue-press.png" />
+          <Meta name="twitter:card" content="summary" />
+          <Meta name="twitter:site" content="@issuepress" /> 
         </Head>
       </Html>
       <CollectionHeader

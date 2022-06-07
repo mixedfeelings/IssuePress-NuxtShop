@@ -3,7 +3,14 @@
     <Html>
       <Head>
         <Title>Issue Press</Title>
-        <Meta name="description" :content="description" />
+        <Meta name="description" content="Issue Press is a tiny publisher and Risograph print shop based in Grand Rapids, Michigan" />
+        <Meta property="og:title" content="Catalog | Issue Press" />
+        <Meta property="og:site_name" content="Issue Press" />
+        <Meta property="og:type" content="website" />
+        <Meta property="og:url" content="https://issue.press/" />          
+        <Meta property="og:image" content="/issue-press.png" />
+        <Meta name="twitter:card" content="summary" />
+        <Meta name="twitter:site" content="@issuepress" /> 
       </Head>
     </Html>
 

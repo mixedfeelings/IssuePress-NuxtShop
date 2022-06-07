@@ -3,7 +3,14 @@
     <Html>
       <Head>
         <Title>Catalog | Issue Press</Title>
-        <Meta name="description" content="description" />
+        <Meta name="description" content="Browse the complete catalog of projects published by Issue Press since 2011." />
+        <Meta property="og:title" content="Catalog | Issue Press" />
+        <Meta property="og:site_name" content="Issue Press" />
+        <Meta property="og:type" content="article" />
+        <Meta property="og:url" content="https://issue.press/catalog" />          
+        <Meta property="og:image" content="/issue-press.png" />
+        <Meta name="twitter:card" content="summary" />
+        <Meta name="twitter:site" content="@issuepress" /> 
       </Head>
     </Html>
     <div class="collection-header text-center pb-0">

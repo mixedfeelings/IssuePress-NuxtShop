@@ -3,14 +3,14 @@
         <Html>
             <Head>
                 <Title>Introduction to Risograph Printing | Issue Press</Title>
-                <Meta name="description" content="Learn more about the Risograph printing process."/>
-                <meta property="og:title" content="Introduction to Risograph Printing | Issue Press" />
-                <meta property="og:site_name" content="Issue Press" />
-                <meta property="og:type" content="article" />
-                <meta property="og:url" content="https://issue.press/printing/intro-to-riso" />
-                <meta property="og:image" content="/images/issue-press.png" />
-                <meta name="twitter:card" content="summary" />
-                <meta name="twitter:site" content="@issuepress" />  
+                <Meta name="description" content="Learn more about the Risograph printing process." />
+                <Meta property="og:title" content="Introduction to Risograph Printing | Issue Press" />
+                <Meta property="og:site_name" content="Issue Press" />
+                <Meta property="og:type" content="article" />
+                <Meta property="og:url" content="https://issue.press/printing/intro-to-riso" />
+                <Meta property="og:image" content="/issue-press.png" />
+                <Meta name="twitter:card" content="summary" />
+                <Meta name="twitter:site" content="@issuepress" />  
             </Head>
         </Html>
         <PrintDocs>

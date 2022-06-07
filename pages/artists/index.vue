@@ -3,6 +3,14 @@
     <Html>
       <Head>
         <Title>Artists | Issue Press</Title>
+          <Meta name="description" content="Browse projects by Artist in the Issue Press catalog." />
+          <Meta property="og:title" content="Artists | Issue Press" />
+          <Meta property="og:site_name" content="Issue Press" />
+          <Meta property="og:type" content="article" />
+          <Meta property="og:url" content="https://issue.press/artists" />          
+          <Meta property="og:image" content="/issue-press.png" />
+          <Meta name="twitter:card" content="summary" />
+          <Meta name="twitter:site" content="@issuepress" />         
       </Head>
     </Html>
     <div v-if="collectionList" class="pb-6">

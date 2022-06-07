@@ -3,14 +3,14 @@
         <Html>
             <Head>
                 <Title>Ink Colors | Issue Press</Title>
-                <Meta name="description" content="Learn more about Risograph ink and the available colors at Issue Press."/>
-                <meta property="og:title" content="Ink Colors | Issue Press" />
-                <meta property="og:site_name" content="Issue Press" />
-                <meta property="og:type" content="article" />
-                <meta property="og:url" content="https://issue.press/printing/paper" />
-                <meta property="og:image" content="/images/issue-press.png" />
-                <meta name="twitter:card" content="summary" />
-                <meta name="twitter:site" content="@issuepress" />  
+                <Meta name="description" content="Learn more about Risograph ink and the available colors at Issue Press." />
+                <Meta property="og:title" content="Ink Colors | Issue Press" />
+                <Meta property="og:site_name" content="Issue Press" />
+                <Meta property="og:type" content="article" />
+                <Meta property="og:url" content="https://issue.press/printing/paper" />
+                <Meta property="og:image" content="/issue-press.png" />
+                <Meta name="twitter:card" content="summary" />
+                <Meta name="twitter:site" content="@issuepress" />  
             </Head>
         </Html>
         <PrintDocs>

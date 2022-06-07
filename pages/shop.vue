@@ -4,6 +4,13 @@
       <Head>
         <Title>Shop | Issue Press</Title>
         <Meta name="description" content="Shop the collection at Issue Press" />
+        <Meta property="og:title" content="Shop | Issue Press" />
+        <Meta property="og:site_name" content="Issue Press" />
+        <Meta property="og:type" content="website" />
+        <Meta property="og:url" content="https://issue.press/shop" />          
+        <Meta property="og:image" content="/issue-press.png" />
+        <Meta name="twitter:card" content="summary" />
+        <Meta name="twitter:site" content="@issuepress" /> 
       </Head>
     </Html>
     <div class="text-center">

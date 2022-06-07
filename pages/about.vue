@@ -2,8 +2,15 @@
   <div>
     <Html>
       <Head>
-        <Title>About Page</Title>
+        <Title>About | Issue Press</Title>
         <Meta name="description" content="Issue Press is a tiny publisher and Risograph print shop based in Grand Rapids, Michigan" />
+        <Meta property="og:title" content="About | Issue Press" />
+        <Meta property="og:site_name" content="Issue Press" />
+        <Meta property="og:type" content="article" />
+        <Meta property="og:url" content="https://issue.press/about" />          
+        <Meta property="og:image" content="/issue-press.png" />
+        <Meta name="twitter:card" content="summary" />
+        <Meta name="twitter:site" content="@issuepress" /> 
       </Head>
     </Html>
     <section class="px-6 my-8 font-serif text-lg md:text-2xl lg:text-3xl md:leading-10 lg:leading-12 ">
