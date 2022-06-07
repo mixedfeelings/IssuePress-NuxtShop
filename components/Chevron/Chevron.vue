@@ -1,6 +1,6 @@
 <template>
   <button
-    class="flex items-center justify-center h-8 w-8 rounded-lg bg-opacity-50 bg-gray-200"
+    class="chevron-button flex items-center justify-center h-8 w-8 rounded-lg bg-gray-100"
     aria-label="Menu"
     @click="handleClick"
     @keyup.enter="handleClick"
@@ -23,4 +23,5 @@ function handleClick() {
   shopStore.togglePrintMenu();
   shopStore.printMenu;
 }
+
 </script>

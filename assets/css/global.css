@@ -3,6 +3,7 @@
 @import 'collections';
 @import 'tables';
 @import 'carousel';
+@import 'forms';
 
 /* Dark Mode */
 @import 'dark';

@@ -66,7 +66,4 @@
         transition: 150ms ease-out;
     }
 
-    .dark .accordion-wrapper {
-        @apply bg-darker;
-    }
 </style>

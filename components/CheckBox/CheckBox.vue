@@ -50,38 +50,3 @@ function checkbox_class(option) {
 
 //:style="`background-color: var(--color-${option})`"
 </script>
-<style scoped>
-.form-item .checkbox-wrapper.multi {
-    @apply flex flex-wrap gap-2;
-}
-
-.checkbox {
-    @apply gap-2 font-normal text-base font-mono items-center cursor-pointer inline-flex p-0;
-}
-
-.multi .checkbox {
-    @apply p-2 rounded text-sm font-normal capitalize flex gap-2 items-center bg-gray-100 font-mono;
-}
-
-.circle {
-    @apply w-3 h-3 bg-transparent border-2 border-black rounded-full flex items-center justify-center overflow-hidden;
-    min-width: .75rem;
-}
-
-.selected .circle {
-    @apply bg-black;
-}
-
-.dark .multi .checkbox {
-    @apply text-natural bg-dark;
-}
-
-.dark .circle {
-    @apply border-natural;
-}
-
-.dark .selected .circle {
-    @apply bg-natural;
-}
-
-</style>

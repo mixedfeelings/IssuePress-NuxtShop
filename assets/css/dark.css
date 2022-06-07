@@ -3,7 +3,10 @@
 .dark .carousel__viewport,
 .dark .cart,
 .dark nav,
-.dark .modal {
+.dark .modal,
+.dark .print-docs-header,
+.dark .print-docs-body,
+.dark .print-docs aside {
     @apply bg-darkest text-natural border-darker;
 }
 
@@ -16,11 +19,10 @@
     @apply border-darker;
 }
 
-.dark .cart .bg-black {
-    @apply bg-darker;
-}
-
-.dark .bg-natural {
+.dark .cart .bg-black,
+.dark .chevron-button,
+.dark .bg-natural,
+.dark .accordion-wrapper {
     @apply bg-darker;
 }
 
@@ -48,4 +50,24 @@ button.bg-black,
 
 .dark .disabled {
     @apply opacity-30;  
+}
+
+.dark .multi .checkbox {
+    @apply text-natural bg-dark;
+}
+
+.dark .circle {
+    @apply border-natural;
+}
+
+.dark .selected .circle {
+   background-color: var(--color-natural);
+}
+
+/* FORMS */
+
+.dark .form-item input,
+.dark .form-item select,
+.dark .form-item textarea {
+    @apply bg-dark border-darker text-natural;
 }

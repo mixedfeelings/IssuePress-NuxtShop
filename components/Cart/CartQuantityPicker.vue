@@ -48,20 +48,16 @@ function decrement() {
     .quantity-toggle {
         @apply flex overflow-hidden items-center font-semibold h-4;
     }   
-        input {
-            @apply font-semibold text-lg text-center h-4 w-8 border-none;
-        }
+    input {
+        @apply font-semibold text-lg text-center h-4 w-8 border-none;
+    }
+    
+    button {
+        @apply flex bg-transparent font-semibold items-center w-4 h-4 text-xl items-center justify-center rounded-full cursor-pointer;
+    }
 
-        .dark input {
-            @apply bg-darkest text-natural
-        }
-        
-        button {
-            @apply flex bg-transparent font-semibold items-center w-4 h-4 text-xl items-center justify-center rounded-full cursor-pointer;
-        }
-
-        button:hover {
-            color: var(--global-color)
-        }
+    button:hover {
+        color: var(--global-color)
+    }
     
 </style>
