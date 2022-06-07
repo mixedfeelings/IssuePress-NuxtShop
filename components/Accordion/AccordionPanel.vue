@@ -11,7 +11,7 @@
                     @keyup.enter="handleClick"
                     class="flex w-full items-center justify-between"
                 >
-                    <div class="flex flex-col md:flex-row gap-x-6 justify-start items-start md:items-center ">
+                    <div class="flex flex-col md:flex-row gap-x-6 justify-start items-start md:items-center text-left">
                         <div class="accordion-title">{{props.title}}</div>
                         <slot name="post-title"></slot>
                     </div>
