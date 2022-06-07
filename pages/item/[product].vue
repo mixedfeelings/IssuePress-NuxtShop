@@ -15,8 +15,8 @@
           <Meta Propety="product:price" :content="product?.priceRange?.minVariantPrice?.amount" />
           <Meta property="product:price.currency" :content="product?.priceRange?.minVariantPrice?.currencyCode" />
           <Meta v-if="product?.images?.edges[0].node.url" property="og:image" :content="product?.images.edges[0]?.node.url" />
-          <Meta v-if="product?.images?.edges[0].node.width" property="og:image:width" :content="product?.images.edges[0]?.node.width" />
-          <Meta v-if="product?.images?.edges[0].node.height" property="og:image:height" :content="product?.images.edges[0]?.node.height" />
+          <Meta v-if="product?.images?.edges[0].node.width" property="og:image:width" :content="`${product?.images.edges[0]?.node.width}`" />
+          <Meta v-if="product?.images?.edges[0].node.height" property="og:image:height" :content="`${product?.images.edges[0]?.node.height}`" />
           <Meta v-if="product?.images?.edges[0].node.altText" property="og:image:alt" :content="product?.images.edges[0]?.node.altText" />
         </Head>
       </Html>
