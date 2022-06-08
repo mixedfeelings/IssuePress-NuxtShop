@@ -185,7 +185,7 @@
     function handleSubmit () {
       // Must post to a path not handled by the SSR.
       // Path must exist
-      fetch('/printing/submit-quote', {
+      fetch('/printing/request-quote', {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded"
