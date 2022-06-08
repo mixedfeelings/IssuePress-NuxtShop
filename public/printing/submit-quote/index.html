@@ -7,19 +7,19 @@
         <h3>Basic Info</h3>
         <div class="form-item col-span-2" required>
             <label class="label" for="Project Name" aria-label="Project Name">Project Name</label>
-            <input id="0" name="Project Name" placeholder="My kickass zine, print, or whatever!">
+            <input id="0" name="name" placeholder="My kickass zine, print, or whatever!">
         </div>
         <div class="form-item">
             <label class="label" for="Your Name" aria-label="Your Name">Your Name</label>
-            <input id="0" name="Your Name" placeholder="Noboru Hayama">
+            <input id="0" name="submitterName" placeholder="Noboru Hayama">
         </div>
         <div class="form-item">
             <label class="label" for="Your Email" aria-label="Your Email">Your Email</label>
-            <input id="0" name="Your Email" placeholder="info@issue.press">
+            <input id="0" name="submitterEmail" placeholder="info@issue.press">
         </div>
         <div class="form-item">
             <label class="label" for="Project Type" aria-label="Project Type">Project Type</label>
-            <select class="form-select bg-clip-padding bg-no-repeat appearance-none">
+            <select name="type" class="form-select bg-clip-padding bg-no-repeat appearance-none">
                 <option disabled>Select</option>
                 <option value="Publication" selected>Publication</option>
                 <option value="Print" selected>Print</option>
@@ -28,7 +28,7 @@
         </div>
         <div class="form-item">
             <label class="label" for="Quantity" aria-label="Quantity">Quantity</label>
-            <select class="form-select bg-clip-padding bg-no-repeat appearance-none">
+            <select name="quantity" class="form-select bg-clip-padding bg-no-repeat appearance-none">
                 <option disabled>Select</option>
                 <option value="50" selected>50</option>
                 <option value="100" selected>100</option>
@@ -36,6 +36,40 @@
                 <option value="500" selected>500</option>
             </select>
         </div>
+    </fieldset>
+    <fieldset legend="Publication Specs" v-if="formData.type == 'Publication'">
+        <h3>Publication Specs</h3>
+        <input name="pages" type="number" :step="4" />
+        <select :options="['4 x 5', '5 x 7','5 x 8', '7 x 10', '8 x 10']" name="Finished Size">
+        </select>    
+        <SelectField v-model="formData.publication.binding.type" :options="['Staple','Perfect','Wire-O','Spiral','None']" name="Binding Type" />
+        <div>
+            <TextField v-if="formData.publication.binding.type == 'Wire-O' || formData.publication.binding.type == 'Spiral' " v-model="formData.publication.binding.color" name="Color" placeholder="Enter your preferred color" />
+            <SelectField v-if="formData.publication.binding.type == 'Staple'" v-model="formData.publication.binding.stapleColor" :options="['Silver','Flat Gold','Black','Red','Orange','Yellow','Green','Blue','Pink']" name="Color" />
+        </div>
+        <CheckBox v-model="formData.publication.cover.plusCover" :options="['Seperate cover?']" is-boolean class="col-span-2" />
+        <transition name="fade">
+            <fieldset v-if="formData.publication.cover.plusCover" legend="Cover options" class="col-span-2">
+                <h4>Cover Options</h4>
+                <TextField v-model="formData.publication.cover.stock" name="Cover Stock" class="col-span-2 " placeholder="e.g. 65#c Vellum Bristol Cream"/>
+                <CheckBox v-model="formData.publication.cover.outsideInkColors" name="Outside Cover Ink Colors" :options="inkColors" class="col-span-2" multi />
+                <CheckBox v-model="formData.publication.cover.isDoubleSided" :options="['Printed Inside Cover?']" is-boolean class="col-span-2" />
+                <transition name="fade">
+                    <CheckBox v-if="formData.publication.cover.isDoubleSided" v-model="formData.publication.cover.insideInkColors" name="Inside Cover Ink Colors" :options="inkColors" class="col-span-2" multi />
+                </transition>
+                <CheckBox v-model="formData.publication.cover.isLaminated" :options="['Matte Lamination?']" is-boolean class="col-span-2" />
+            </fieldset>                    
+        </transition>
+        <fieldset legend="Interior Options" class="col-span-2">
+            <h4>Self-cover / Interior Options</h4>
+            <TextField v-model="formData.publication.interior.stock" class="col-span-2 " name="Paper Stock" placeholder="e.g. 70#t Domtar Cougar Natural" />
+            <CheckBox v-model="formData.publication.interior.inkColors" name="Ink Colors" :options="inkColors" class="col-span-2" multi />
+            <TextField v-model="formData.publication.interior.stock" class="col-span-2 " name="Ink Notes" placeholder="e.g. 2-color throughout OR Aqua on center-fold only, etc." />
+        </fieldset>
+        <CheckBox v-model="formData.isRounded" :options="['Rounded Corners?']" is-boolean class="col-span-2" />
+        <transition name="fade">
+            <SelectField v-if="formData.isRounded" v-model="formData.cornerRadius" :options="['1/4','1/8']" name="Corner Radius" />
+        </transition>
     </fieldset>
     <fieldset>
         <h3>Final Details</h3>
