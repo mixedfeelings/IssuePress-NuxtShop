@@ -1,0 +1,75 @@
+<form name="Quotes" netlify-honeypot="bot-field" data-netlify="true" hidden>
+    <input type="hidden" name="form-name" value="Quotes">
+    <input value="/printing/request-quote" name="location" type="hidden">
+    
+    <p class="hidden"><label>Don’t fill this out if you’re human: <input name="bot-field"></label></p>
+    <fieldset legend="Basic Info">
+        <h3>Basic Info</h3>
+        <div class="form-item col-span-2" required>
+            <label class="label" for="Project Name" aria-label="Project Name">Project Name</label>
+            <input id="0" name="Project Name" placeholder="My kickass zine, print, or whatever!">
+        </div>
+        <div class="form-item">
+            <label class="label" for="Your Name" aria-label="Your Name">Your Name</label>
+            <input id="0" name="Your Name" placeholder="Noboru Hayama">
+        </div>
+        <div class="form-item">
+            <label class="label" for="Your Email" aria-label="Your Email">Your Email</label>
+            <input id="0" name="Your Email" placeholder="info@issue.press">
+        </div>
+        <div class="form-item">
+            <label class="label" for="Project Type" aria-label="Project Type">Project Type</label>
+            <select class="form-select bg-clip-padding bg-no-repeat appearance-none">
+                <option disabled>Select</option>
+                <option value="Publication" selected>Publication</option>
+                <option value="Print" selected>Print</option>
+                <option value="Other" selected>Other</option>
+            </select>
+        </div>
+        <div class="form-item">
+            <label class="label" for="Quantity" aria-label="Quantity">Quantity</label>
+            <select class="form-select bg-clip-padding bg-no-repeat appearance-none">
+                <option disabled>Select</option>
+                <option value="50" selected>50</option>
+                <option value="100" selected>100</option>
+                <option value="250" selected>250</option>
+                <option value="500" selected>500</option>
+            </select>
+        </div>
+    </fieldset>
+    <fieldset>
+        <h3>Final Details</h3>
+        <div class="form-item col-span-2">
+            <label for="file">Sample Image</label>
+            <input name="file" type="file">
+        </div>
+        <div class="form-item col-span-2">
+            <label for="Notes / Additional info" aria-label="Notes / Additional info">Description</label>
+            <textarea name="Notes / Additional info" placeholder="..."></textarea>
+        </div>
+        <div class="form-item">
+            <label class="label" for="Due Date" aria-label="Due Date">Due Date</label>
+            <input id="0" type="date" name="Due Date">
+        </div>
+        <div class="form-item">
+            <label class="label" for="Delivery" aria-label="Delivery">Delivery</label>
+            <select class="form-select bg-clip-padding bg-no-repeat appearance-none">
+                <option disabled>Select</option>
+                <option value="Local pickup in Grand Rapids, MI" selected>Local pickup in Grand Rapids, MI</option>
+                <option value="Ship" selected>Ship</option>
+            </select>
+        </div>
+        <div class="form-item col-span-2">
+            <label class="label" for="Describe your experience with Riso Printing" aria-label="Describe your experience with Riso Printing">Describe your experience with Riso Printing</label>
+            <input id="0" name="Describe your experience with Riso Printing" placeholder="...">
+        </div>
+        <div class="form-item col-span-2">
+            <label class="label" for="How&#39;d You Find us?" aria-label="How&#39;d You Find us?">How&#39;d You Find us?</label>
+            <input id="0" name="How&#39;d You Find us?" placeholder="Funny story, actually...">
+        </div>
+    </fieldset>
+    <div class="flex flex-col md:flex-row justify-center md:justify-between w-full items-center py-4">
+        <h3 class="py-2">Phew... You made it to the end!</h3>
+        <input type="submit" value="Submit" class="submit-button">
+    </div>
+</form>
