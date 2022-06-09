@@ -95,7 +95,7 @@
         </transition>
         <fieldset>
             <h3>Final Details</h3>
-            <TextField v-model="formData.sampleLink" name="Sample Image Link" class="col-span-2" placeholder="https://... File hosted on DropBox, Google Drive, etc." />
+            <TextField v-model="formData.sampleLink" name="Sample Image Link" class="col-span-2" placeholder="https://... File hosted on DropBox, Google Drive, WeTransfer, etc." />
             <div class="form-item col-span-2">
                 <label for="additionalNotes" aria-label="Notes / Additional info">Additional Notes / Further Description</label>
                 <textarea v-model="formData.notes" name="additionalNotes" placeholder="..." />
