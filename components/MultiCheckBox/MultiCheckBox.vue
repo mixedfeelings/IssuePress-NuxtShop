@@ -5,12 +5,12 @@
         <CheckBox
             v-for="option in options"
             :checked="value.includes(option.id)"
-            :fieldId="option.id"
+            :fieldId="getItemId(option.id)"
             :label="option.name"
             :key="option"
             @update:checked="check(option.id, $event)"
             :post-label="option.postLabel"
-            :color="color"
+            :color="option.id"
         />
     </div>
 </div>
@@ -27,9 +27,11 @@ const props = defineProps<{
     color?: boolean;
 }>();
 
+const { options, name, value } = toRefs(props);
+
+const uuid = ref("");
 const emit = defineEmits(['update:value'])
 
-const { options, name, value } = toRefs(props);
 
   const check = (optionId, checked) => {    // copy the value Array to avoid mutating props
     let updatedValue = [...props.value];    // remove name if checked, else add name
@@ -40,5 +42,28 @@ const { options, name, value } = toRefs(props);
     }    // emit the updated value
     emit("update:value", updatedValue);
   };
+
+
+    function getItemId(item) {
+        // name is optional so set an id that works with multiple r-checkboxes on page
+        return this.uuid + "-" + item;
+    }
+
+    function makeUUID(length) {
+        let result = "";
+        let characters =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(
+            Math.floor(Math.random() * charactersLength)
+            );
+        }
+        uuid.value += result;
+    }
+
+    onMounted(() => {
+        makeUUID(5);
+    });
 
 </script>

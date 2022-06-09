@@ -1,8 +1,9 @@
 <template>
-    <label :for="fieldId" class="checkbox flex gap-2 items-center " :class="{ selected: checked }, color ? `bg-${fieldId}`: '' ">
+    <label :for="fieldId" class="checkbox flex gap-2 items-center " :class="{ selected: checked }, color ? `bg-${color}`: ''">
         <input 
             @input="(event) => $emit('update:checked', event.target.checked)"
             :id="fieldId"
+            :value="label"
             :checked="checked"
             type="checkbox"
             hidden 
@@ -16,7 +17,7 @@ const props = defineProps<{
     label?: string,
     checked: boolean,
     postLabel?: string,
-    color?: boolean;
+    color?: string;
 }>();
 
 const { fieldId, label, checked, postLabel} = toRefs(props);
