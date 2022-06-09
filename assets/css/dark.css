@@ -15,7 +15,8 @@
 .dark nav a,
 .dark nav div,
 .dark fieldset h3,
-.dark aside a {
+.dark aside a,
+.dark .multi .checkbox  {
     @apply border-darker;
 }
 
@@ -29,10 +30,6 @@
 button.bg-black,
 .button.bg-black {
     @apply text-natural bg-darkest;
-}
-
-.dark input {
-    @apply text-darkest;
 }
 
 .dark select {
@@ -58,7 +55,7 @@ button.bg-black,
     @apply opacity-30;  
 }
 
-.dark .multi .checkbox {
+{
     @apply text-natural bg-dark;
 }
 

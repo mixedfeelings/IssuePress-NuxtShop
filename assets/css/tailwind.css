@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
+    --color-burgundy: rgb(145, 78, 114);
     --color-aqua: rgb(94, 200, 229);
     --color-blue: rgb(0, 120, 191);
     --color-bright-red: rgb(241, 80, 96);
     --color-brown: rgb(146, 95, 82);
-    --color-burgundy: rgb(145, 78, 114);
     --color-copper: rgb(189, 100, 57);
     --color-coral: rgb(255, 142, 145);
     --color-cornflower: rgb(98, 168, 229);

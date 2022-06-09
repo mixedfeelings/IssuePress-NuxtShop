@@ -1,6 +1,6 @@
 <template>
   <div class="form-item">
-    <label class="label" :for="props.name" :aria-label="props.name">{{props.name}}</label>
+    <label class="label" :for="props.name" :aria-label="props.name">{{props.name}} <span v-if="required" class="required">*</span></label>
     <input
       :id="uuid"
       :ref="props.name" 
@@ -24,6 +24,7 @@ const props = defineProps<{
     name?: string;
     type?: string;
     step?: number;
+    required?: boolean;
 }>();
 
 const { modelValue, placeholder, name, type, step, } = toRefs(props);

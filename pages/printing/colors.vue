@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="color-wrapper">
-                <div class="color-ramp" style="background-color: var(--color-burgundy);">
+                <div class="color-ramp bg-burgundy">
                     <div class="p100"><span>100%</span></div>
                     <div class="p75"><span>75%</span></div>
                     <div class="p50"><span>50%</span></div>
@@ -159,7 +159,7 @@
                 </div>
             </div>
             <div class="color-wrapper">
-                <div class="color-ramp" style="background-color: var(--color-kelly-green);">
+                <div class="color-ramp bg-kelly-green">
                     <div class="p100"><span>100%</span></div>
                     <div class="p75"><span>75%</span></div>
                     <div class="p50"><span>50%</span></div>

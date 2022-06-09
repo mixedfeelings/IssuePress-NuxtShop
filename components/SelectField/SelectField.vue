@@ -1,6 +1,6 @@
 <template>
   <div class="form-item">
-     <label class="label" :for="props.name" :aria-label="props.name">{{props.name}}</label>     
+     <label class="label" :for="props.name" :aria-label="props.name">{{props.name}}  <span v-if="required" class="required">*</span></label>     
     <select
       class="form-select bg-clip-padding bg-no-repeat appearance-none "
       @change="updateValue($event.target.value)"
@@ -27,6 +27,7 @@ const props = defineProps<{
     modelValue: any;
     options: Array<string>;
     name?: string;
+    required?: boolean;
 }>();
 
 const { modelValue, options, name } = toRefs(props);

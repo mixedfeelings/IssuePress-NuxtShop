@@ -16,42 +16,42 @@
 
         <fieldset legend="Basic Info">
             <h3>Basic Info</h3>
-            <TextField v-model="formData.name" name="Project Name" required class="col-span-2" placeholder="My kickass zine, print, or whatever!"/>
-            <TextField v-model="formData.submitterName" name="Your Name" placeholder="Noboru Hayama" />
-            <TextField v-model="formData.submitterEmail" name="Your Email" placeholder="info@issue.press" />
-            <SelectField v-model="formData.type" :options="['Publication','Print','Other']" name="Project Type" />   
+            <TextField v-model="formData.name" name="Project Name" required class="col-span-2" placeholder="My kickass zine, print, or whatever!" />
+            <TextField v-model="formData.submitterName" name="Your Name" placeholder="Noboru Hayama" required />
+            <TextField v-model="formData.submitterEmail" name="Your Email" placeholder="info@issue.press" required />
+            <SelectField v-model="formData.type" :options="['Publication','Print','Other']" name="Project Type" required />   
             <SelectField v-model="formData.quantity" :options="['50','100','250','500']" name="Quantity" />
         </fieldset>
         <transition name="fade">
             <fieldset legend="Publication Specs" v-if="formData.type == 'Publication'">
                 <h3>Publication Specs</h3>
-                <TextField v-model="formData.publicationPages" name="Pages" type="number" :step="4" />
-                <SelectField v-model="formData.finishedSize" :options="['4 x 5', '5 x 7','5 x 8', '7 x 10', '8 x 10']" name="Finished Size" />
-                <SelectField v-model="formData.publicationBindingType" :options="['Staple','Perfect','Wire-O','Spiral','None']" name="Binding Type" />
+                <TextField v-model="formData.publicationPages" name="Pages" type="number" :step="4" required />
+                <SelectField v-model="formData.finishedSize" :options="['4 x 5', '5 x 7','5 x 8', '7 x 10', '8 x 10']" name="Finished Size" required />
+                <SelectField v-model="formData.publicationBindingType" :options="['Staple','Perfect','Wire-O','Spiral','None']" name="Binding Type" required />
                 <div>
                     <TextField v-if="formData.publicationBindingType == 'Wire-O' || formData.publicationBindingType == 'Spiral' " v-model="formData.publicationBindingColor" name="Color" placeholder="Enter your preferred color" />
                     <SelectField v-if="formData.publicationBindingType == 'Staple'" v-model="formData.publicationBindingColor" :options="['Silver','Flat Gold','Black','Red','Orange','Yellow','Green','Blue','Pink']" name="Color" />
                 </div>
-                <CheckBox v-model="formData.publicationCoverPlusCover" :options="['Seperate cover?']" is-boolean class="col-span-2" />
+                <CheckBox v-model:checked="formData.publicationCoverPlusCover" label="Seperate Cover?" field-id="plusCover" class="col-span-2" />
                 <transition name="fade">
                     <fieldset v-if="formData.publicationCoverPlusCover" legend="Cover options" class="col-span-2">
                         <h4>Cover Options</h4>
-                        <TextField v-model="formData.publicationCoverStock" name="Cover Stock" class="col-span-2 " placeholder="e.g. 65#c Vellum Bristol Cream"/>
-                        <CheckBox v-model="formData.publicationCoverOutsideInkColors" name="Outside Cover Ink Colors" :options="inkColors" class="col-span-2" multi />
-                        <CheckBox v-model="formData.publicationCoverIsDoubleSided" :options="['Printed Inside Cover?']" is-boolean class="col-span-2" />
+                        <TextField v-model="formData.publicationCoverStock" name="Cover Stock" class="col-span-2 " placeholder="e.g. 65#c Vellum Bristol Cream" />
+                        <MultiCheckBox v-model:value="formData.publicationCoverOutsideInkColors" name="Outside Cover Ink Colors" :options="inkColors" class="col-span-2" color />
+                        <CheckBox v-model:checked="formData.publicationCoverIsDoubleSided" label="Printed Inside Cover?" field-id="insideCover" class="col-span-2" />
                         <transition name="fade">
-                            <CheckBox v-if="formData.publicationCoverIsDoubleSided" v-model="formData.publicationCoverInsideInkColors" name="Inside Cover Ink Colors" :options="inkColors" class="col-span-2" multi />
+                            <MultiCheckBox v-if="formData.publicationCoverIsDoubleSided" v-model:value="formData.publicationCoverInsideInkColors" name="Inside Cover Ink Colors" :options="inkColors" class="col-span-2" color />
                         </transition>
-                        <CheckBox v-model="formData.publicationCoverIsLaminated" :options="['Matte Lamination?']" is-boolean class="col-span-2" />
+                        <CheckBox v-model:checked="formData.publicationCoverIsLaminated" label="Matte lamination?" field-id="lamination" class="col-span-2" />
                     </fieldset>                    
                 </transition>
                 <fieldset legend="Interior Options" class="col-span-2">
                     <h4>Self-cover / Interior Options</h4>
-                    <TextField v-model="formData.publicationInteriorStock" class="col-span-2 " name="Paper Stock" placeholder="e.g. 70#t Domtar Cougar Natural" />
-                    <CheckBox v-model="formData.publicationInteriorInkColors" name="Ink Colors" :options="inkColors" class="col-span-2" multi />
+                    <TextField v-model="formData.publicationInteriorStock" class="col-span-2 " name="Paper Stock" placeholder="e.g. 70#t Domtar Cougar Natural" required />
+                    <MultiCheckBox v-model:value="formData.publicationInteriorInkColors" name="Ink Colors" :options="inkColors" class="col-span-2" required color />
                     <TextField v-model="formData.publicationInteriorInkNotes" class="col-span-2 " name="Ink Notes" placeholder="e.g. 2-color throughout OR Aqua on center-fold only, etc." />
                 </fieldset>
-                <CheckBox v-model="formData.isRounded" :options="['Rounded Corners?']" is-boolean class="col-span-2" />
+                <CheckBox v-model:checked="formData.isRounded" label="Rounded Corners?" field-id="roundedCorners" class="col-span-2" />
                 <transition name="fade">
                     <SelectField v-if="formData.isRounded" v-model="formData.cornerRadius" :options="['1/4','1/8']" name="Corner Radius" />
                 </transition>
@@ -60,14 +60,14 @@
         <transition name="fade">
             <fieldset legend="Print Specs" v-if="formData.type == 'Print'" >
                 <h3>Print Specs</h3>
-                <TextField v-model="formData.printStock" name="Paper Stock" class="col-span-2" placeholder="e.g. 80#c French Paper Co. Speckletone True White" />
-                <SelectField v-model="formData.printFinishedSize" :options="['11 x 17 (no bleed)','10 x 15','9 x 12', '8 x 10', '8 x 8', '5 x 7', '4 x 6']" name="Finished Size" />
-                <CheckBox v-model="formData.printFrontInkColors" name="Front Ink Colors" :options="inkColors" class="col-span-2" multi />
-                <CheckBox v-model="formData.printIsDoubleSided" :options="['Double sided?']" is-boolean class="col-span-2" />
+                <TextField v-model="formData.printStock" name="Paper Stock" class="col-span-2" placeholder="e.g. 80#c French Paper Co. Speckletone True White" required />
+                <SelectField v-model="formData.printFinishedSize" :options="['11 x 17 (no bleed)','10 x 15','9 x 12', '8 x 10', '8 x 8', '5 x 7', '4 x 6']" name="Finished Size" required />
+                <MultiCheckBox v-model:value="formData.printFrontInkColors" name="Front Ink Colors" :options="inkColors" class="col-span-2" required color />
+                <CheckBox v-model:checked="formData.printIsDoubleSided" label="Double Sided?" field-id="doubleSided" class="col-span-2" />
                 <transition name="fade">
-                    <CheckBox v-if="formData.printIsDoubleSided" v-model="formData.printBackInkColors" name="Back Ink Colors" :options="inkColors" class="col-span-2" multi />
+                    <MultiCheckBox v-if="formData.printIsDoubleSided" v-model:value="formData.printBackInkColors" name="Back Ink Colors" :options="inkColors" class="col-span-2" color />
                 </transition>
-                <CheckBox v-model="formData.isRounded" :options="['Rounded Corners?']" is-boolean class="col-span-2" />
+                <CheckBox v-model:checked="formData.isRounded" label="Rounded Corners?" field-id="roundedCorners" class="col-span-2" />
                 <transition name="fade">
                     <SelectField v-if="formData.isRounded" v-model="formData.cornerRadius" :options="['1/4','1/8']" name="Corner Radius" />
                 </transition>
@@ -78,10 +78,10 @@
                 <h3>Other Project Specs</h3>
                 <div class="form-item col-span-2">
                     <label for="Description" aria-label="Description">Description</label>
-                    <textarea v-model="formData.otherDescription" name="Description" placeholder="Please describe youe project thoroughly" />
+                    <textarea v-model="formData.otherDescription" name="Description" placeholder="Please describe your project thoroughly" required />
                 </div>
-                <CheckBox v-model="formData.otherInkColors" name="Ink Colors" :options="inkColors" class="col-span-2" multi />
-                <CheckBox v-model="formData.isRounded" :options="['Rounded Corners?']" is-boolean class="col-span-2" />
+                <MultiCheckBox v-model:value="formData.otherInkColors" name="Ink Colors" :options="inkColors" class="col-span-2" required color />
+                <CheckBox v-model:checked="formData.isRounded" label="Rounded Corners?" field-id="roundedCorners" class="col-span-2" />
                 <transition name="fade">
                     <SelectField v-if="formData.isRounded" v-model="formData.cornerRadius" :options="['1/4','1/8']" name="Corner Radius" />
                 </transition>
@@ -94,8 +94,8 @@
                 <label for="additionalNotes" aria-label="Notes / Additional info">Additional Notes / Further Description</label>
                 <textarea v-model="formData.notes" name="additionalNotes" placeholder="..." />
             </div>
-            <TextField v-model="formData.dueDate" name="Due Date" type="date"/>
-            <SelectField v-model="formData.deliveryType" :options="['Local pickup in Grand Rapids, MI','Ship']" name="Delivery" />
+            <TextField v-model="formData.dueDate" name="Due Date" type="date" required/>
+            <SelectField v-model="formData.deliveryType" :options="['Local pickup in Grand Rapids, MI','Ship']" name="Delivery" required />
             <transition name="fade">
                 <div v-if="formData.deliveryType == 'Ship'" class="form-item col-span-2">
                     <label for="Address" aria-label="Address">Address</label>
@@ -115,8 +115,36 @@
 <script setup lang="ts">
     import { ref } from 'vue';
 
-    const inkColors = ['aqua','black','blue','burgundy','copper','coral','cornflower','flat-gold','fluorescent-orange','fluorescent-pink','fluorescent-red','fluorescent-yellow','green','kelly-green','light-gray','metallic-gold','mint','moss','orange','orchid','risofederal-blue','scarlet','sunflower','white','yellow'];
-
+    const inkColors = ref([
+        {name: "Black", id:"black", postLabel: "$"},
+        {name: "Light Gray", id:"light-gray", postLabel: "$"},
+        {name: "Burgundy", id:"burgundy", postLabel: "$"},
+        {name: "Orchid", id:"orchid", postLabel: "$"},
+        {name: "RISOFederal Blue", id:"risofederal-blue", postLabel: "$"},
+        {name: "Blue", id:"blue", postLabel: "$"},
+        {name: "Cornflower", id:"cornflower", postLabel: "$"},
+        {name: "Aqua", id:"aqua", postLabel: "$$"},
+        {name: "Mint", id:"mint", postLabel: "$$"},
+        {name: "Light Teal", id:"light-teal", postLabel: "$"},
+        {name: "Kelly Green", id:"kelly-green", postLabel: "$"},
+        {name: "Green", id:"green", postLabel: "$"},
+        {name: "Moss", id:"moss", postLabel: "$"},
+        {name: "Brown", id:"brown", postLabel: "$"},
+        {name: "Copper", id:"copper", postLabel: "$"},
+        {name: "Flat Gold", id:"flat-gold", postLabel: "$"},
+        {name: "Metallic Gold", id:"metallic-gold", postLabel: "$$$"},
+        {name: "Yellow", id:"yellow", postLabel: "$"},                
+        {name: "Fluorescent Yellow", id:"fluorescent-yellow", postLabel: "$$$"},
+        {name: "Sunflower", id:"sunflower", postLabel: "$"},
+        {name: "Orange", id:"orange", postLabel: "$"},
+        {name: "Fluorescent Orange", id:"fluorescent-orange", postLabel: "$$"},
+        {name: "Coral", id:"coral", postLabel: "$$"},
+        {name: "Scarlet", id:"scarlet", postLabel: "$"},
+        {name: "Fluorescent Red", id:"fluorescent-red", postLabel: "$$$"},     
+        {name: "Fluorescent Pink", id:"fluorescent-pink", postLabel: "$"},
+        {name: "White", id:"white", postLabel: "$$"},
+    ]);
+    
     const formData = ref({
         name: null,
         submitterName: null,
