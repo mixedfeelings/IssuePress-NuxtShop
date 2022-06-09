@@ -4,13 +4,19 @@
         @submit.prevent="handleSubmit()"
         class="flex flex-col pb-6"
     >
+        <ul v-if="errors.length > 0" class="errors-box p-4 border">
+            <li v-for="error in errors">
+                {{error}}
+            </li>
+        </ul>
+        {{SuccessMessage}}
 
         <input type="hidden" name="form-name" value="Quotes" />
         <input value="/printing/request-quote" name="location" type="hidden" />
 
           <p class="hidden">
             <label>
-            Don’t fill this out if you’re human: <input name="bot-field" />
+            Don’t fill this out if you’re human: <input name="bot-field" v-model="formData.botField"/>
             </label>
         </p>
 
@@ -36,11 +42,11 @@
                 <transition name="fade">
                     <fieldset v-if="formData.publicationCoverPlusCover" legend="Cover options" class="col-span-2">
                         <h4>Cover Options</h4>
-                        <TextField v-model="formData.publicationCoverStock" name="Cover Stock" class="col-span-2 " placeholder="e.g. 65#c Vellum Bristol Cream" />
-                        <MultiCheckBox v-model:value="formData.publicationCoverOutsideInkColors" name="Outside Cover Ink Colors" :options="inkColors" class="col-span-2" color />
+                        <TextField v-model="formData.publicationCoverStock" name="Cover Stock" class="col-span-2 " placeholder="e.g. 65#c Vellum Bristol Cream" required/>
+                        <MultiCheckBox v-model:value="formData.publicationCoverOutsideInkColors" name="Outside Cover Ink Colors" :options="inkColors" class="col-span-2" color required />
                         <CheckBox v-model:checked="formData.publicationCoverIsDoubleSided" label="Printed Inside Cover?" field-id="insideCover" class="col-span-2" />
                         <transition name="fade">
-                            <MultiCheckBox v-if="formData.publicationCoverIsDoubleSided" v-model:value="formData.publicationCoverInsideInkColors" name="Inside Cover Ink Colors" :options="inkColors" class="col-span-2" color />
+                            <MultiCheckBox v-if="formData.publicationCoverIsDoubleSided" v-model:value="formData.publicationCoverInsideInkColors" name="Inside Cover Ink Colors" :options="inkColors" class="col-span-2" color required />
                         </transition>
                         <CheckBox v-model:checked="formData.publicationCoverIsLaminated" label="Matte lamination?" field-id="lamination" class="col-span-2" />
                     </fieldset>                    
@@ -77,7 +83,7 @@
             <fieldset legend="Print Specs" v-if="formData.type == 'Other'" >
                 <h3>Other Project Specs</h3>
                 <div class="form-item col-span-2">
-                    <label for="Description" aria-label="Description">Description</label>
+                    <label for="Description" aria-label="Description">Description <span class="required">*</span></label>
                     <textarea v-model="formData.otherDescription" name="Description" placeholder="Please describe your project thoroughly" required />
                 </div>
                 <MultiCheckBox v-model:value="formData.otherInkColors" name="Ink Colors" :options="inkColors" class="col-span-2" required color />
@@ -115,6 +121,8 @@
 <script setup lang="ts">
     import { ref } from 'vue';
 
+    const errors = ref([]);
+    const SuccessMessage = ref(null);
     const inkColors = ref([
         {name: "Black", id:"black", postLabel: "$"},
         {name: "Light Gray", id:"light-gray", postLabel: "$"},
@@ -146,6 +154,7 @@
     ]);
     
     const formData = ref({
+        botField: null,
         name: null,
         submitterName: null,
         submitterEmail: null,
@@ -191,27 +200,112 @@
         .join("&");
     }
     
-    function handleSubmit () {
-      // Must post to a path not handled by the SSR.
-      // Path must exist
-      fetch('/printing/submit-quote', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: this.encode({
-          "form-name": "Quotes",
-          ...this.formData
-        }),
-      })
-      .then(() => alert("Success!"))
-      .catch((err) => alert("Error: %s", err))
-      .finally(() => {
-        console.log("formData: %s", JSON.stringify(this.formData))
-        console.log(this.encode(this.formData))
 
-      })
+    function checkform() {
+
+    this.errors = [];
+        if (this.formData.botField) {
+            this.errors.push("Only robots can fill out this field. Are you a robot?");
+        }
+        if (!this.formData.name) {
+            this.errors.push("Project Name is required.");
+        }
+        if (!this.formData.submitterName) {
+            this.errors.push("Your Name is required.");
+        }
+        if (!this.formData.submitterEmail) {
+            this.errors.push("Your Email is required.");
+        } else if (!validEmail(this.formData.submitterEmail)) {
+            this.errors.push(`${this.formData.submitterEmail} is not a valid Email.`)
+        }
+        if (!this.formData.type) {
+            this.errors.push("Project Type is required.");
+        }
+        if (this.formData.type == 'Print') {
+            if (!this.formData.printStock) {
+                this.errors.push("Print Stock is required.");
+            }
+            if (this.formData.printFrontInkColors.length == 0 ) {
+                this.errors.push("Print Front Ink Colors is required.");
+            }
+            if (this.formData.printIsDoubleSided == true &&  this.formData.printBackInkColors.length == 0) {
+                this.errors.push("Print Back Ink Colors is required.");
+            }
+        }
+        if (this.formData.type == 'Publication') {
+            if (this.formData.publicationCoverPlusCover) {
+                if (!this.formData.publicationCoverStock) {
+                    this.errors.push("Publication Cover Stock is required");
+                }
+                if (this.formData.publicationCoverOutsideInkColors.length == 0) {
+                    this.errors.push("Publication Outside Cover Ink Colors is required");
+                }
+                if (this.formData.publicationCoverIsDoubleSided && this.formData.publicationCoverOutsideInkColors == 0) {
+                    this.errors.push("Publication Inside Cover Ink Colors is required");
+                }
+            }
+            if (!this.formData.publicationInteriorStock) {
+                this.errors.push("Publication Interior Paper Stock is required");
+            }
+            if (this.formData.publicationInteriorInkColors.length == 0) {
+                this.errors.push("Publication Interior Ink Colors is required");
+            }
+        }
+        if (this.formData.type == 'Other') {
+            if (!this.formData.otherDescription) {
+                this.errors.push("Other Project Description is required");
+            }
+            if (this.formData.otherInkColors.length == 0) {
+                this.errors.push("Other Ink Colors is required");
+            }
+        }   
+        if (!this.formData.dueDate) {
+            this.errors.push("Due Date is required.");
+        }
+        if (!this.formData.deliveryType) {
+            this.errors.push("Delivery Method is required.");
+        }
+        if (this.formData.deliveryType == 'Ship' && !this.formData.deliveryAddress) {
+            this.errors.push("Delivery Address is required.");
+        }
     }
+
+    function validEmail (email) {
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    }
+
+
+    function handleSubmit () {
+        this.checkform();
+        if (this.errors.length == 0) {
+            // Must post to a path not handled by the SSR.
+            // Path must exist
+            fetch('/printing/submit-quote', {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: this.encode({
+                "form-name": "Quotes",
+                ...this.formData
+                }),
+            })
+            .then(() => this.SuccessMessage = "Thank you! Your Quote request has been submitted!")
+            .catch((err) => this.SuccessMessage = `Error: %s ${err}`)
+            .finally(() => {
+                // console.log("formData: %s", JSON.stringify(this.formData))
+                // console.log(this.encode(this.formData))
+                window.scrollTo(0,0);
+
+            })
+        } else {
+            window.scrollTo(0,0);
+        }
+    }
+
+
+
 
 
 

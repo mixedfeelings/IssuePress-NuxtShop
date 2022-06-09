@@ -16,7 +16,8 @@
 .dark nav div,
 .dark fieldset h3,
 .dark aside a,
-.dark .multi .checkbox  {
+.dark .multi .checkbox,
+.dark .errors-box  {
     @apply border-darker;
 }
 
