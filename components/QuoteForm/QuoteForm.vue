@@ -25,31 +25,31 @@
         <transition name="fade">
             <fieldset legend="Publication Specs" v-if="formData.type == 'Publication'">
                 <h3>Publication Specs</h3>
-                <TextField v-model="formData.publication.pages" name="Pages" type="number" :step="4" />
-                <SelectField v-model="formData.publication.finishedSize" :options="['4 x 5', '5 x 7','5 x 8', '7 x 10', '8 x 10']" name="Finished Size" />
-                <SelectField v-model="formData.publication.binding.type" :options="['Staple','Perfect','Wire-O','Spiral','None']" name="Binding Type" />
+                <TextField v-model="formData.publicationPages" name="Pages" type="number" :step="4" />
+                <SelectField v-model="formData.finishedSize" :options="['4 x 5', '5 x 7','5 x 8', '7 x 10', '8 x 10']" name="Finished Size" />
+                <SelectField v-model="formData.publicationBindingType" :options="['Staple','Perfect','Wire-O','Spiral','None']" name="Binding Type" />
                 <div>
-                    <TextField v-if="formData.publication.binding.type == 'Wire-O' || formData.publication.binding.type == 'Spiral' " v-model="formData.publication.binding.color" name="Color" placeholder="Enter your preferred color" />
-                    <SelectField v-if="formData.publication.binding.type == 'Staple'" v-model="formData.publication.binding.stapleColor" :options="['Silver','Flat Gold','Black','Red','Orange','Yellow','Green','Blue','Pink']" name="Color" />
+                    <TextField v-if="formData.publicationBindingType == 'Wire-O' || formData.publicationBindingType == 'Spiral' " v-model="formData.publicationBindingColor" name="Color" placeholder="Enter your preferred color" />
+                    <SelectField v-if="formData.publicationBindingType == 'Staple'" v-model="formData.publicationBindingColor" :options="['Silver','Flat Gold','Black','Red','Orange','Yellow','Green','Blue','Pink']" name="Color" />
                 </div>
-                <CheckBox v-model="formData.publication.cover.plusCover" :options="['Seperate cover?']" is-boolean class="col-span-2" />
+                <CheckBox v-model="formData.publicationCoverPlusCover" :options="['Seperate cover?']" is-boolean class="col-span-2" />
                 <transition name="fade">
-                    <fieldset v-if="formData.publication.cover.plusCover" legend="Cover options" class="col-span-2">
+                    <fieldset v-if="formData.publicationCoverPlusCover" legend="Cover options" class="col-span-2">
                         <h4>Cover Options</h4>
-                        <TextField v-model="formData.publication.cover.stock" name="Cover Stock" class="col-span-2 " placeholder="e.g. 65#c Vellum Bristol Cream"/>
-                        <CheckBox v-model="formData.publication.cover.outsideInkColors" name="Outside Cover Ink Colors" :options="inkColors" class="col-span-2" multi />
-                        <CheckBox v-model="formData.publication.cover.isDoubleSided" :options="['Printed Inside Cover?']" is-boolean class="col-span-2" />
+                        <TextField v-model="formData.publicationCoverStock" name="Cover Stock" class="col-span-2 " placeholder="e.g. 65#c Vellum Bristol Cream"/>
+                        <CheckBox v-model="formData.publicationCoverOutsideInkColors" name="Outside Cover Ink Colors" :options="inkColors" class="col-span-2" multi />
+                        <CheckBox v-model="formData.publicationCoverIsDoubleSided" :options="['Printed Inside Cover?']" is-boolean class="col-span-2" />
                         <transition name="fade">
-                            <CheckBox v-if="formData.publication.cover.isDoubleSided" v-model="formData.publication.cover.insideInkColors" name="Inside Cover Ink Colors" :options="inkColors" class="col-span-2" multi />
+                            <CheckBox v-if="formData.publicationCoverIsDoubleSided" v-model="formData.publicationCoverInsideInkColors" name="Inside Cover Ink Colors" :options="inkColors" class="col-span-2" multi />
                         </transition>
-                        <CheckBox v-model="formData.publication.cover.isLaminated" :options="['Matte Lamination?']" is-boolean class="col-span-2" />
+                        <CheckBox v-model="formData.publicationCoverIsLaminated" :options="['Matte Lamination?']" is-boolean class="col-span-2" />
                     </fieldset>                    
                 </transition>
                 <fieldset legend="Interior Options" class="col-span-2">
                     <h4>Self-cover / Interior Options</h4>
-                    <TextField v-model="formData.publication.interior.stock" class="col-span-2 " name="Paper Stock" placeholder="e.g. 70#t Domtar Cougar Natural" />
-                    <CheckBox v-model="formData.publication.interior.inkColors" name="Ink Colors" :options="inkColors" class="col-span-2" multi />
-                    <TextField v-model="formData.publication.interior.stock" class="col-span-2 " name="Ink Notes" placeholder="e.g. 2-color throughout OR Aqua on center-fold only, etc." />
+                    <TextField v-model="formData.publicationInteriorStock" class="col-span-2 " name="Paper Stock" placeholder="e.g. 70#t Domtar Cougar Natural" />
+                    <CheckBox v-model="formData.publicationInteriorInkColors" name="Ink Colors" :options="inkColors" class="col-span-2" multi />
+                    <TextField v-model="formData.publicationInteriorInkNotes" class="col-span-2 " name="Ink Notes" placeholder="e.g. 2-color throughout OR Aqua on center-fold only, etc." />
                 </fieldset>
                 <CheckBox v-model="formData.isRounded" :options="['Rounded Corners?']" is-boolean class="col-span-2" />
                 <transition name="fade">
@@ -60,11 +60,12 @@
         <transition name="fade">
             <fieldset legend="Print Specs" v-if="formData.type == 'Print'" >
                 <h3>Print Specs</h3>
-                <TextField v-model="formData.print.stock" name="Paper Stock" class="col-span-2" placeholder="e.g. 80#c French Paper Co. Speckletone True White" />
-                <CheckBox v-model="formData.print.frontInkColors" name="Front Ink Colors" :options="inkColors" class="col-span-2" multi />
-                <CheckBox v-model="formData.print.isDoubleSided" :options="['Double sided?']" is-boolean class="col-span-2" />
+                <TextField v-model="formData.printStock" name="Paper Stock" class="col-span-2" placeholder="e.g. 80#c French Paper Co. Speckletone True White" />
+                <SelectField v-model="formData.printFinishedSize" :options="['11 x 17 (no bleed)','10 x 15','9 x 12', '8 x 10', '8 x 8', '5 x 7', '4 x 6']" name="Finished Size" />
+                <CheckBox v-model="formData.printFrontInkColors" name="Front Ink Colors" :options="inkColors" class="col-span-2" multi />
+                <CheckBox v-model="formData.printIsDoubleSided" :options="['Double sided?']" is-boolean class="col-span-2" />
                 <transition name="fade">
-                    <CheckBox v-if="formData.print.isDoubleSided" v-model="formData.print.backInkColors" name="Back Ink Colors" :options="inkColors" class="col-span-2" multi />
+                    <CheckBox v-if="formData.printIsDoubleSided" v-model="formData.printBackInkColors" name="Back Ink Colors" :options="inkColors" class="col-span-2" multi />
                 </transition>
                 <CheckBox v-model="formData.isRounded" :options="['Rounded Corners?']" is-boolean class="col-span-2" />
                 <transition name="fade">
@@ -77,9 +78,9 @@
                 <h3>Other Project Specs</h3>
                 <div class="form-item col-span-2">
                     <label for="Description" aria-label="Description">Description</label>
-                    <textarea v-model="formData.other.description" name="Description" placeholder="Please describe youe project thoroughly" />
+                    <textarea v-model="formData.otherDescription" name="Description" placeholder="Please describe youe project thoroughly" />
                 </div>
-                <CheckBox v-model="formData.other.inkColors" name="Ink Colors" :options="inkColors" class="col-span-2" multi />
+                <CheckBox v-model="formData.otherInkColors" name="Ink Colors" :options="inkColors" class="col-span-2" multi />
                 <CheckBox v-model="formData.isRounded" :options="['Rounded Corners?']" is-boolean class="col-span-2" />
                 <transition name="fade">
                     <SelectField v-if="formData.isRounded" v-model="formData.cornerRadius" :options="['1/4','1/8']" name="Corner Radius" />
@@ -88,20 +89,17 @@
         </transition>
         <fieldset>
             <h3>Final Details</h3>
+            <TextField v-model="formData.sampleLink" name="Sample Image Link" class="col-span-2" placeholder="https://... File hosted on DropBox, Google Drive, etc." />
             <div class="form-item col-span-2">
-                <label for="file">Sample Image</label>
-                <input name="file" type="file"/>
-            </div>
-            <div class="form-item col-span-2">
-                <label for="Notes / Additional info" aria-label="Notes / Additional info">Description</label>
-                <textarea v-model="formData.other.description" name="Notes / Additional info" placeholder="..." />
+                <label for="additionalNotes" aria-label="Notes / Additional info">Additional Notes / Further Description</label>
+                <textarea v-model="formData.notes" name="additionalNotes" placeholder="..." />
             </div>
             <TextField v-model="formData.dueDate" name="Due Date" type="date"/>
-            <SelectField v-model="formData.delivery.type" :options="['Local pickup in Grand Rapids, MI','Ship']" name="Delivery" />
+            <SelectField v-model="formData.deliveryType" :options="['Local pickup in Grand Rapids, MI','Ship']" name="Delivery" />
             <transition name="fade">
-                <div v-if="formData.delivery.type == 'Ship'" class="form-item col-span-2">
+                <div v-if="formData.deliveryType == 'Ship'" class="form-item col-span-2">
                     <label for="Address" aria-label="Address">Address</label>
-                    <textarea v-model="formData.delivery.address" name="Address" rows="3" placeholder="Issue Press&#10;314 Straight SW&#10;Grand Rapids, MI &#10;" class="whitespace-pre-wrap" />
+                    <textarea v-model="formData.deliveryAddress" name="Address" rows="3" placeholder="Issue Press&#10;314 Straight SW&#10;Grand Rapids, MI &#10;" class="whitespace-pre-wrap" />
                 </div>            
             </transition>
             <TextField v-model="formData.experience" name="Describe your experience with Riso Printing" class="col-span-2" placeholder="..."/>
@@ -123,51 +121,38 @@
         name: null,
         submitterName: null,
         submitterEmail: null,
-        experience: null,
-        notes: null,
         type: null,
         quantity: 100,
         isRounded: false,
         cornerRadius: null,
         dueDate: null,
-        delivery: {
-            type: null,
-            address: null,
-        },
-        publication: {
-            finishedSize: '5 x 7',
-            pages: 16,
-            binding: {
-                type: 'Staple',
-                stapleColor: 'Silver',
-                color: null,
-                roundedCorners: null,
-            },
-            cover: {
-                plusCover: false,
-                isDoubleSided: false,
-                isLaminated: false,
-                stock: null,
-                outsideInkColors: [],
-                insideInkColors: [],
-            },
-            interior: {
-                stock: null,
-                inkColors: [],
-            },
-        },
-        print: {
-            backInkColors: [],
-            frontInkColors: [],
-            isDoubleSided: false,
-            scores: null,
-            stock: null,
-        },
-        other: {
-            description: null,
-            inkColors: [],
-
-        }
+        publicationFinishedSize: '5 x 7',
+        publicationPages: 16,
+        publicationBindingType: 'Staple',
+        publicationBindingColor: null,
+        publicationCoverPlusCover: false,
+        publicationCoverIsDoubleSided: false,
+        publicationCoverIsLaminated: false,
+        publicationCoverOutsideInkColors: [],
+        publicationCoverInsideInkColors: [],
+        publicationCoverStock: null,
+        publicationInteriorStock: null,
+        publicationInteriorInkColors: [],
+        publicationInteriorInkNotes: null,
+        printFinishedSize: '10 x 15',
+        printIsDoubleSided: false,
+        printFrontInkColors: [],
+        printBackInkColors: [],
+        printStock: null,
+        printScores: 0,
+        otherDescription: null,
+        otherInkColors: [],
+        sampleLink: null,
+        notes: null,
+        deliveryType: null,
+        deliveryAddress: null,
+        experience: null,
+        referral: null,
     });
 
     function encode (data) {
@@ -195,6 +180,8 @@
       .catch((err) => alert("Error: %s", err))
       .finally(() => {
         console.log("formData: %s", JSON.stringify(this.formData))
+        console.log(this.encode(this.formData))
+
       })
     }
 

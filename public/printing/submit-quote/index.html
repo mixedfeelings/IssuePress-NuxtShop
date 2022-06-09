@@ -1,109 +1,76 @@
 <form name="Quotes" netlify-honeypot="bot-field" data-netlify="true" hidden>
-    <input type="hidden" name="form-name" value="Quotes">
-    <input value="/printing/request-quote" name="location" type="hidden">
-    
-    <p class="hidden"><label>Don’t fill this out if you’re human: <input name="bot-field"></label></p>
-    <fieldset legend="Basic Info">
-        <h3>Basic Info</h3>
-        <div class="form-item col-span-2" required>
-            <label class="label" for="Project Name" aria-label="Project Name">Project Name</label>
-            <input id="0" name="name" placeholder="My kickass zine, print, or whatever!">
-        </div>
-        <div class="form-item">
-            <label class="label" for="Your Name" aria-label="Your Name">Your Name</label>
-            <input id="0" name="submitterName" placeholder="Noboru Hayama">
-        </div>
-        <div class="form-item">
-            <label class="label" for="Your Email" aria-label="Your Email">Your Email</label>
-            <input id="0" name="submitterEmail" placeholder="info@issue.press">
-        </div>
-        <div class="form-item">
-            <label class="label" for="Project Type" aria-label="Project Type">Project Type</label>
-            <select name="type" class="form-select bg-clip-padding bg-no-repeat appearance-none">
-                <option disabled>Select</option>
-                <option value="Publication" selected>Publication</option>
-                <option value="Print" selected>Print</option>
-                <option value="Other" selected>Other</option>
-            </select>
-        </div>
-        <div class="form-item">
-            <label class="label" for="Quantity" aria-label="Quantity">Quantity</label>
-            <select name="quantity" class="form-select bg-clip-padding bg-no-repeat appearance-none">
-                <option disabled>Select</option>
-                <option value="50" selected>50</option>
-                <option value="100" selected>100</option>
-                <option value="250" selected>250</option>
-                <option value="500" selected>500</option>
-            </select>
-        </div>
-    </fieldset>
-    <fieldset legend="Publication Specs" v-if="formData.type == 'Publication'">
-        <h3>Publication Specs</h3>
-        <input name="pages" type="number" :step="4" />
-        <select :options="['4 x 5', '5 x 7','5 x 8', '7 x 10', '8 x 10']" name="Finished Size">
-        </select>    
-        <SelectField v-model="formData.publication.binding.type" :options="['Staple','Perfect','Wire-O','Spiral','None']" name="Binding Type" />
-        <div>
-            <TextField v-if="formData.publication.binding.type == 'Wire-O' || formData.publication.binding.type == 'Spiral' " v-model="formData.publication.binding.color" name="Color" placeholder="Enter your preferred color" />
-            <SelectField v-if="formData.publication.binding.type == 'Staple'" v-model="formData.publication.binding.stapleColor" :options="['Silver','Flat Gold','Black','Red','Orange','Yellow','Green','Blue','Pink']" name="Color" />
-        </div>
-        <CheckBox v-model="formData.publication.cover.plusCover" :options="['Seperate cover?']" is-boolean class="col-span-2" />
-        <transition name="fade">
-            <fieldset v-if="formData.publication.cover.plusCover" legend="Cover options" class="col-span-2">
-                <h4>Cover Options</h4>
-                <TextField v-model="formData.publication.cover.stock" name="Cover Stock" class="col-span-2 " placeholder="e.g. 65#c Vellum Bristol Cream"/>
-                <CheckBox v-model="formData.publication.cover.outsideInkColors" name="Outside Cover Ink Colors" :options="inkColors" class="col-span-2" multi />
-                <CheckBox v-model="formData.publication.cover.isDoubleSided" :options="['Printed Inside Cover?']" is-boolean class="col-span-2" />
-                <transition name="fade">
-                    <CheckBox v-if="formData.publication.cover.isDoubleSided" v-model="formData.publication.cover.insideInkColors" name="Inside Cover Ink Colors" :options="inkColors" class="col-span-2" multi />
-                </transition>
-                <CheckBox v-model="formData.publication.cover.isLaminated" :options="['Matte Lamination?']" is-boolean class="col-span-2" />
-            </fieldset>                    
-        </transition>
-        <fieldset legend="Interior Options" class="col-span-2">
-            <h4>Self-cover / Interior Options</h4>
-            <TextField v-model="formData.publication.interior.stock" class="col-span-2 " name="Paper Stock" placeholder="e.g. 70#t Domtar Cougar Natural" />
-            <CheckBox v-model="formData.publication.interior.inkColors" name="Ink Colors" :options="inkColors" class="col-span-2" multi />
-            <TextField v-model="formData.publication.interior.stock" class="col-span-2 " name="Ink Notes" placeholder="e.g. 2-color throughout OR Aqua on center-fold only, etc." />
-        </fieldset>
-        <CheckBox v-model="formData.isRounded" :options="['Rounded Corners?']" is-boolean class="col-span-2" />
-        <transition name="fade">
-            <SelectField v-if="formData.isRounded" v-model="formData.cornerRadius" :options="['1/4','1/8']" name="Corner Radius" />
-        </transition>
-    </fieldset>
-    <fieldset>
-        <h3>Final Details</h3>
-        <div class="form-item col-span-2">
-            <label for="file">Sample Image</label>
-            <input name="file" type="file">
-        </div>
-        <div class="form-item col-span-2">
-            <label for="Notes / Additional info" aria-label="Notes / Additional info">Description</label>
-            <textarea name="Notes / Additional info" placeholder="..."></textarea>
-        </div>
-        <div class="form-item">
-            <label class="label" for="Due Date" aria-label="Due Date">Due Date</label>
-            <input id="0" type="date" name="Due Date">
-        </div>
-        <div class="form-item">
-            <label class="label" for="Delivery" aria-label="Delivery">Delivery</label>
-            <select class="form-select bg-clip-padding bg-no-repeat appearance-none">
-                <option disabled>Select</option>
-                <option value="Local pickup in Grand Rapids, MI" selected>Local pickup in Grand Rapids, MI</option>
-                <option value="Ship" selected>Ship</option>
-            </select>
-        </div>
-        <div class="form-item col-span-2">
-            <label class="label" for="Describe your experience with Riso Printing" aria-label="Describe your experience with Riso Printing">Describe your experience with Riso Printing</label>
-            <input id="0" name="Describe your experience with Riso Printing" placeholder="...">
-        </div>
-        <div class="form-item col-span-2">
-            <label class="label" for="How&#39;d You Find us?" aria-label="How&#39;d You Find us?">How&#39;d You Find us?</label>
-            <input id="0" name="How&#39;d You Find us?" placeholder="Funny story, actually...">
-        </div>
-    </fieldset>
-    <div class="flex flex-col md:flex-row justify-center md:justify-between w-full items-center py-4">
-        <h3 class="py-2">Phew... You made it to the end!</h3>
-        <input type="submit" value="Submit" class="submit-button">
-    </div>
+    <input name="form-name" value="Quotes">
+    <input name="location" value="/request-quote">
+    <input name="bot-field" />
+    <label for="name">Project Name</label>
+    <input name="name" />
+    <label for="submitterName">Name</label>
+    <input name="submitterName" />
+    <label for="submitterEmail">Email</label>
+    <input name="submitterEmail" />
+    <label for="type">Project Type</label>
+    <input name="type" />
+    <label for="quantity">Quantity</label>
+    <input name="quantity" />
+    <label for="finishedSize">Finished Size</label>
+    <input name="finishedSize" />
+    <label for="publictionPages">Publication Pages</label>
+    <input name="publictionPages" />
+    <label for="publicationBindingType">Publication Binding Type</label>
+    <input name="publicationBindingType" />
+    <label for="publicationBindingColor">Publication Binding Color</label>
+    <input name="publicationBindingColor" />
+    <label for="publicationCoverPlusCover">Publication Plus Cover</label>
+    <input name="publicationCoverPlusCover" />
+    <label for="publicationCoverStock">Publication Cover Stock</label>
+    <input name="publicationCoverStock" />
+    <label for="publicationCoverOutsideInkColors">Publication Outside Cover Ink Colors</label>
+    <input name="publicationCoverOutsideInkColors" />
+    <label for="publicationCoverIsDoubleSided">Publication Double Sided</label>
+    <input name="publicationCoverIsDoubleSided" />
+    <label for="publicationCoverInsideInkColors">Publication Inside Cover Ink Colors</label>
+    <input name="publicationCoverInsideInkColors" />
+    <label for="publicationCoverIsLaminated">Publication Matte Lamination</label>
+    <input name="publicationCoverIsLaminated" />
+    <label for="publicationInteriorStock">Publication Interior Stock</label>
+    <input name="publicationInteriorStock" />
+    <label for="publicationInteriorInkColors">Publication Interior Ink Colors</label>
+    <input name="publicationInteriorInkColors" />
+    <label for="publicationInteriorInkNotes">Publication Interior Ink Notes</label>
+    <textarea name="publicationInteriorInkNotes"></textarea>
+    <label for="printFinishedSize">Print Stock</label>
+    <input name="printFinishedSize" />
+    <label for="printStock">Print Stock</label>
+    <input name="printFrontInkColors" />
+    <label for="printFrontInkColors">Print Front Ink Colors</label>
+    <input name="printFrontInkColors" />
+    <label for="printIsDoubleSided">Print Front Double Sided</label>
+    <input name="printIsDoubleSided" />
+    <label for="printBackInkColors">Print Front Back Ink Colors</label>
+    <input name="printBackInkColors" />
+    <label for="printScores">Print Scores</label>
+    <input name="printScores" />
+    <label for="otherDescription">Other Description</label>
+    <textarea name="otherDescription"></textarea>
+    <label for="otherInkColors">Other Ink Colors</label>
+    <input name="otherInkColors" />
+    <label for="isRounded">Rounded Corners</label>
+    <input name="printScores" />
+    <label for="cornerRadius">Corner Radius</label>
+    <input name="printScores" />
+    <label for="sampleLink">Sample Link</label>
+    <input name="sampleLink" />
+    <label for="notes">Additional Notes</label>
+    <textarea name="notes"></textarea>
+    <label for="dueDate">Due Date</label>
+    <input name="dueDate" />
+    <label for="deliveryType">Delivery Type</label>
+    <input name="deliveryType" />
+    <label for="deliveryAddress">Delivery Address</label>
+    <textarea name="deliveryAddress"></textarea>
+    <label for="experience">Experience With Riso</label>
+    <textarea name="experience"></textarea>
+    <label for="referral">Referral</label>
+    <textarea name="referral"></textarea>
+    <input type="submit" value="Submit" class="submit-button">
 </form>
