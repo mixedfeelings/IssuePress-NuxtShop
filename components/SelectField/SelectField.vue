@@ -1,10 +1,11 @@
 <template>
   <div class="form-item">
-     <label class="label" :for="props.name" :aria-label="props.name">{{props.name}}  <span v-if="required" class="required">*</span></label>     
+     <label class="label" :for="props.name" :aria-label="props.name">{{props.name}} <span v-if="required" class="required">*</span></label>     
     <select
       class="form-select bg-clip-padding bg-no-repeat appearance-none "
       @change="updateValue($event.target.value)"
       v-model="selected"
+      :required="required"
     >
       <option disabled>Select</option>
       <option

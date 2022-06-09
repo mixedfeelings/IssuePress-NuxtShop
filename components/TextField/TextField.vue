@@ -10,6 +10,7 @@
       v-bind:value="props.modelValue"
       v-on:input="updateValue($event.target.value)"
       :placeholder="props.placeholder"
+      :required="required"
     />
   </div>
 </template>
