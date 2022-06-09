@@ -71,7 +71,7 @@
                 <MultiCheckBox v-model:value="formData.printFrontInkColors" name="Front Ink Colors" :options="inkColors" class="col-span-2" required color />
                 <CheckBox v-model:checked="formData.printIsDoubleSided" label="Double Sided?" field-id="doubleSided" class="col-span-2" />
                 <transition name="fade">
-                    <MultiCheckBox v-if="formData.printIsDoubleSided" v-model:value="formData.printBackInkColors" name="Back Ink Colors" :options="inkColors" class="col-span-2" color />
+                    <MultiCheckBox v-if="formData.printIsDoubleSided" v-model:value="formData.printBackInkColors" name="Back Ink Colors" :options="inkColors" class="col-span-2" color required />
                 </transition>
                 <CheckBox v-model:checked="formData.isRounded" label="Rounded Corners?" field-id="roundedCorners" class="col-span-2" />
                 <transition name="fade">
