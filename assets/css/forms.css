@@ -75,21 +75,13 @@ input.submit-button:hover {
 
 .circle {
     @apply w-3 h-3 bg-transparent border-black border-2 rounded-full flex items-center justify-center overflow-hidden;
+    border-color: #000 !important;
     min-width: .75rem;
 }
 
 .selected .circle {
-    background-color: #000;
+    background-color: #000 !important;
 }
-
-.multi .circle {
-    @apply border-natural;
-}
-
-.multi .selected .circle {
-    background-color: var(--color-natural);
-}
-
 
 .square {
     @apply w-3 h-3 bg-transparent border-black border-2 rounded-sm flex items-center justify-center overflow-hidden;
@@ -106,7 +98,7 @@ input.submit-button:hover {
 .multi .checkbox.bg-copper,
 .multi .checkbox.bg-moss,
 .multi .checkbox.bg-risofederal-blue {
-    @apply text-natural;
+    @apply text-natural !important;
 }
 
 
@@ -117,7 +109,7 @@ input.submit-button:hover {
 .multi .checkbox.bg-copper .square,
 .multi .checkbox.bg-moss .square,
 .multi .checkbox.bg-risofederal-blue .square {
-    border-color: var(--color-natural);
+    border-color: var(--color-natural) !important;
 }
 
 .multi .checkbox.bg-black.selected .square,
@@ -127,7 +119,7 @@ input.submit-button:hover {
 .multi .checkbox.bg-copper.selected .square,
 .multi .checkbox.bg-moss.selected .square,
 .multi .checkbox.bg-risofederal-blue.selected .square {
-    background-color: var(--color-natural);
+    background-color: var(--color-natural) !important;
 }
 
 

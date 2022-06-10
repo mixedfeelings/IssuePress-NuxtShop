@@ -56,15 +56,23 @@ button.bg-black,
     @apply opacity-30;  
 }
 
-{
-    @apply text-natural bg-dark;
-}
-
-.dark .circle {
+.dark .circle,
+.dark .square {
     @apply border-natural;
 }
 
-.dark .selected .circle {
+.dark .multi .circle,
+.dark .multi .square {
+   border-color: #000;
+}
+
+.dark .multi .selected .circle,
+.dark .multi .selected .square {
+   background-color: #000;
+}
+
+.dark .selected .circle,
+.dark .selected .square {
    background-color: var(--color-natural);
 }
 
