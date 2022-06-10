@@ -138,7 +138,7 @@
         {name: "Light Gray", id:"light-gray", postLabel: "$"},
         {name: "Burgundy", id:"burgundy", postLabel: "$"},
         {name: "Orchid", id:"orchid", postLabel: "$"},
-        {name: "RISOFederal Blue", id:"risofederal-blue", postLabel: "$"},
+        {name: "RISO-Federal Blue", id:"risofederal-blue", postLabel: "$"},
         {name: "Blue", id:"blue", postLabel: "$"},
         {name: "Cornflower", id:"cornflower", postLabel: "$"},
         {name: "Aqua", id:"aqua", postLabel: "$$"},
