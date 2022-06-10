@@ -66,19 +66,11 @@ input.submit-button:hover {
 }
 
 .multi .checkbox {
-    @apply p-2 border border-white text-natural rounded text-sm font-normal capitalize flex gap-2 items-center font-mono;
+    @apply p-2 border border-white text-black rounded text-sm font-normal capitalize flex gap-2 items-center font-mono;
 }
 
 .multi .checkbox.bg-white {
     @apply border-gray-300;
-}
-
-.multi .checkbox.bg-aqua,
-.multi .checkbox.bg-mint,
-.multi .checkbox.bg-white,
-.multi .checkbox.bg-fluorescent-yellow,
-.multi .checkbox.bg-yellow {
-    @apply text-black
 }
 
 .circle {
@@ -87,7 +79,7 @@ input.submit-button:hover {
 }
 
 .selected .circle {
-    @apply bg-black;
+    background-color: #000;
 }
 
 .multi .circle {
@@ -98,20 +90,44 @@ input.submit-button:hover {
     background-color: var(--color-natural);
 }
 
-.multi .checkbox.bg-aqua .circle,
-.multi .checkbox.bg-mint .circle,
-.multi .checkbox.bg-white .circle,
-.multi .checkbox.bg-fluorescent-yellow .circle,
-.multi .checkbox.bg-yellow .circle {
-    @apply border-black;
+
+.square {
+    @apply w-3 h-3 bg-transparent border-black border-2 rounded-sm flex items-center justify-center overflow-hidden;
+    min-width: .75rem;
 }
 
-.multi .checkbox.bg-aqua.selected .circle,
-.multi .checkbox.bg-mint.selected .circle,
-.multi .checkbox.bg-white.selected .circle,
-.multi .checkbox.bg-fluorescent-yellow.selected .circle,
-.multi .checkbox.bg-yellow.selected .circle {
-    @apply bg-black;
+.selected .square {
+    background-color: #000;
+}
+.multi .checkbox.bg-black,
+.multi .checkbox.bg-blue,
+.multi .checkbox.bg-burgundy,
+.multi .checkbox.bg-brown,
+.multi .checkbox.bg-copper,
+.multi .checkbox.bg-moss,
+.multi .checkbox.bg-risofederal-blue {
+    @apply text-natural;
+}
+
+
+.multi .checkbox.bg-black .square,
+.multi .checkbox.bg-blue .square,
+.multi .checkbox.bg-burgundy .square,
+.multi .checkbox.bg-brown .square,
+.multi .checkbox.bg-copper .square,
+.multi .checkbox.bg-moss .square,
+.multi .checkbox.bg-risofederal-blue .square {
+    border-color: var(--color-natural);
+}
+
+.multi .checkbox.bg-black.selected .square,
+.multi .checkbox.bg-blue.selected .square,
+.multi .checkbox.bg-burgundy.selected .square,
+.multi .checkbox.bg-brown.selected .square,
+.multi .checkbox.bg-copper.selected .square,
+.multi .checkbox.bg-moss.selected .square,
+.multi .checkbox.bg-risofederal-blue.selected .square {
+    background-color: var(--color-natural);
 }
 
 

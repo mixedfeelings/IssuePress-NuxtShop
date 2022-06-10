@@ -8,7 +8,7 @@
             type="checkbox"
             hidden 
         /> 
-            <div class="circle" /> {{label}} <span v-if="postLabel" class="post-label">{{postLabel}}</span>
+            <div class="square" /> {{label}} <span v-if="postLabel" class="post-label">{{postLabel}}</span>
     </label>
 </template>
 <script setup lang="ts">
