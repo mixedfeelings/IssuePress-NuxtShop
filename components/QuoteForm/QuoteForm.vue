@@ -39,6 +39,12 @@
             </transition>
         </fieldset>
         <transition name="fade">
+            <fieldset legend="Placeholder" v-if="!formData.type">
+                <h3>Project Specs</h3>
+                <p>Please Select a Project Type.</p>
+            </fieldset>
+        </transition>
+        <transition name="fade">
             <fieldset legend="Publication Specs" v-if="formData.type == 'Publication'">
                 <h3>Publication Specs</h3>
                 <TextField v-model="formData.publicationPages" name="Pages" type="number" :step="4" required />
