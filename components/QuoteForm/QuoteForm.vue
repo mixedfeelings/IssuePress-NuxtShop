@@ -34,12 +34,18 @@
             <TextField v-model="formData.submitterEmail" name="Your Email" placeholder="info@issue.press" required />
             <SelectField v-model="formData.type" :options="projectTypes" name="Project Type" required />   
             <SelectField v-model="formData.quantity" :options="quantityOptions" name="Quantity" />
+            <transition name="fade">
+                <TextField v-if="formData.quantity== 'Other'" v-model="formData.otherQuantity" name="Other Quantity" placeholder="4 Billion... JKJKJK!" required class="col-span-2" />
+            </transition>
         </fieldset>
         <transition name="fade">
             <fieldset legend="Publication Specs" v-if="formData.type == 'Publication'">
                 <h3>Publication Specs</h3>
                 <TextField v-model="formData.publicationPages" name="Pages" type="number" :step="4" required />
                 <SelectField v-model="formData.publicationFinishedSize" :options="publicationSizes" name="Finished Size" required />
+                <transition name="fade">
+                    <TextField v-if="formData.publicationFinishedSize== 'Other'" v-model="formData.publicationOtherSize" name="Other Size" required class="col-span-2" />
+                </transition>
                 <SelectField v-model="formData.publicationBindingType" :options="bindingTypes" name="Binding Type" required />
                 <div>
                     <TextField v-if="formData.publicationBindingType == 'Wire-O' || formData.publicationBindingType == 'Spiral' " v-model="formData.publicationBindingColor" name="Color" placeholder="Enter your preferred color" required />
@@ -75,7 +81,10 @@
                 <h3>Print Specs</h3>
                 <TextField v-model="formData.printStock" name="Paper Stock" class="col-span-2" placeholder="e.g. 80#c French Paper Co. Speckletone True White" required />
                 <SelectField v-model="formData.printFinishedSize" :options="printSizes" name="Finished Size" required />
-                <MultiCheckBox v-model:value="formData.printFrontInkColors" name="Front Ink Colors" :options="inkColors" class="col-span-2" required color />
+                <transition name="fade">
+                    <TextField v-if="formData.printFinishedSize== 'Other'" v-model="formData.printOtherSize" name="Other Size" required />
+                </transition>
+                <MultiCheckBox v-model:value="formData.printFrontInkColors" name="Front Ink Colors" :options="inkColors" required color />
                 <CheckBox v-model:checked="formData.printIsDoubleSided" label="Double Sided?" field-id="doubleSided" class="col-span-2" />
                 <transition name="fade">
                     <MultiCheckBox v-if="formData.printIsDoubleSided" v-model:value="formData.printBackInkColors" name="Back Ink Colors" :options="inkColors" class="col-span-2" color required />
@@ -238,10 +247,12 @@
         submitterEmail: null,
         type: null,
         quantity: 100,
+        otherQuantity: null,
         isRounded: false,
         cornerRadius: null,
         dueDate: null,
         publicationFinishedSize: '5" x 7"',
+        publicationOtherSize: null,
         publicationPages: 16,
         publicationBindingType: 'Saddle Stitch (Staple)',
         publicationBindingColor: null,
@@ -255,6 +266,7 @@
         publicationInteriorInkColors: [],
         publicationInteriorInkNotes: null,
         printFinishedSize: '10" x 15"',
+        printOtherSize: null,
         printIsDoubleSided: false,
         printFrontInkColors: [],
         printBackInkColors: [],
@@ -299,7 +311,13 @@
         if (!this.formData.type) {
             this.errors.push("Project Type is required.");
         }
+        if (this.formData.quantity == 'Other' && !this.formData.otherQuantity) {
+            this.errors.push("Other Quantity is required.")
+        }
         if (this.formData.type == 'Print') {
+            if (this.formData.printFinishedSize == 'Other' && !this.formData.printOtherSize) {
+                this.errors.push("Other Size is required.")
+            }
             if (!this.formData.printStock) {
                 this.errors.push("Print Stock is required.");
             }
@@ -313,6 +331,9 @@
         if (this.formData.type == 'Publication') {
             if ((this.formData.publicationBindingType == 'Saddle Stitch (Staple)' && !this.formData.publicationBindingColor ) || (this.formData.publicationBindingType == 'Wire-O' && !this.formData.publicationBindingColor ) || (this.formData.publicationBindingType == 'Spiral' && !this.formData.publicationBindingColor) )  {
                 this.errors.push("Publication Binding Color is required")
+            }
+            if (this.formData.publicationFinishedSize == 'Other' && !this.formData.publicationOtherSize) {
+                this.errors.push("Other Size is required.")
             }
             if (this.formData.publicationCoverPlusCover) {
                 if (!this.formData.publicationCoverStock) {
