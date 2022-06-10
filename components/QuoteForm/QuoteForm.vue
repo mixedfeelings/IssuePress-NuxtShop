@@ -4,12 +4,19 @@
         @submit.prevent="handleSubmit()"
         class="flex flex-col pb-6"
     >
+        <div  class="flex justify-center w-full">
+            <ConfettiExplosion 
+                v-if="explodeVisible"
+                :colors="['var(--color-yellow)','var(--color-scarlet)','var(--color-blue)','var(--color-kelly-green)','var(--color-fluorescent-pink)']"
+            />
+        </div>
         <ul v-if="errors.length > 0" class="errors-box p-4 border">
             <li v-for="error in errors">
                 {{error}}
             </li>
         </ul>
         {{SuccessMessage}}
+        
 
         <input type="hidden" name="form-name" value="Quotes" />
         <input value="/printing/request-quote" name="location" type="hidden" />
@@ -32,7 +39,7 @@
             <fieldset legend="Publication Specs" v-if="formData.type == 'Publication'">
                 <h3>Publication Specs</h3>
                 <TextField v-model="formData.publicationPages" name="Pages" type="number" :step="4" required />
-                <SelectField v-model="formData.finishedSize" :options="['4 x 5', '5 x 7','5 x 8', '7 x 10', '8 x 10']" name="Finished Size" required />
+                <SelectField v-model="formData.publicationFinishedSize" :options="['4 x 5', '5 x 7','5 x 8', '7 x 10', '8 x 10']" name="Finished Size" required />
                 <SelectField v-model="formData.publicationBindingType" :options="['Staple','Perfect','Wire-O','Spiral','None']" name="Binding Type" required />
                 <div>
                     <TextField v-if="formData.publicationBindingType == 'Wire-O' || formData.publicationBindingType == 'Spiral' " v-model="formData.publicationBindingColor" name="Color" placeholder="Enter your preferred color" />
@@ -98,7 +105,7 @@
             <TextField v-model="formData.sampleLink" name="Sample Image Link" class="col-span-2" placeholder="https://... File hosted on DropBox, Google Drive, WeTransfer, etc." />
             <div class="form-item col-span-2">
                 <label for="additionalNotes" aria-label="Notes / Additional info">Additional Notes / Further Description</label>
-                <textarea v-model="formData.notes" name="additionalNotes" placeholder="..." />
+                <textarea v-model="formData.notes" name="additionalNotes" placeholder="..." ></textarea>
             </div>
             <TextField v-model="formData.dueDate" name="Due Date" type="date" required/>
             <SelectField v-model="formData.deliveryType" :options="['Local pickup in Grand Rapids, MI','Ship']" name="Delivery" required />
@@ -120,9 +127,12 @@
 </template>
 <script setup lang="ts">
     import { ref } from 'vue';
+    import ConfettiExplosion from "vue-confetti-explosion";
 
     const errors = ref([]);
     const SuccessMessage = ref(null);
+    const explodeVisible = ref(false);
+
     const inkColors = ref([
         {name: "Black", id:"black", postLabel: "$"},
         {name: "Light Gray", id:"light-gray", postLabel: "$"},
@@ -203,7 +213,7 @@
 
     function checkform() {
 
-    this.errors = [];
+        this.errors = [];
         if (this.formData.botField) {
             this.errors.push("Only robots can fill out this field. Are you a robot?");
         }
@@ -276,6 +286,12 @@
     }
 
 
+    const explode = async () => {
+        explodeVisible.value = false;
+        await nextTick();
+        setTimeout(() => explodeVisible.value = true, 250);
+    };
+
     function handleSubmit () {
         this.checkform();
         if (this.errors.length == 0) {
@@ -297,6 +313,7 @@
                 // console.log("formData: %s", JSON.stringify(this.formData))
                 // console.log(this.encode(this.formData))
                 window.scrollTo(0,0);
+                explode();
 
             })
         } else {
