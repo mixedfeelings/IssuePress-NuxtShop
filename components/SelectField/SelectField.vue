@@ -9,12 +9,13 @@
     >
       <option disabled>Select</option>
       <option
-        v-for="(option, index) in props.options"
-        :key="index"
-        :value="option"
+        v-for="option in props.options"
+        :key="option.id"
+        :index="options.id"
+        :value="option.name"
         :selected="selected"
       >
-        {{ option }}
+         {{ option.name }}
       </option>
     </select>
   </div>

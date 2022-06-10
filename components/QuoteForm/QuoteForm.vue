@@ -32,18 +32,18 @@
             <TextField v-model="formData.name" name="Project Name" required class="col-span-2" placeholder="My kickass zine, print, or whatever!" />
             <TextField v-model="formData.submitterName" name="Your Name" placeholder="Noboru Hayama" required />
             <TextField v-model="formData.submitterEmail" name="Your Email" placeholder="info@issue.press" required />
-            <SelectField v-model="formData.type" :options="['Publication','Print','Other']" name="Project Type" required />   
-            <SelectField v-model="formData.quantity" :options="['50','100','250','500']" name="Quantity" />
+            <SelectField v-model="formData.type" :options="projectTypes" name="Project Type" required />   
+            <SelectField v-model="formData.quantity" :options="quantityOptions" name="Quantity" />
         </fieldset>
         <transition name="fade">
             <fieldset legend="Publication Specs" v-if="formData.type == 'Publication'">
                 <h3>Publication Specs</h3>
                 <TextField v-model="formData.publicationPages" name="Pages" type="number" :step="4" required />
-                <SelectField v-model="formData.publicationFinishedSize" :options="['4 x 5', '5 x 7','5 x 8', '7 x 10', '8 x 10']" name="Finished Size" required />
-                <SelectField v-model="formData.publicationBindingType" :options="['Staple','Perfect','Wire-O','Spiral','None']" name="Binding Type" required />
+                <SelectField v-model="formData.publicationFinishedSize" :options="publicationSizes" name="Finished Size" required />
+                <SelectField v-model="formData.publicationBindingType" :options="bindingTypes" name="Binding Type" required />
                 <div>
-                    <TextField v-if="formData.publicationBindingType == 'Wire-O' || formData.publicationBindingType == 'Spiral' " v-model="formData.publicationBindingColor" name="Color" placeholder="Enter your preferred color" />
-                    <SelectField v-if="formData.publicationBindingType == 'Staple'" v-model="formData.publicationBindingColor" :options="['Silver','Flat Gold','Black','Red','Orange','Yellow','Green','Blue','Pink']" name="Color" />
+                    <TextField v-if="formData.publicationBindingType == 'Wire-O' || formData.publicationBindingType == 'Spiral' " v-model="formData.publicationBindingColor" name="Color" placeholder="Enter your preferred color" required />
+                    <SelectField v-if="formData.publicationBindingType == 'Saddle Stitch (Staple)'" v-model="formData.publicationBindingColor" :options="stapleColor" name="Color" required />
                 </div>
                 <CheckBox v-model:checked="formData.publicationCoverPlusCover" label="Seperate Cover?" field-id="plusCover" class="col-span-2" />
                 <transition name="fade">
@@ -66,7 +66,7 @@
                 </fieldset>
                 <CheckBox v-model:checked="formData.isRounded" label="Rounded Corners?" field-id="roundedCorners" class="col-span-2" />
                 <transition name="fade">
-                    <SelectField v-if="formData.isRounded" v-model="formData.cornerRadius" :options="['1/4','1/8']" name="Corner Radius" />
+                    <SelectField v-if="formData.isRounded" v-model="formData.cornerRadius" :options="cornerRadii" name="Corner Radius" />
                 </transition>
             </fieldset>
         </transition>
@@ -74,7 +74,7 @@
             <fieldset legend="Print Specs" v-if="formData.type == 'Print'" >
                 <h3>Print Specs</h3>
                 <TextField v-model="formData.printStock" name="Paper Stock" class="col-span-2" placeholder="e.g. 80#c French Paper Co. Speckletone True White" required />
-                <SelectField v-model="formData.printFinishedSize" :options="['11 x 17 (no bleed)','10 x 15','9 x 12', '8 x 10', '8 x 8', '5 x 7', '4 x 6']" name="Finished Size" required />
+                <SelectField v-model="formData.printFinishedSize" :options="printSizes" name="Finished Size" required />
                 <MultiCheckBox v-model:value="formData.printFrontInkColors" name="Front Ink Colors" :options="inkColors" class="col-span-2" required color />
                 <CheckBox v-model:checked="formData.printIsDoubleSided" label="Double Sided?" field-id="doubleSided" class="col-span-2" />
                 <transition name="fade">
@@ -82,12 +82,12 @@
                 </transition>
                 <CheckBox v-model:checked="formData.isRounded" label="Rounded Corners?" field-id="roundedCorners" class="col-span-2" />
                 <transition name="fade">
-                    <SelectField v-if="formData.isRounded" v-model="formData.cornerRadius" :options="['1/4','1/8']" name="Corner Radius" />
+                    <SelectField v-if="formData.isRounded" v-model="formData.cornerRadius" :options="cornerRadii" name="Corner Radius" />
                 </transition>
             </fieldset>
         </transition>
         <transition name="fade">
-            <fieldset legend="Print Specs" v-if="formData.type == 'Other'" >
+            <fieldset legend="Other Specs" v-if="formData.type == 'Other'" >
                 <h3>Other Project Specs</h3>
                 <div class="form-item col-span-2">
                     <label for="Description" aria-label="Description">Description <span class="required">*</span></label>
@@ -96,7 +96,7 @@
                 <MultiCheckBox v-model:value="formData.otherInkColors" name="Ink Colors" :options="inkColors" class="col-span-2" required color />
                 <CheckBox v-model:checked="formData.isRounded" label="Rounded Corners?" field-id="roundedCorners" class="col-span-2" />
                 <transition name="fade">
-                    <SelectField v-if="formData.isRounded" v-model="formData.cornerRadius" :options="['1/4','1/8']" name="Corner Radius" />
+                    <SelectField v-if="formData.isRounded" v-model="formData.cornerRadius" :options="cornerRadii" name="Corner Radius" />
                 </transition>
             </fieldset>
         </transition>
@@ -108,7 +108,7 @@
                 <textarea v-model="formData.notes" name="additionalNotes" placeholder="..." ></textarea>
             </div>
             <TextField v-model="formData.dueDate" name="Due Date" type="date" required/>
-            <SelectField v-model="formData.deliveryType" :options="['Local pickup in Grand Rapids, MI','Ship']" name="Delivery" required />
+            <SelectField v-model="formData.deliveryType" :options="deliveryType" name="Delivery" required />
             <transition name="fade">
                 <div v-if="formData.deliveryType == 'Ship'" class="form-item col-span-2">
                     <label for="Address" aria-label="Address">Address</label>
@@ -132,6 +132,20 @@
     const errors = ref([]);
     const SuccessMessage = ref(null);
     const explodeVisible = ref(false);
+
+    const projectTypes = ref([
+        {name: 'Publication', id:'publication'},
+        {name: 'Print', id:'print'},
+        {name: 'Other', id:'other'},
+    ])
+
+    const quantityOptions = ref([
+        {name: '50', id:'50'},
+        {name: '100', id:'100'},
+        {name: '250', id:'250'},
+        {name: '500', id:'500'},
+        {name: 'Other', id:'other'},
+    ])
 
     const inkColors = ref([
         {name: "Black", id:"black", postLabel: "$"},
@@ -162,6 +176,60 @@
         {name: "Fluorescent Pink", id:"fluorescent-pink", postLabel: "$"},
         {name: "White", id:"white", postLabel: "$$"},
     ]);
+
+    const printSizes = ref([
+        {name: '11" x 17" (no bleed)', id:'11x17'},
+        {name: '11" x 11" (no bleed)', id:'11x11'},
+        {name: '10" x 15"', id:'10x15'},
+        {name: '9" x 12"', id:'9x12'}, 
+        {name: '8" x 10"', id:'8x10'},
+        {name: '8" x 8"', id:'8x8'},
+        {name: '7" x 7"', id:'7x7'}, 
+        {name: '5" x 7"', id:'5x7'},          
+        {name: '4" x 6"', id:'4x6'},
+        {name: 'Other', id:'other'} 
+    ]);
+
+    const publicationSizes = ref([
+        {name: '4" x 5"', id:'4x5'},
+        {name: '5" x 7"', id:'5x7'},
+        {name: '5" x 8"', id:'5x8'},
+        {name: '7" x 10"', id:'7x10'}, 
+        {name: '8" x 10"', id:'8x10'},
+        {name: 'Other', id:'other'} 
+    ]);
+
+    const cornerRadii = ref([
+        {name: '1/4"', id:'1/4'},
+        {name: '1/8"', id:'1/8'},
+    ]);
+
+    const bindingTypes = ref([
+        {name: 'Saddle Stitch (Staple)', id:'staple'},
+        {name: 'Perfect (Soft-cover)', id:'perfect'},
+        {name: 'Wire-O', id:'wire-o'},
+        {name: 'Spiral', id:'spiral'}, 
+        {name: 'Comb', id:'comb'},
+        {name: 'None', id:'none'},
+    ]);
+
+    const stapleColor = ref([
+            {id:'silver', name:'Silver', color:'#939c9a'},
+            {id:'flatGold',name:'Flat Gold', color:'#a98f5e'},
+            {id:'black', name:'Black', color:'#272727'},
+            {id:'red', name:'Red', color:'#dc1306'},
+            {id:'orange', name:'Orange', color:'#fe5f00'},
+            {id:'yellow',name:'Yellow', color:'#f3da6f'},
+            {id:'green', name:'Green', color:'#02b32a'},
+            {id:'blue', name:'Blue', color:'#015a95'},
+            {id:'pink', name:'Pink', color:'#f15786'},
+    ]);
+
+    const deliveryType = ref([
+        {name: 'Local pickup in Grand Rapids, MI', id:'pickup'},
+        {name: 'Ship', id:'ship'},
+    ]);
+    
     
     const formData = ref({
         botField: null,
@@ -173,9 +241,9 @@
         isRounded: false,
         cornerRadius: null,
         dueDate: null,
-        publicationFinishedSize: '5 x 7',
+        publicationFinishedSize: '5" x 7"',
         publicationPages: 16,
-        publicationBindingType: 'Staple',
+        publicationBindingType: 'Saddle Stitch (Staple)',
         publicationBindingColor: null,
         publicationCoverPlusCover: false,
         publicationCoverIsDoubleSided: false,
@@ -186,7 +254,7 @@
         publicationInteriorStock: null,
         publicationInteriorInkColors: [],
         publicationInteriorInkNotes: null,
-        printFinishedSize: '10 x 15',
+        printFinishedSize: '10" x 15"',
         printIsDoubleSided: false,
         printFrontInkColors: [],
         printBackInkColors: [],
@@ -243,6 +311,9 @@
             }
         }
         if (this.formData.type == 'Publication') {
+            if ((this.formData.publicationBindingType == 'Saddle Stitch (Staple)' && !this.formData.publicationBindingColor ) || (this.formData.publicationBindingType == 'Wire-O' && !this.formData.publicationBindingColor ) || (this.formData.publicationBindingType == 'Spiral' && !this.formData.publicationBindingColor) )  {
+                this.errors.push("Publication Binding Color is required")
+            }
             if (this.formData.publicationCoverPlusCover) {
                 if (!this.formData.publicationCoverStock) {
                     this.errors.push("Publication Cover Stock is required");
@@ -310,7 +381,7 @@
             .then(() => this.SuccessMessage = "Thank you! Your Quote request has been submitted!")
             .catch((err) => this.SuccessMessage = `Error: %s ${err}`)
             .finally(() => {
-                // console.log("formData: %s", JSON.stringify(this.formData))
+                console.log("formData: %s", JSON.stringify(this.formData))
                 // console.log(this.encode(this.formData))
                 window.scrollTo(0,0);
                 explode();
