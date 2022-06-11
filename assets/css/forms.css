@@ -31,6 +31,10 @@ fieldset fieldset {
 }
 
 
+.form-item select {
+    @apply w-full pr-10;
+}
+
 input.submit-button {
     @apply inline-flex text-xl rounded px-4 py-2 font-serif w-auto text-natural cursor-pointer bg-darker;
     color: var(--color-natural) !important;
