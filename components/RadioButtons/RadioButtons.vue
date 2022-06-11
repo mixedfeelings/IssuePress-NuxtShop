@@ -2,6 +2,7 @@
     <div class="form-item radio-buttons lg:grid-columns-3">
         <label 
             v-for="option in options" 
+            :key="option.id"
             :for="getItemId(option.id)" 
             class="radio-button " 
             :class="{ selected: picked == option.id }, {color: option.rgb}, lightOrDark(option.rgb)" 
@@ -14,23 +15,22 @@
                 :value="option.id"
                 v-model="picked"
                 hidden
-            />
-        <div class="circle" /> {{option.name}} <span v-if="option.postLabel" class="post-label">{{option.postLabel}}</span>
+            >
+        <div class="circle"></div> {{option.name}} <span v-if="option.postLabel" class="post-label">{{option.postLabel}}</span>
         </label>  
     </div>    
 </template>
 <script setup lang="ts">
     const picked = ref(null);
-    const uuid = ref("");
-    const emit = defineEmits(['update:value'])
+    const listuuid = ref("");
 
     const props = defineProps<{
-        options: Array<Object>;
+        options: any;
     }>();
 
     function getItemId(item) {
         // name is optional so set an id that works with multiple r-checkboxes on page
-        return this.uuid + "-" + item;
+        return this.listuuid + "-" + item;
     }
 
     function makeUUID(length) {
@@ -43,7 +43,7 @@
             Math.floor(Math.random() * charactersLength)
             );
         }
-        uuid.value += result;
+        listuuid.value += result;
     }
 
 

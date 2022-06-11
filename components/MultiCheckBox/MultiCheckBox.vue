@@ -11,7 +11,7 @@
             @update:checked="check(option.id, $event)"
             :post-label="option.postLabel"
             :color="option.id"
-        />
+        ></CheckBox>
     </div>
 </div>
 
@@ -19,15 +19,15 @@
 </template>
 <script setup lang="ts" >
 
+
 const props = defineProps<{
-    value: Array<string>;
-    options: Array<string>;
+    value: any;
+    options: Array<any>;
     name?: string;
     required?: boolean;
     color?: boolean;
 }>();
 
-const { options, name, value } = toRefs(props);
 
 const uuid = ref("");
 const emit = defineEmits(['update:value'])

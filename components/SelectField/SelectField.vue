@@ -27,7 +27,7 @@ const uuid = ref(0);
 
 const props = defineProps<{
     modelValue: any;
-    options: Array<string>;
+    options: Array<Object>;
     name?: string;
     required?: boolean;
 }>();
