@@ -17,7 +17,8 @@
 .dark fieldset h3,
 .dark aside a,
 .dark .multi .checkbox,
-.dark .errors-box  {
+.dark .errors-box,
+.dark .radio-button {
     @apply border-darker;
 }
 
@@ -54,26 +55,6 @@ button.bg-black,
 
 .dark .disabled {
     @apply opacity-30;  
-}
-
-.dark .circle,
-.dark .square {
-    @apply border-natural;
-}
-
-.dark .multi .circle,
-.dark .multi .square {
-   border-color: #000;
-}
-
-.dark .multi .selected .circle,
-.dark .multi .selected .square {
-   background-color: #000;
-}
-
-.dark .selected .circle,
-.dark .selected .square {
-   background-color: var(--color-natural);
 }
 
 .dark .form-item input,
