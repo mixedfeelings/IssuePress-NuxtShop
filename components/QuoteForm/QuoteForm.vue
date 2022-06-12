@@ -16,7 +16,6 @@
             </li>
         </ul>
         {{SuccessMessage}}
-        
 
         <input type="hidden" name="form-name" value="Quotes" >
         <input value="/printing/request-quote" name="location" type="hidden" >
@@ -62,10 +61,10 @@
                     <fieldset v-if="formData.publicationCoverPlusCover" legend="Cover options" class="col-span-2">
                         <h4>Cover Options</h4>
                         <PaperSelector v-model:value="formData.publicationCoverStock" type="cover" name="Cover Stock" required class="col-span-2"></PaperSelector>
-                        <MultiCheckBox v-model:value="formData.publicationCoverOutsideInkColors" name="Outside Cover Ink Colors" :options="inkColors" class="col-span-2" color required ></MultiCheckBox>
+                        <MultiCheckBox v-model:value="formData.publicationCoverOutsideInkColors" name="Outside Cover Ink Colors" :options="InkList" class="col-span-2" color required ></MultiCheckBox>
                         <CheckBox v-model:checked="formData.publicationCoverIsDoubleSided" label="Printed Inside Cover?" field-id="insideCover" class="col-span-2" ></CheckBox>
                         <transition name="fade">
-                            <MultiCheckBox v-if="formData.publicationCoverIsDoubleSided" v-model:value="formData.publicationCoverInsideInkColors" name="Inside Cover Ink Colors" :options="inkColors" class="col-span-2" color required ></MultiCheckBox>
+                            <MultiCheckBox v-if="formData.publicationCoverIsDoubleSided" v-model:value="formData.publicationCoverInsideInkColors" name="Inside Cover Ink Colors" :options="InkList" class="col-span-2" color required ></MultiCheckBox>
                         </transition>
                         <CheckBox v-model:checked="formData.publicationCoverIsLaminated" label="Matte lamination?" field-id="lamination" class="col-span-2" ></CheckBox>
                     </fieldset>                    
@@ -73,7 +72,7 @@
                 <fieldset legend="Interior Options" class="col-span-2">
                     <h4>Self-cover / Interior Options</h4>
                     <PaperSelector v-model:value="formData.publicationInteriorStock" type="text" name="Paper Stock" required class="col-span-2"></PaperSelector>
-                    <MultiCheckBox v-model:value="formData.publicationInteriorInkColors" name="Ink Colors" :options="inkColors" class="col-span-2" required color ></MultiCheckBox>
+                    <MultiCheckBox v-model:value="formData.publicationInteriorInkColors" name="Ink Colors" :options="InkList" class="col-span-2" required color ></MultiCheckBox>
                     <TextField v-model="formData.publicationInteriorInkNotes" class="col-span-2 " name="Ink Notes" placeholder="e.g. 2-color throughout OR Aqua on center-fold only, etc." ></TextField>
                 </fieldset>
                 <CheckBox v-model:checked="formData.isRounded" label="Rounded Corners?" field-id="roundedCorners" class="col-span-2" ></CheckBox>
@@ -87,13 +86,15 @@
                 <h3>Print Specs</h3>
                 <PaperSelector v-model:value="formData.printStock" name="Paper Stock" required class="col-span-2"></PaperSelector>
                 <SelectField v-model="formData.printFinishedSize" :options="printSizes" name="Finished Size" required ></SelectField>
-                <transition name="fade">
-                    <TextField v-if="formData.printFinishedSize== 'Other'" v-model="formData.printOtherSize" name="Other Size" required ></TextField>
-                </transition>
-                <MultiCheckBox v-model:value="formData.printFrontInkColors" name="Front Ink Colors" :options="inkColors" required color ></MultiCheckBox>
+                <div>
+                    <transition name="fade">
+                        <TextField v-if="formData.printFinishedSize== 'Other'" v-model="formData.printOtherSize" name="Other Size" required ></TextField>
+                    </transition>
+                </div>
+                <MultiCheckBox v-model:value="formData.printFrontInkColors" name="Ink Colors" :options="InkList" required color class="col-span-2" ></MultiCheckBox>
                 <CheckBox v-model:checked="formData.printIsDoubleSided" label="Double Sided?" field-id="doubleSided" class="col-span-2" ></CheckBox>
                 <transition name="fade">
-                    <MultiCheckBox v-if="formData.printIsDoubleSided" v-model:value="formData.printBackInkColors" name="Back Ink Colors" :options="inkColors" class="col-span-2" color required ></MultiCheckBox>
+                    <MultiCheckBox v-if="formData.printIsDoubleSided" v-model:value="formData.printBackInkColors" name="Back Ink Colors" :options="InkList" class="col-span-2" color required ></MultiCheckBox>
                 </transition>
                 <CheckBox v-model:checked="formData.isRounded" label="Rounded Corners?" field-id="roundedCorners" class="col-span-2" ></CheckBox>
                 <transition name="fade">
@@ -108,7 +109,7 @@
                     <label for="Description" aria-label="Description">Description <span class="required">*</span></label>
                     <textarea v-model="formData.otherDescription" name="Description" placeholder="Please describe your project thoroughly" required ></textarea>
                 </div>
-                <MultiCheckBox v-model:value="formData.otherInkColors" name="Ink Colors" :options="inkColors" class="col-span-2" required color ></MultiCheckBox>
+                <MultiCheckBox v-model:value="formData.otherInkColors" name="Ink Colors" :options="InkList" class="col-span-2" required color ></MultiCheckBox>
                 <CheckBox v-model:checked="formData.isRounded" label="Rounded Corners?" field-id="roundedCorners" class="col-span-2" ></CheckBox>
                 <transition name="fade">
                     <SelectField v-if="formData.isRounded" v-model="formData.cornerRadius" :options="cornerRadii" name="Corner Radius" ></SelectField>
@@ -142,6 +143,7 @@
 </template>
 <script setup lang="ts">
     import { ref } from 'vue';
+    import { InkList }  from "~/constants"
     import ConfettiExplosion from "vue-confetti-explosion";
 
     const errors = ref([]);
@@ -161,36 +163,6 @@
         {name: '500', id:'500'},
         {name: 'Other', id:'other'},
     ])
-
-    const inkColors = ref([
-        {name: "Black", id:"black", postLabel: "$"},
-        {name: "Light Gray", id:"light-gray", postLabel: "$"},
-        {name: "Burgundy", id:"burgundy", postLabel: "$"},
-        {name: "Orchid", id:"orchid", postLabel: "$"},
-        {name: "RISO-Federal Blue", id:"risofederal-blue", postLabel: "$"},
-        {name: "Blue", id:"blue", postLabel: "$"},
-        {name: "Cornflower", id:"cornflower", postLabel: "$"},
-        {name: "Aqua", id:"aqua", postLabel: "$$"},
-        {name: "Mint", id:"mint", postLabel: "$$"},
-        {name: "Light Teal", id:"light-teal", postLabel: "$"},
-        {name: "Kelly Green", id:"kelly-green", postLabel: "$"},
-        {name: "Green", id:"green", postLabel: "$"},
-        {name: "Moss", id:"moss", postLabel: "$"},
-        {name: "Brown", id:"brown", postLabel: "$"},
-        {name: "Copper", id:"copper", postLabel: "$"},
-        {name: "Flat Gold", id:"flat-gold", postLabel: "$"},
-        {name: "Metallic Gold", id:"metallic-gold", postLabel: "$$$"},
-        {name: "Yellow", id:"yellow", postLabel: "$"},                
-        {name: "Fluorescent Yellow", id:"fluorescent-yellow", postLabel: "$$$"},
-        {name: "Sunflower", id:"sunflower", postLabel: "$"},
-        {name: "Orange", id:"orange", postLabel: "$"},
-        {name: "Fluorescent Orange", id:"fluorescent-orange", postLabel: "$$"},
-        {name: "Coral", id:"coral", postLabel: "$$"},
-        {name: "Scarlet", id:"scarlet", postLabel: "$"},
-        {name: "Fluorescent Red", id:"fluorescent-red", postLabel: "$$$"},     
-        {name: "Fluorescent Pink", id:"fluorescent-pink", postLabel: "$"},
-        {name: "White", id:"white", postLabel: "$$"},
-    ]);
 
     const printSizes = ref([
         {name: '11" x 17" (no bleed)', id:'11x17'},
@@ -229,15 +201,15 @@
     ]);
 
     const stapleColor = ref([
-            {id:'silver', name:'Silver', color:'#939c9a'},
-            {id:'flatGold',name:'Flat Gold', color:'#a98f5e'},
-            {id:'black', name:'Black', color:'#272727'},
-            {id:'red', name:'Red', color:'#dc1306'},
-            {id:'orange', name:'Orange', color:'#fe5f00'},
-            {id:'yellow',name:'Yellow', color:'#f3da6f'},
-            {id:'green', name:'Green', color:'#02b32a'},
-            {id:'blue', name:'Blue', color:'#015a95'},
-            {id:'pink', name:'Pink', color:'#f15786'},
+        {id:'silver', name:'Silver', color:'#939c9a'},
+        {id:'flatGold',name:'Flat Gold', color:'#a98f5e'},
+        {id:'black', name:'Black', color:'#272727'},
+        {id:'red', name:'Red', color:'#dc1306'},
+        {id:'orange', name:'Orange', color:'#fe5f00'},
+        {id:'yellow',name:'Yellow', color:'#f3da6f'},
+        {id:'green', name:'Green', color:'#02b32a'},
+        {id:'blue', name:'Blue', color:'#015a95'},
+        {id:'pink', name:'Pink', color:'#f15786'},
     ]);
 
     const deliveryType = ref([
@@ -252,7 +224,7 @@
         submitterName: null,
         submitterEmail: null,
         type: null,
-        quantity: 100,
+        quantity: '100',
         otherQuantity: null,
         isRounded: false,
         cornerRadius: null,

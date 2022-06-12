@@ -70,18 +70,13 @@ input.submit-button:hover {
 }
 
 .multi .checkbox {
-    @apply p-2 border border-white text-black rounded text-sm font-normal capitalize flex gap-2 items-center font-mono;
-}
-
-.multi .checkbox.bg-white {
-    @apply border-gray-300;
+    @apply p-2 rounded text-sm font-normal capitalize flex gap-2 items-center font-mono;
 }
 
 .circle {
     @apply w-3 h-3 bg-transparent border-2 rounded-full flex items-center justify-center overflow-hidden;
     min-width: .75rem;
 }
-
 
 .square {
     @apply w-3 h-3 bg-transparent border-2 rounded-sm flex items-center justify-center overflow-hidden;
@@ -96,6 +91,16 @@ input.submit-button:hover {
     @apply text-black;
 }
 
+.circle,
+.square {
+    @apply border-black;
+}
+
+.selected .circle,
+.selected .square {
+    @apply bg-black;
+}
+
 .dark-option .circle,
 .dark-option .square {
     @apply border-natural;
@@ -106,15 +111,6 @@ input.submit-button:hover {
     background-color: var(--color-natural);
 }
 
-.light-option .circle,
-.light-option .square {
-    @apply border-black;
-}
-
-.light-option.selected .circle,
-.light-option.selected .square {
-    @apply bg-black;
-}
 
 /* RADIO BUTTONS */
 .radio-buttons {

@@ -16,7 +16,6 @@
 .dark nav div,
 .dark fieldset h3,
 .dark aside a,
-.dark .multi .checkbox,
 .dark .errors-box,
 .dark .radio-button {
     @apply border-darker;
@@ -47,10 +46,6 @@ button.bg-black,
     @apply border-darker;
 }
 
-
-
-
-
 /* FORMS */
 
 .dark .disabled {
@@ -66,4 +61,24 @@ button.bg-black,
 
 .dark .mc-field-group input {
     @apply bg-darkest;
+}
+
+.dark .circle,
+.dark .square {
+    @apply border-natural;
+}
+
+.dark .selected .circle,
+.dark .selected .square {
+    background-color: var(--color-natural);
+}
+
+.dark .light-option .circle,
+.dark .light-option .square {
+    @apply border-black;
+}
+
+.dark .light-option.selected .circle,
+.dark .light-option.selected .square {
+    background-color: #000;
 }
