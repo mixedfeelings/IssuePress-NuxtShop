@@ -23,11 +23,9 @@
 <script setup lang="ts">
 import { ref, toRefs } from 'vue';
 
-const uuid = ref(0);
-
 const props = defineProps<{
     modelValue: any;
-    options: Array<Object>;
+    options: any;
     name?: string;
     required?: boolean;
 }>();
