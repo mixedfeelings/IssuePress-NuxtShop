@@ -1,5 +1,5 @@
 <template>
-    <div class="form-item radio-buttons lg:grid-columns-3">
+    <div class="form-item radio-buttons lg:grid-cols-3">
         <label 
             v-for="option in options" 
             :key="option.id"
