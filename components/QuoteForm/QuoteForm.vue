@@ -148,7 +148,7 @@
 </template>
 <script setup lang="ts">
     import { ref } from 'vue';
-    import { InkList, ProjectTypeOptions, QuantityOptions, PrintSizeOptions, PublicationSizeOptions, CornerRadiiOptions, BindingTypeOptions, StapleColorOptions, DeliveryTypeOptions }  from "~/constants"
+    import { InkList, ProjectTypeOptions, QuantityOptions, PrintSizeOptions, PublicationSizeOptions, CornerRadiiOptions, BindingTypeOptions, StapleColorOptions, DeliveryTypeOptions } from "~/constants"
     import ConfettiExplosion from "vue-confetti-explosion";
 
     const errors = ref([]);
@@ -422,8 +422,8 @@
             .then(() => this.SuccessMessage = "Thank you! Your Quote request has been submitted!")
             .catch((err) => this.SuccessMessage = `Error: %s ${err}`)
             .finally(() => {
-                console.log("quote: %s", JSON.stringify(this.formData))
-                console.log(this.encode(this.formData))
+                // console.log("quote: %s", JSON.stringify(this.formData))
+                // console.log(this.encode(this.formData))
                 window.scrollTo(0,0);
                 explode();
 
