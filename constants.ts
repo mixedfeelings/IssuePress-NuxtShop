@@ -302,7 +302,7 @@ export const InkList: Ink[] = [
 
 export const PaperList: Paper[] = [
   {
-    id: "80c_cougar",
+    id: "80c_cougar_smooth",
     name: "80#c Domtar Cougar Smooth",
     brand: "Domtar",
     line: "Cougar",
@@ -327,7 +327,7 @@ export const PaperList: Paper[] = [
     ]
   },
   {
-    id: "70t_cougar",
+    id: "70t_cougar_smooth",
     name: "70#t Domtar Cougar Smooth",
     brand: "Domtar",
     line: "Cougar",
@@ -352,7 +352,7 @@ export const PaperList: Paper[] = [
     ]
   },
   {
-    id: "70t_cougar",
+    id: "70t_cougar_vellum",
     name: "70#t Domtar Cougar Vellum",
     brand: "Domtar",
     line: "Cougar",

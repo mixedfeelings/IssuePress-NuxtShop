@@ -53,6 +53,7 @@
                 </template>
                 <p>Speckle-tone is characterized by it's namesake speckles and shives and availability in 50 shades of beige. That was a joke, but there are a lot of browns ¯\_(ツ)_/¯.</p> 
                 <a class="underline" href="https://www.frenchpaper.com/collections/speckletone" target="_blank">Website</a>            
+                <PrintDocsPaperVariants paper-id="70t_french_speckletone"></PrintDocsPaperVariants>
             </AccordionPanel>
             <AccordionPanel title="Construction">
                 <template v-slot:post-title>
@@ -60,6 +61,7 @@
                 </template>
                 <p>Despite the name, it is not the super absorbant craft construction paper you remember from childhood, but is very well-suited for stencil printing. Insulation Pink is easily one of my favorite papers ever.</p>
                 <a class="underline" href="https://www.frenchpaper.com/collections/construction" target="_blank">Website</a>
+                <PrintDocsPaperVariants paper-id="70t_french_construction"></PrintDocsPaperVariants>
             </AccordionPanel>
             <AccordionPanel title="Pop-Tone">
                 <template v-slot:post-title>
@@ -67,6 +69,7 @@
                 </template>
                 <p>Recycled paper with a vellum finish. Bright colors, lots of great pinks, purples, and blues.</p>
                 <a class="underline" href="https://www.frenchpaper.com/collections/pop-tone" target="_blank">Website</a>
+                <PrintDocsPaperVariants paper-id="70t_french_pop-tone"></PrintDocsPaperVariants>
             </AccordionPanel>
             <AccordionPanel title="Glo-Tone Neon">
                 <template v-slot:post-title>
@@ -74,6 +77,7 @@
                 </template>
                 <p>French's brightest paper. Like eye-popping</p>
                 <a class="underline" href="https://www.frenchpaper.com/collections/glo-tone" target="_blank">Website</a>
+                <PrintDocsPaperVariants paper-id="60t_french_glo-tone"></PrintDocsPaperVariants>
             </AccordionPanel>
             <AccordionPanel title="Dur-O-Tone">
                 <template v-slot:post-title>
@@ -81,6 +85,7 @@
                 </template>                
                 <p>Duro-tone is a weird one. It feels like French's catch-all for whatever doesn't fit in their other lines That said, there are some excellent papers for stencil printing and some others that are less great. Among the papers in the Duro-tone collection, I highly reccomend all of the newsprints and Packing Brown Wrap. I do not reccomend the butcher papers for stencil printing. Too smooth, too waxy. </p>
                 <a class="underline" href="https://www.frenchpaper.com/collections/dur-o-tone" target="_blank">Website</a>
+                <PrintDocsPaperVariants paper-id="70t_french_dur-o-tone"></PrintDocsPaperVariants>
             </AccordionPanel>
              <AccordionPanel title="Kraft-Tone">
                 <template v-slot:post-title>
@@ -88,6 +93,7 @@
                 </template>   
                 <p>The newest line. Some pretty great papers for riso. Unfortunately, the cover weights only come in 100#. Get it together, French Paper Co.!</p>  
                 <a class="underline" href="https://www.frenchpaper.com/collections/kraft-tone" target="_blank">Website</a>
+                <PrintDocsPaperVariants paper-id="70t_french_kraft-tone"></PrintDocsPaperVariants>
             </AccordionPanel>
             <p></p>
             <p></p>
@@ -100,6 +106,7 @@
                 </template>   
                 <p>Domtar's flagship paper. Comes in any color you like, as long as it is white or natural (kind of a creamy off-white). Cougar Smooth has more or less become my house paper, and I use it on many projects.</p>         
                 <a class="underline" href="https://www.domtar.com/en/what-we-make/paper/printing-and-publishing-papers/digital-printing-papers/cougar-digital" target="_blank">Website</a>
+                <PrintDocsPaperVariants paper-id="70t_cougar_smooth"></PrintDocsPaperVariants>
             </AccordionPanel>
              <AccordionPanel title="Lettermark Vellum Bristol">                
                 <template v-slot:post-title>
@@ -107,6 +114,7 @@
                 </template>   
                 <p>The vellum finish cover equivalent to Lettermark Colors Opaque</p>         
                 <a class="underline" href="https://www.domtar.com/sites/default/files/2022-03/LMColors-VB-Spec%2BStocking-EN.pdf" target="_blank">Spec Sheet</a>
+                <PrintDocsPaperVariants paper-id="67c_lettermark_vellum_bristol"></PrintDocsPaperVariants>
             </AccordionPanel>
              <AccordionPanel title="Lettermark Colors Opaque">                
                 <template v-slot:post-title>
@@ -114,7 +122,22 @@
                 </template>   
                 <p>The standard pastel rainbow of office paper. White is not available at text weight.</p>         
                 <a class="underline" href="https://www.domtar.com/sites/default/files/2022-03/LMColors-Opaque-Spec%2BStocking-EN_0.pdf" target="_blank">Spec Sheet</a>
+                <PrintDocsPaperVariants paper-id="70t_lettermark_colors"></PrintDocsPaperVariants>
             </AccordionPanel>  
+
+            <p></p>
+            <p></p>
+            <h3 class="text-xl font-serif pb-4 underline"><a href="https://www.neenahpaper.com" target="_blank">Neenah Paper</a></h3>
+            <p class="italic text-xs">TLDR: medium price, lots of options, can be more difficult to source in my area and not always available</p>
+            <p>Generally pretty good for stencil printing, this Wisconsin-based mill has lots, and lots of great colors. I have most experience with Astrobrights, but I am hoping to try some more lines out in the future. </p>             
+            <AccordionPanel title="Astrobrights">                
+                <template v-slot:post-title>
+                    <div class="text-xs text-mono pt-1 text-left">60# text / 65#, 80# cover | Smooth</div>
+                </template>   
+                <p>These papers are out of this world. Or whatever. Astrobrights work pretty well for stencil printing - but cover stock can be a little slower to dry. </p>         
+                <a class="underline" href="https://www.domtar.com/en/what-we-make/paper/printing-and-publishing-papers/digital-printing-papers/cougar-digital" target="_blank">Website</a>
+                <PrintDocsPaperVariants paper-id="60t_astrobrights"></PrintDocsPaperVariants>
+            </AccordionPanel>
         </PrintDocs>
     </section>
 
