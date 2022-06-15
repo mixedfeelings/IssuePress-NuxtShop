@@ -22,118 +22,123 @@
 
           <p class="hidden">
             <label>
-            Don’t fill this out if you’re human: <input name="bot-field" v-model="formData.botField">
+            Don’t fill this out if you’re human: <input name="bot-field" v-model="quote.botField">
             </label>
         </p>
 
         <fieldset legend="Basic Info">
             <h3>Basic Info</h3>
-            <TextField v-model="formData.name" name="Project Name" required class="col-span-2" placeholder="My kickass zine, print, or whatever!" ></TextField>
-            <TextField v-model="formData.submitterName" name="Your Name" placeholder="Noboru Hayama" required ></TextField>
-            <TextField v-model="formData.submitterEmail" name="Your Email" placeholder="info@issue.press" required ></TextField>
-            <SelectField v-model="formData.type" :options="projectTypes" name="Project Type" required ></SelectField>   
-            <SelectField v-model="formData.quantity" :options="quantityOptions" name="Quantity" ></SelectField>
+            <TextField v-model="quote.name" name="Project Name" required class="col-span-2" placeholder="My kickass zine, print, or whatever!" ></TextField>
+            <TextField v-model="quote.submitter.name" name="Your Name" placeholder="Noboru Hayama" required ></TextField>
+            <TextField v-model="quote.submitter.email" name="Your Email" placeholder="info@issue.press" required ></TextField>
+            <SelectField v-model="quote.type" :options="ProjectTypeOptions" name="Project Type" required ></SelectField>   
+            <SelectField v-model="quote.quantity" :options="QuantityOptions" name="Quantity" ></SelectField>
             <transition name="fade">
-                <TextField v-if="formData.quantity == 'Other'" v-model="formData.otherQuantity" name="Other Quantity" placeholder="4 Billion... JKJKJK!" required class="col-span-2" ></TextField>
+                <TextField v-if="quote.quantity == 'Other'" v-model="quote.otherQuantity" name="Other Quantity" placeholder="4 Billion... JKJKJK!" required class="col-span-2" ></TextField>
             </transition>
         </fieldset>
         <transition name="fade">
-            <fieldset legend="Placeholder" v-if="!formData.type">
+            <fieldset legend="Placeholder" v-if="!quote.type">
                 <h3>Project Specs</h3>
                 <p>Please Select a Project Type.</p>
             </fieldset>
         </transition>
         <transition name="fade">
-            <fieldset legend="Publication Specs" v-if="formData.type == 'Publication'">
+            <fieldset legend="Publication Specs" v-if="quote.type == 'Publication'">
                 <h3>Publication Specs</h3>
-                <TextField v-model="formData.publicationPages" name="Pages" type="number" :step="4" required ></TextField>
-                <SelectField v-model="formData.publicationFinishedSize" :options="publicationSizes" name="Finished Size" required ></SelectField>
+                <TextField v-model="quote.publication.pages" name="Pages" type="number" :step="4" required ></TextField>
+                <SelectField v-model="quote.publication.finishedSize" :options="PublicationSizeOptions" name="Finished Size" required ></SelectField>
                 <transition name="fade">
-                    <TextField v-if="formData.publicationFinishedSize== 'Other'" v-model="formData.publicationOtherSize" name="Other Size" required class="col-span-2" ></TextField>
+                    <TextField v-if="quote.publication.finishedSize == 'Other'" v-model="quote.publication.otherSize" name="Other Size" required class="col-span-2" ></TextField>
                 </transition>
-                <SelectField v-model="formData.publicationBindingType" :options="bindingTypes" name="Binding Type" required ></SelectField>
+                <SelectField v-model="quote.publication.binding.type" :options="BindingTypeOptions" name="Binding Type" required ></SelectField>
                 <div>
-                    <TextField v-if="formData.publicationBindingType == 'Wire-O' || formData.publicationBindingType == 'Spiral' " v-model="formData.publicationBindingColor" name="Color" placeholder="Enter your preferred color" required ></TextField>
-                    <SelectField v-if="formData.publicationBindingType == 'Saddle Stitch (Staple)'" v-model="formData.publicationBindingColor" :options="stapleColor" name="Color" required ></SelectField>
+                    <TextField v-if="quote.publication.binding.type == 'Wire-O' || quote.publication.binding.type == 'Spiral' " v-model="quote.publication.binding.color" name="Color" placeholder="Enter your preferred color" required ></TextField>
+                    <SelectField v-if="quote.publication.binding.type == 'Staple'" v-model="quote.publication.binding.stapleColor" :options="StapleColorOptions" name="Color" required ></SelectField>
                 </div>
-                <CheckBox v-model:checked="formData.publicationCoverPlusCover" label="Seperate Cover?" field-id="plusCover" class="col-span-2" ></CheckBox>
+                <CheckBox v-model:checked="quote.publication.cover.plusCover" label="Seperate Cover?" field-id="plusCover" class="col-span-2" ></CheckBox>
                 <transition name="fade">
-                    <fieldset v-if="formData.publicationCoverPlusCover" legend="Cover options" class="col-span-2">
+                    <fieldset v-if="quote.publication.cover.plusCover" legend="Cover options" class="col-span-2">
                         <h4>Cover Options</h4>
-                        <PaperSelector v-model:value="formData.publicationCoverStock" type="cover" name="Cover Stock" required class="col-span-2"></PaperSelector>
-                        <MultiCheckBox v-model:value="formData.publicationCoverOutsideInkColors" name="Outside Cover Ink Colors" :options="InkList" class="col-span-2" color required ></MultiCheckBox>
-                        <CheckBox v-model:checked="formData.publicationCoverIsDoubleSided" label="Printed Inside Cover?" field-id="insideCover" class="col-span-2" ></CheckBox>
+                        <PaperSelector v-model:value="quote.publication.cover.stock" type="cover" name="Cover Stock" required class="col-span-2"></PaperSelector>
+                        <MultiCheckBox v-model:value="quote.publication.cover.outsideInkColors" name="Outside Cover Ink Colors" :options="InkList" class="col-span-2" color required ></MultiCheckBox>
+                        <CheckBox v-model:checked="quote.publication.cover.isDoubleSided" label="Printed Inside Cover?" field-id="insideCover" class="col-span-2" ></CheckBox>
                         <transition name="fade">
-                            <MultiCheckBox v-if="formData.publicationCoverIsDoubleSided" v-model:value="formData.publicationCoverInsideInkColors" name="Inside Cover Ink Colors" :options="InkList" class="col-span-2" color required ></MultiCheckBox>
+                            <MultiCheckBox v-if="quote.publication.cover.isDoubleSided" v-model:value="quote.publication.cover.insideInkColors" name="Inside Cover Ink Colors" :options="InkList" class="col-span-2" color required ></MultiCheckBox>
                         </transition>
-                        <CheckBox v-model:checked="formData.publicationCoverIsLaminated" label="Matte lamination?" field-id="lamination" class="col-span-2" ></CheckBox>
+                        <CheckBox v-model:checked="quote.publication.cover.isLaminated" label="Matte lamination?" field-id="lamination" class="col-span-2" ></CheckBox>
                     </fieldset>                    
                 </transition>
                 <fieldset legend="Interior Options" class="col-span-2">
                     <h4>Self-cover / Interior Options</h4>
-                    <PaperSelector v-model:value="formData.publicationInteriorStock" type="text" name="Paper Stock" required class="col-span-2"></PaperSelector>
-                    <MultiCheckBox v-model:value="formData.publicationInteriorInkColors" name="Ink Colors" :options="InkList" class="col-span-2" required color ></MultiCheckBox>
-                    <TextField v-model="formData.publicationInteriorInkNotes" class="col-span-2 " name="Ink Notes" placeholder="e.g. 2-color throughout OR Aqua on center-fold only, etc." ></TextField>
+                    <PaperSelector v-model:value="quote.stock" type="text" name="Paper Stock" required class="col-span-2"></PaperSelector>
+                    <MultiCheckBox v-model:value="quote.inkColors" name="Ink Colors" :options="InkList" class="col-span-2" required color ></MultiCheckBox>
+                    <TextField v-model="quote.publication.interior.inkNotes" class="col-span-2 " name="Ink Notes" placeholder='e.g. "Aqua on center-fold only," etc.' ></TextField>
                 </fieldset>
-                <CheckBox v-model:checked="formData.isRounded" label="Rounded Corners?" field-id="roundedCorners" class="col-span-2" ></CheckBox>
+                <CheckBox v-model:checked="quote.isRounded" label="Rounded Corners?" field-id="roundedCorners" class="col-span-2" ></CheckBox>
                 <transition name="fade">
-                    <SelectField v-if="formData.isRounded" v-model="formData.cornerRadius" :options="cornerRadii" name="Corner Radius" ></SelectField>
+                    <SelectField v-if="quote.isRounded" v-model="quote.cornerRadius" :options="CornerRadiiOptions" name="Corner Radius" ></SelectField>
                 </transition>
             </fieldset>
         </transition>
         <transition name="fade">
-            <fieldset legend="Print Specs" v-if="formData.type == 'Print'" >
+            <fieldset legend="Print Specs" v-if="quote.type == 'Print'" >
                 <h3>Print Specs</h3>
-                <PaperSelector v-model:value="formData.printStock" name="Paper Stock" required class="col-span-2"></PaperSelector>
-                <SelectField v-model="formData.printFinishedSize" :options="printSizes" name="Finished Size" required ></SelectField>
+                <PaperSelector v-model:value="quote.stock" name="Paper Stock" required class="col-span-2"></PaperSelector>
+                <SelectField v-model="quote.print.size" :options="PrintSizeOptions" name="Finished Size" required ></SelectField>
                 <div>
                     <transition name="fade">
-                        <TextField v-if="formData.printFinishedSize== 'Other'" v-model="formData.printOtherSize" name="Other Size" required ></TextField>
+                        <TextField v-if="quote.print.size == 'Other'" v-model="quote.print.otherSize" name="Other Size" required ></TextField>
                     </transition>
                 </div>
-                <MultiCheckBox v-model:value="formData.printFrontInkColors" name="Ink Colors" :options="InkList" required color class="col-span-2" ></MultiCheckBox>
-                <CheckBox v-model:checked="formData.printIsDoubleSided" label="Double Sided?" field-id="doubleSided" class="col-span-2" ></CheckBox>
+                <MultiCheckBox v-model:value="quote.inkColors" name="Ink Colors" :options="InkList" required color class="col-span-2" ></MultiCheckBox>
+                <CheckBox v-model:checked="quote.print.isDoubleSided" label="Double Sided?" field-id="doubleSided" class="col-span-2" ></CheckBox>
                 <transition name="fade">
-                    <MultiCheckBox v-if="formData.printIsDoubleSided" v-model:value="formData.printBackInkColors" name="Back Ink Colors" :options="InkList" class="col-span-2" color required ></MultiCheckBox>
+                    <MultiCheckBox v-if="quote.print.isDoubleSided" v-model:value="quote.print.backInkColors" name="Back Ink Colors" :options="InkList" class="col-span-2" color required ></MultiCheckBox>
                 </transition>
-                <CheckBox v-model:checked="formData.isRounded" label="Rounded Corners?" field-id="roundedCorners" class="col-span-2" ></CheckBox>
+                <CheckBox v-model:checked="quote.isRounded" label="Rounded Corners?" field-id="roundedCorners" class="col-span-2" ></CheckBox>
                 <transition name="fade">
-                    <SelectField v-if="formData.isRounded" v-model="formData.cornerRadius" :options="cornerRadii" name="Corner Radius" ></SelectField>
+                    <SelectField v-if="quote.isRounded" v-model="quote.cornerRadius" :options="CornerRadiiOptions" name="Corner Radius" ></SelectField>
                 </transition>
             </fieldset>
         </transition>
         <transition name="fade">
-            <fieldset legend="Other Specs" v-if="formData.type == 'Other'" >
+            <fieldset legend="Other Specs" v-if="quote.type == 'Other'" >
                 <h3>Other Project Specs</h3>
                 <div class="form-item col-span-2">
                     <label for="Description" aria-label="Description">Description <span class="required">*</span></label>
-                    <textarea v-model="formData.otherDescription" name="Description" placeholder="Please describe your project thoroughly" required ></textarea>
+                    <textarea v-model="quote.other.description" name="Description" placeholder="Please describe your project thoroughly" required ></textarea>
                 </div>
-                <MultiCheckBox v-model:value="formData.otherInkColors" name="Ink Colors" :options="InkList" class="col-span-2" required color ></MultiCheckBox>
-                <CheckBox v-model:checked="formData.isRounded" label="Rounded Corners?" field-id="roundedCorners" class="col-span-2" ></CheckBox>
+                <PaperSelector v-model:value="quote.stock" name="Paper Stock" required class="col-span-2"></PaperSelector>
+                <MultiCheckBox v-model:value="quote.inkColors" name="Ink Colors" :options="InkList" class="col-span-2" required color ></MultiCheckBox>
+                <CheckBox v-model:checked="quote.isRounded" label="Rounded Corners?" field-id="roundedCorners" class="col-span-2" ></CheckBox>
                 <transition name="fade">
-                    <SelectField v-if="formData.isRounded" v-model="formData.cornerRadius" :options="cornerRadii" name="Corner Radius" ></SelectField>
+                    <SelectField v-if="quote.isRounded" v-model="quote.cornerRadius" :options="CornerRadiiOptions" name="Corner Radius" ></SelectField>
                 </transition>
             </fieldset>
         </transition>
         <fieldset>
             <h3>Final Details</h3>
-            <TextField v-model="formData.sampleLink" name="Sample Image Link" class="col-span-2" placeholder="https://... File hosted on DropBox, Google Drive, WeTransfer, etc." ></TextField>
+            <TextField v-model="quote.sampleLink" name="Sample Image Link" class="col-span-2" placeholder="https://... File hosted on DropBox, Google Drive, WeTransfer, etc." ></TextField>
             <div class="form-item col-span-2">
                 <label for="additionalNotes" aria-label="Notes / Additional info">Additional Notes / Further Description</label>
-                <textarea v-model="formData.notes" name="additionalNotes" placeholder="..." ></textarea>
+                <textarea v-model="quote.notes" name="additionalNotes" placeholder="..." ></textarea>
             </div>
-            <TextField v-model="formData.dueDate" name="Due Date" type="date" required ></TextField>
-            <SelectField v-model="formData.deliveryType" :options="deliveryType" name="Delivery" required ></SelectField>
+            <TextField v-model="quote.dueDate" name="Due Date" type="date" required ></TextField>
+            <SelectField v-model="quote.delivery.type" :options="DeliveryTypeOptions" name="Delivery" required ></SelectField>
             <transition name="fade">
-                <div v-if="formData.deliveryType == 'Ship'" class="form-item col-span-2">
-                    <label for="Address" aria-label="Address">Address</label>
-                    <textarea v-model="formData.deliveryAddress" name="Address" rows="3" placeholder="Issue Press&#10;314 Straight SW&#10;Grand Rapids, MI &#10;" class="whitespace-pre-wrap" ></textarea>
+                <div v-if="quote.delivery.type == 'Ship'" class="form-item col-span-2">
+                    <label for="Address" aria-label="Address" >Address <span class="required">*</span></label>
+                    <textarea v-model="quote.delivery.address" name="Address" rows="3" placeholder="Issue Press&#10;314 Straight SW&#10;Grand Rapids, MI" class="whitespace-pre-wrap" ></textarea>
                 </div>            
             </transition>
-            <TextField v-model="formData.experience" name="Describe your experience with Riso Printing" class="col-span-2" placeholder="..." ></TextField>
-            <TextField v-model="formData.referral" name="How'd You Find us?" class="col-span-2" placeholder="Funny story, actually..." ></TextField>
+            <TextField v-model="quote.experience" name="Describe your experience with Riso printing" class="col-span-2" placeholder="..." ></TextField>
+            <TextField v-model="quote.referral" name="How'd You Find Issue Press?" class="col-span-2" placeholder="Funny story, actually..." ></TextField>
         </fieldset>
+
+        <QuoteFormDescription v-model:value="quote.projectDescription" :fields="quote"></QuoteFormDescription>
+        <CheckBox v-model:checked="quote.confirmSummary" label="Please confirm the accuracy of this description" field-id="confirmSummary" class="col-span-2" ></CheckBox>
+   
         <div class="flex flex-col md:flex-row justify-center md:justify-between w-full items-center py-4">
             <h3 class="py-2">Phew... You made it to the end!</h3>
             <input type="submit" value="Submit" class="submit-button">
@@ -143,122 +148,167 @@
 </template>
 <script setup lang="ts">
     import { ref } from 'vue';
-    import { InkList }  from "~/constants"
+    import { InkList, ProjectTypeOptions, QuantityOptions, PrintSizeOptions, PublicationSizeOptions, CornerRadiiOptions, BindingTypeOptions, StapleColorOptions, DeliveryTypeOptions }  from "~/constants"
     import ConfettiExplosion from "vue-confetti-explosion";
 
     const errors = ref([]);
     const SuccessMessage = ref(null);
     const explodeVisible = ref(false);
-
-    const projectTypes = ref([
-        {name: 'Publication', id:'publication'},
-        {name: 'Print', id:'print'},
-        {name: 'Other', id:'other'},
-    ])
-
-    const quantityOptions = ref([
-        {name: '50', id:'50'},
-        {name: '100', id:'100'},
-        {name: '250', id:'250'},
-        {name: '500', id:'500'},
-        {name: 'Other', id:'other'},
-    ])
-
-    const printSizes = ref([
-        {name: '11" x 17" (no bleed)', id:'11x17'},
-        {name: '11" x 11" (no bleed)', id:'11x11'},
-        {name: '10" x 15"', id:'10x15'},
-        {name: '9" x 12"', id:'9x12'}, 
-        {name: '8" x 10"', id:'8x10'},
-        {name: '8" x 8"', id:'8x8'},
-        {name: '7" x 7"', id:'7x7'}, 
-        {name: '5" x 7"', id:'5x7'},          
-        {name: '4" x 6"', id:'4x6'},
-        {name: 'Other', id:'other'} 
-    ]);
-
-    const publicationSizes = ref([
-        {name: '4" x 5"', id:'4x5'},
-        {name: '5" x 7"', id:'5x7'},
-        {name: '5" x 8"', id:'5x8'},
-        {name: '7" x 10"', id:'7x10'}, 
-        {name: '8" x 10"', id:'8x10'},
-        {name: 'Other', id:'other'} 
-    ]);
-
-    const cornerRadii = ref([
-        {name: '1/4"', id:'1/4'},
-        {name: '1/8"', id:'1/8'},
-    ]);
-
-    const bindingTypes = ref([
-        {name: 'Saddle Stitch (Staple)', id:'staple'},
-        {name: 'Perfect (Soft-cover)', id:'perfect'},
-        {name: 'Wire-O', id:'wire-o'},
-        {name: 'Spiral', id:'spiral'}, 
-        {name: 'Comb', id:'comb'},
-        {name: 'None', id:'none'},
-    ]);
-
-    const stapleColor = ref([
-        {id:'silver', name:'Silver', color:'#939c9a'},
-        {id:'flatGold',name:'Flat Gold', color:'#a98f5e'},
-        {id:'black', name:'Black', color:'#272727'},
-        {id:'red', name:'Red', color:'#dc1306'},
-        {id:'orange', name:'Orange', color:'#fe5f00'},
-        {id:'yellow',name:'Yellow', color:'#f3da6f'},
-        {id:'green', name:'Green', color:'#02b32a'},
-        {id:'blue', name:'Blue', color:'#015a95'},
-        {id:'pink', name:'Pink', color:'#f15786'},
-    ]);
-
-    const deliveryType = ref([
-        {name: 'Local pickup in Grand Rapids, MI', id:'pickup'},
-        {name: 'Ship', id:'ship'},
-    ]);
     
-    
-    const formData = ref({
+    const quote = ref({
         botField: null,
         name: null,
-        submitterName: null,
-        submitterEmail: null,
+        submitter: {
+            name: null,
+            email: null
+        },
         type: null,
         quantity: '100',
         otherQuantity: null,
         isRounded: false,
         cornerRadius: null,
         dueDate: null,
-        publicationFinishedSize: '5" x 7"',
-        publicationOtherSize: null,
-        publicationPages: 16,
-        publicationBindingType: 'Saddle Stitch (Staple)',
-        publicationBindingColor: null,
-        publicationCoverPlusCover: false,
-        publicationCoverIsDoubleSided: false,
-        publicationCoverIsLaminated: false,
-        publicationCoverOutsideInkColors: [],
-        publicationCoverInsideInkColors: [],
-        publicationCoverStock: null,
-        publicationInteriorStock: null,
-        publicationInteriorInkColors: [],
-        publicationInteriorInkNotes: null,
-        printFinishedSize: '10" x 15"',
-        printOtherSize: null,
-        printIsDoubleSided: false,
-        printFrontInkColors: [],
-        printBackInkColors: [],
-        printStock: null,
-        printScores: 0,
-        otherDescription: null,
-        otherInkColors: [],
+        stock: null,
+        inkColors: [],
+        publication: {
+            finishedSize: '5" x 7"',
+            otherSize: null,
+            pages: 16,
+            binding: {
+                type: 'Staple',
+                stapleColor: 'Silver',
+                color: null,
+            },
+            cover: {
+                plusCover: false,
+                isDoubleSided: false,
+                isLaminated: false,
+                stock: null,
+                outsideInkColors: [],
+                insideInkColors: [],
+            },
+            interior: {
+                inkNotes: null,
+            },
+        },
+        
+
+        print: {
+            size: '10" x 15"',
+            otherSize: null,
+            isDoubleSided: false,
+            backInkColors: [],
+            scores: 0,
+        },
+        other: {
+            description: null,
+        },
         sampleLink: null,
         notes: null,
-        deliveryType: null,
-        deliveryAddress: null,
+        delivery: {
+            type: null,
+            address: null,
+        },
         experience: null,
         referral: null,
+        projectDescription: null,
+        confirmSummary: false,
     });
+
+    const formData = ref({ 
+        botField: null,
+        name: null,
+        submitterName: null,
+        submitterEmail: null,
+        projectDescription: null,
+        type: null,
+        quantity: null,
+        finishedSize: null,
+        paperStock: null, 
+        inkColors: [],
+        publicationPages: null,
+        publicationCoverStock: null,
+        publicationCoverOutsideInkColors: [],
+        publicationCoverInsideInkColors: [],
+        publicationCoverIsLaminated: null,
+        publicationInteriorInkNotes: null,
+        publicationBindingType: null,
+        publicationBindingColor: null,
+        printBackInkColors: [],
+        otherDescription: null,
+        cornerRadius: null,
+        sampleLink: null,
+        notes: null,
+        dueDate: null,
+        deliveryType: null,
+        deliveryAddress: null,
+        risoExperience: null,
+        referral: null
+    });
+
+    function setFormData() {
+        formData.value.botField = quote.value.botField;
+        formData.value.name = quote.value.name;
+        formData.value.submitterName = quote.value.submitter.name;
+        formData.value.submitterEmail = quote.value.submitter.email;
+        formData.value.projectDescription = quote.value.projectDescription;
+        formData.value.type = quote.value.type;
+        if (quote.value.otherQuantity) {
+            formData.value.quantity = quote.value.otherQuantity; 
+        } else {
+            formData.value.quantity = quote.value.quantity;
+        }
+        formData.value.paperStock = quote.value.stock;
+        formData.value.inkColors = quote.value.inkColors;
+        formData.value.publicationInteriorInkNotes = quote.value.publication.interior.inkNotes;
+        if (quote.value.type && quote.value.type == "Publication") {
+            formData.value.publicationPages = quote.value.publication.pages;
+            if (quote.value.publication.otherSize) {
+                formData.value.finishedSize = quote.value.publication.otherSize; 
+            } else {
+                formData.value.finishedSize = quote.value.publication.finishedSize;
+            }
+            if (quote.value.publication.cover.plusCover) {
+                formData.value.publicationCoverStock = quote.value.publication.cover.stock;
+                formData.value.publicationCoverOutsideInkColors = quote.value.publication.cover.outsideInkColors;
+                if (quote.value.publication.cover.isDoubleSided) {
+                    formData.value.publicationCoverInsideInkColors = quote.value.publication.cover.insideInkColors;
+                }
+                formData.value.publicationCoverIsLaminated = quote.value.publication.cover.isLaminated;
+            }
+            formData.value.publicationBindingType = quote.value.publication.binding.type;
+            if (quote.value.publication.binding.type == "Wire-O" || quote.value.publication.binding.type == "Wire-O") {
+                formData.value.publicationBindingColor = quote.value.publication.binding.color; 
+            } else if (quote.value.publication.binding.type == "Staple") {
+                formData.value.publicationBindingColor = quote.value.publication.binding.stapleColor;
+            }
+        }
+        if (quote.value.type && quote.value.type == "Print") {
+            if (quote.value.print.size == "Other" && quote.value.print.otherSize) {
+                formData.value.finishedSize = quote.value.print.otherSize; 
+            } else {
+                formData.value.finishedSize = quote.value.print.size;
+            }
+            if (quote.value.print.isDoubleSided) {
+                formData.value.printBackInkColors = quote.value.print.backInkColors;
+            }
+        }
+        if (quote.value.type && quote.value.type == "Other") {
+            formData.value.otherDescription = quote.value.other.description;
+        }
+        if (quote.value.isRounded) {
+            formData.value.cornerRadius = quote.value.cornerRadius;
+        }
+        formData.value.sampleLink = quote.value.sampleLink;
+        formData.value.notes = quote.value.notes;
+        formData.value.dueDate = quote.value.dueDate;
+        formData.value.deliveryType = quote.value.delivery.type
+        if (quote.value.delivery.type == "Ship") {
+            formData.value.deliveryAddress = quote.value.delivery.address;
+        }
+        formData.value.risoExperience = quote.value.experience;
+        formData.value.referral = quote.value.referral;
+    }
 
     function encode (data) {
       return Object.keys(data)
@@ -267,86 +317,78 @@
         )
         .join("&");
     }
-    
 
     function checkform() {
-
         this.errors = [];
-        if (this.formData.botField) {
+        if (this.quote.botField) {
             this.errors.push("Only robots can fill out this field. Are you a robot?");
         }
-        if (!this.formData.name) {
+        if (!this.quote.name) {
             this.errors.push("Project Name is required.");
         }
-        if (!this.formData.submitterName) {
+        if (!quote.value.submitter.name) {
             this.errors.push("Your Name is required.");
         }
-        if (!this.formData.submitterEmail) {
+        if (!this.quote.submitter.email) {
             this.errors.push("Your Email is required.");
-        } else if (!validEmail(this.formData.submitterEmail)) {
-            this.errors.push(`${this.formData.submitterEmail} is not a valid Email.`)
+        } else if (!validEmail(this.quote.submitter.email)) {
+            this.errors.push(`${this.quote.submitter.email} is not a valid Email.`)
         }
-        if (!this.formData.type) {
+        if (!this.quote.type) {
             this.errors.push("Project Type is required.");
         }
-        if (this.formData.quantity == 'Other' && !this.formData.otherQuantity) {
+        if (this.quote.quantity == 'Other' && !this.quote.otherQuantity) {
             this.errors.push("Other Quantity is required.")
         }
-        if (this.formData.type == 'Print') {
-            if (this.formData.printFinishedSize == 'Other' && !this.formData.printOtherSize) {
+        if (!this.quote.stock) {
+            this.errors.push("Paper Stock is required.");
+        }
+        if (this.quote.inkColors.length == 0) {
+            this.errors.push("Ink Colors is required.");
+        }
+        if (this.quote.type == 'Print') {
+            if (this.quote.print.size == 'Other' && !this.quote.print.otherSize) {
                 this.errors.push("Other Size is required.")
             }
-            if (!this.formData.printStock) {
-                this.errors.push("Print Stock is required.");
-            }
-            if (this.formData.printFrontInkColors.length == 0 ) {
-                this.errors.push("Print Front Ink Colors is required.");
-            }
-            if (this.formData.printIsDoubleSided == true &&  this.formData.printBackInkColors.length == 0) {
+            if (this.quote.print.isDoubleSided == true && this.quote.print.backInkColors.length == 0) {
                 this.errors.push("Print Back Ink Colors is required.");
             }
         }
-        if (this.formData.type == 'Publication') {
-            if ((this.formData.publicationBindingType == 'Saddle Stitch (Staple)' && !this.formData.publicationBindingColor ) || (this.formData.publicationBindingType == 'Wire-O' && !this.formData.publicationBindingColor ) || (this.formData.publicationBindingType == 'Spiral' && !this.formData.publicationBindingColor) )  {
+        if (this.quote.type == 'Publication') {
+            if ((this.quote.publication.bindingType == 'Staple' && !this.quote.publication.stapleColor ) || (this.quote.publication.bindingType == 'Wire-O' && !this.quote.publication.bindingColor ) || (this.quote.publication.bindingType == 'Spiral' && !this.quote.publication.bindingColor) )  {
                 this.errors.push("Publication Binding Color is required")
             }
-            if (this.formData.publicationFinishedSize == 'Other' && !this.formData.publicationOtherSize) {
+            if (this.quote.publicationFinishedSize == 'Other' && !this.quote.publication.otherSize) {
                 this.errors.push("Other Size is required.")
             }
-            if (this.formData.publicationCoverPlusCover) {
-                if (!this.formData.publicationCoverStock) {
+            if (this.quote.publication.cover.plusCover) {
+                if (!this.quote.publication.cover.stock) {
                     this.errors.push("Publication Cover Stock is required");
                 }
-                if (this.formData.publicationCoverOutsideInkColors.length == 0) {
+                if (this.quote.publication.cover.outsideInkColors.length == 0) {
                     this.errors.push("Publication Outside Cover Ink Colors is required");
                 }
-                if (this.formData.publicationCoverIsDoubleSided && this.formData.publicationCoverOutsideInkColors == 0) {
+                if (this.quote.publication.cover.isDoubleSided && this.quote.publication.cover.outsideInkColors == 0) {
                     this.errors.push("Publication Inside Cover Ink Colors is required");
                 }
             }
-            if (!this.formData.publicationInteriorStock) {
-                this.errors.push("Publication Interior Paper Stock is required");
-            }
-            if (this.formData.publicationInteriorInkColors.length == 0) {
-                this.errors.push("Publication Interior Ink Colors is required");
-            }
         }
-        if (this.formData.type == 'Other') {
-            if (!this.formData.otherDescription) {
+        if (this.quote.type == 'Other') {
+            if (!this.quote.other.description) {
                 this.errors.push("Other Project Description is required");
             }
-            if (this.formData.otherInkColors.length == 0) {
-                this.errors.push("Other Ink Colors is required");
-            }
         }   
-        if (!this.formData.dueDate) {
+        if (!this.quote.dueDate) {
             this.errors.push("Due Date is required.");
         }
-        if (!this.formData.deliveryType) {
+        if (!this.quote.delivery.type) {
             this.errors.push("Delivery Method is required.");
         }
-        if (this.formData.deliveryType == 'Ship' && !this.formData.deliveryAddress) {
+        if (this.quote.delivery.type == 'Ship' && !this.quote.delivery.address) {
             this.errors.push("Delivery Address is required.");
+        }
+        if (!this.quote.confirmSummary) {
+            this.errors.push("Please confirm the accuracy of the Project Summary.")
         }
     }
 
@@ -354,7 +396,6 @@
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     }
-
 
     const explode = async () => {
         explodeVisible.value = false;
@@ -367,6 +408,7 @@
         if (this.errors.length == 0) {
             // Must post to a path not handled by the SSR.
             // Path must exist
+            this.setFormData();
             fetch('/printing/submit-quote', {
                 method: "POST",
                 headers: {
@@ -374,14 +416,14 @@
                 },
                 body: this.encode({
                 "form-name": "Quotes",
-                ...this.formData
+                ...this.quote
                 }),
             })
             .then(() => this.SuccessMessage = "Thank you! Your Quote request has been submitted!")
             .catch((err) => this.SuccessMessage = `Error: %s ${err}`)
             .finally(() => {
-                console.log("formData: %s", JSON.stringify(this.formData))
-                // console.log(this.encode(this.formData))
+                console.log("quote: %s", JSON.stringify(this.formData))
+                console.log(this.encode(this.formData))
                 window.scrollTo(0,0);
                 explode();
 
@@ -390,10 +432,6 @@
             window.scrollTo(0,0);
         }
     }
-
-
-
-
 
 
 </script>

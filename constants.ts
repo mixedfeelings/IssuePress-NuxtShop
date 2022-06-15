@@ -23,6 +23,12 @@ interface Ink {
   postLabel: string,
 }
 
+interface Option {
+  id: string,
+  name: string,
+  color?: string,
+}
+
 
 export const navLinks: NavLink[] = [
   {
@@ -2124,3 +2130,70 @@ export const PaperList: Paper[] = [
     variants: []
   }
  ]
+
+ export const ProjectTypeOptions: Option[] = [
+  {name: 'Publication', id:'publication'},
+  {name: 'Print', id:'print'},
+  {name: 'Other', id:'other'},
+ ]
+ 
+ export const QuantityOptions: Option[] = [
+  {name: '50', id:'50'},
+  {name: '100', id:'100'},
+  {name: '250', id:'250'},
+  {name: '500', id:'500'},
+  {name: 'Other', id:'other'},
+ ]
+
+ export const PrintSizeOptions: Option[] = [
+  {name: '11" x 17" (no bleed)', id:'11x17'},
+  {name: '11" x 11" (no bleed)', id:'11x11'},
+  {name: '10" x 15"', id:'10x15'},
+  {name: '9" x 12"', id:'9x12'}, 
+  {name: '8" x 10"', id:'8x10'},
+  {name: '8" x 8"', id:'8x8'},
+  {name: '7" x 7"', id:'7x7'}, 
+  {name: '5" x 7"', id:'5x7'},          
+  {name: '4" x 6"', id:'4x6'},
+  {name: 'Other', id:'other'},
+ ]
+
+ export const PublicationSizeOptions: Option[] = [
+  {name: '4" x 5"', id:'4x5'},
+  {name: '5" x 7"', id:'5x7'},
+  {name: '5" x 8"', id:'5x8'},
+  {name: '7" x 10"', id:'7x10'}, 
+  {name: '8" x 10"', id:'8x10'},
+  {name: 'Other', id:'other'} 
+]
+
+export const CornerRadiiOptions: Option[] = [
+  {name: '1/4"', id:'1/4'},
+  {name: '1/8"', id:'1/8'},
+]
+
+export const BindingTypeOptions: Option[] = [
+  {name: 'Staple', id:'staple'},
+  {name: 'Perfect', id:'perfect'},
+  {name: 'Wire-O', id:'wire-o'},
+  {name: 'Spiral', id:'spiral'}, 
+  {name: 'Comb', id:'comb'},
+  {name: 'None', id:'none'},
+]
+
+export const StapleColorOptions: Option[] = [
+  {id:'silver', name:'Silver', color:'#939c9a'},
+  {id:'flatGold',name:'Flat Gold', color:'#a98f5e'},
+  {id:'black', name:'Black', color:'#272727'},
+  {id:'red', name:'Red', color:'#dc1306'},
+  {id:'orange', name:'Orange', color:'#fe5f00'},
+  {id:'yellow',name:'Yellow', color:'#f3da6f'},
+  {id:'green', name:'Green', color:'#02b32a'},
+  {id:'blue', name:'Blue', color:'#015a95'},
+  {id:'pink', name:'Pink', color:'#f15786'},
+]
+
+export const DeliveryTypeOptions: Option[] = [
+  {name: 'Local pickup in Grand Rapids, MI', id:'pickup'},
+  {name: 'Ship', id:'ship'},
+]
