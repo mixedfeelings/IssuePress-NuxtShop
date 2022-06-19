@@ -4,7 +4,7 @@
             <div class="color-ramp-inner">
                 <div class="p100">
                     <div class="color-info desktop-only">
-                        <div v-if="ink.name" class="name font-serif">{{ink.name}}</div>
+                        <div v-if="ink.name" class="name font-serif"><NuxtLink :to="`/collections/${formatText(ink.name)}`">{{ink.name}}</NuxtLink></div>
                         <div class="color-info-meta">
                             <div v-if="ink.pantone" class="pantone">{{ink.pantone}}</div>
                             <div v-if="ink.hex" class="hex">{{ink.hex}}</div>
@@ -28,6 +28,12 @@
 </template>
 <script setup lang="ts">
     import { lightOrDark } from "~/utils/colors";
+    import { slugify } from "~/utils/strings";
+
+
+    function formatText(text: string) {
+        return slugify(text);
+    }
 
     const props = defineProps<{
         ink: {

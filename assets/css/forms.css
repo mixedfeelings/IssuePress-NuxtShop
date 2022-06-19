@@ -83,12 +83,26 @@ input.submit-button:hover {
     min-width: .75rem;
 }
 
-.dark-option {
-    @apply text-natural;
+.dark-option,
+.dark-option a,
+.dark-option a:hover {
+    color: var(--color-natural) !important;
 }
 
-.light-option {
-    @apply text-black;
+.light-option,
+.light-option a,
+.light-option a:hover {
+    color: #000 !important;
+}
+
+.dark-option a,
+.light-option a {
+    @apply underline;
+}
+
+.dark-option a:hover,
+.light-option a:hover {
+    @apply no-underline;
 }
 
 .circle,

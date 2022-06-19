@@ -39,7 +39,10 @@
             </template>
           </InfiniteLoading>
         </ProductGrid>
-
+        <div v-if="collection?.products?.edges.length == 0" class="text-center">
+          <p>There are no items in the catalog that match this criteria.</p>
+          <p><NuxtLink to="/">Home</NuxtLink></p>
+        </div>
       </div>
     </div>
     <div v-else></div>
