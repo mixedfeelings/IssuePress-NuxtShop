@@ -20,13 +20,31 @@ import "~/assets/css/tailwind.css";
 import { useShopStore } from "~/stores/shop";
 
 useMeta({
+  colorMode: 'auto',
   htmlAttrs: {
     lang: "en",
-  },
+  },  
+  script: [
+    {
+      src: 'https://www.googletagmanager.com/gtag/js?id=UA-22429627-1', 
+      async: true,
+      type: 'text/javascript'
+    },
+    {
+      children: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        gtag('config', 'UA-22429627-1');
+      `,
+      type: 'text/javascript'
+    }
+  ]
 });
 
  definePageMeta({
-   colorMode: 'auto',
+   
 })
 
 // Global Store Actions
