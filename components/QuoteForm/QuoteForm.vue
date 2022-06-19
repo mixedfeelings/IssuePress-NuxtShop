@@ -216,7 +216,6 @@
     });
 
     const formData = ref({ 
-        botField: null,
         name: null,
         submitterName: null,
         submitterEmail: null,
@@ -247,7 +246,6 @@
     });
 
     function setFormData() {
-        formData.value.botField = quote.value.botField;
         formData.value.name = quote.value.name;
         formData.value.submitterName = quote.value.submitter.name;
         formData.value.submitterEmail = quote.value.submitter.email;
