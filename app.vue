@@ -20,7 +20,6 @@ import "~/assets/css/tailwind.css";
 import { useShopStore } from "~/stores/shop";
 
 useMeta({
-  colorMode: 'auto',
   htmlAttrs: {
     lang: "en",
   },  
@@ -42,10 +41,6 @@ useMeta({
     }
   ]
 });
-
- definePageMeta({
-   
-})
 
 // Global Store Actions
 const { pending, error } = await useAsyncData("shop", () => {
