@@ -21,6 +21,10 @@
     @apply border-darker;
 }
 
+.dark .metafield-wrapper .ink-chip  {
+    @apply border-darkest;
+}
+
 .dark .cart .bg-black,
 .dark .chevron-button,
 .dark .bg-natural,

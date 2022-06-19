@@ -42,13 +42,13 @@
     </carousel>
     <section class="py-6 md:py-8 px-6 bg-natural">
       <div class="container mx-auto">
-      <div v-if="sku" v-text="sku" class="pb-2" />
+      <div v-if="sku" v-text="sku" class="pb-2" ></div>
       <ProductTitle
         tag="h1"
         :title="product.title"
         variant="product"
         class="text-2xl md:text-3xl lg:text-4xl font-serif tracking-wide mb-2"
-      />
+      ></ProductTitle>
       <div v-if="artist" class="artist text-base md:text-lg my-1 font-mono">
         by <NuxtLink :to="`/artists/${formatText(artist)}`">{{artist}}</NuxtLink> <span v-if="artist2">& <NuxtLink :to="`/artists/${formatText(artist2)}`">{{artist2}}</NuxtLink> </span>
       </div>
@@ -57,16 +57,62 @@
         <ProductPrice
           :priceRange="product.priceRange"
           :compareAtPriceRange="product.compareAtPriceRange"
-        />
-        <ProductVariants  label="Select option" :variants="variants" :default-variant="default_variant" />
-        <ProductAddToCart :label="button_label" />
+        ></ProductPrice>
+        <ProductVariants  label="Select option" :variants="variants" :default-variant="default_variant" ></ProductVariants>
+        <ProductAddToCart :label="button_label" ></ProductAddToCart>
       </div>
 
       <div class="text-base md:text-2xl pt-6">
-        <ProductDescription :description="product.descriptionHtml" class="leading-relaxed" />
-        <div class="metadata pt-6 font-mono whitespace-pre-wrap ">
-          <div v-if="year" v-text="year" />
-          <div v-if="metadata" v-text="metadata" />
+        <ProductDescription :description="product.descriptionHtml" class="product-description" ></ProductDescription>
+        <div class="metadata pt-6 font-mono whitespace-pre-wrap text-base gap-y-2">
+          
+          <div v-if="year" class="metafield-wrapper">
+            <span class="metafield-label">Year: </span>{{year}}
+          </div>
+          
+          <div class="metafield-wrapper">
+            <span class="metafield-label">Type: </span><NuxtLink class="underline" :to="`/collections/${formatText(product.productType)}s`">{{product.productType}}</NuxtLink>
+          </div>
+
+          <div v-if="dimensions" class="metafield-wrapper">
+            <span class="metafield-label">Dimensions: </span>{{dimensions}}
+          </div>
+
+          <div v-if="pages" class="metafield-wrapper">
+            <span class="metafield-label">Pages: </span>{{pages}}
+          </div>
+          
+          <div v-if="cover" class="metafield-wrapper">
+            <span class="metafield-label">Cover: </span>{{cover}}
+          </div>
+
+          <div v-if="binding" class="metafield-wrapper">
+            <span class="metafield-label">Binding: </span>{{binding.join(', ')}}
+          </div>
+
+          <div v-if="process" class="metafield-wrapper">
+            <span class="metafield-label">Process: </span>{{process.join(', ')}}
+          </div>
+
+          <div v-if="inkColors" class="metafield-wrapper gap-y-1 items-center">
+            <span class="metafield-label">Ink Color<span v-if="inkColors.length > 1">s</span>: </span>
+            <div class="flex flex-wrap gap-2 items-center">
+              <NuxtLink :to="`/collections/${formatText(color)}`" v-for="color in inkColors" :key="color" :class="`ink-chip ${lod(color)}`" :style="`background-color: var(--color-${formatText(color)});`" v-text="color"></NuxtLink>
+            </div>
+          </div>
+
+          <div v-if="papers" class="metafield-wrapper">
+            <span class="metafield-label">Paper: </span>{{papers.join(', ')}}
+          </div>
+
+          <div v-if="editionSize" class="metafield-wrapper">
+            <span class="metafield-label">Edition Size: </span>{{editionSize.join(', ')}}
+          </div>
+
+          <div v-if="metadata" class="metafield-wrapper">
+            <span class="metafield-label">Notes: </span>{{metadata}}
+          </div>
+
         </div>
       </div>
 
@@ -95,11 +141,11 @@
             <img 
               :src="image.node.url" 
               style="max-height: 90vh"
-            />
+            >
           </div>       
         </slide>
         <template #addons>
-          <navigation v-if="has_more_than_one_image"/>
+          <navigation v-if="has_more_than_one_image"></navigation>
         </template>
       </carousel>
 
@@ -120,8 +166,27 @@ import 'vue3-carousel/dist/carousel.css';
 import { useColorStore } from "~/stores/colors";
 import { slugify } from "~/utils/strings";
 
+
 function formatText(text: string) {
   return slugify(text);
+}
+
+function lod(color: string) {
+  switch(color) {
+    case "Black": 
+    case "Blue":
+    case "Brown": 
+    case "Burgundy":
+    case "Moss":
+    case "RISO-Federal Blue":
+    case "Teal":
+    case "Hunter Green":
+      return "dark-option";
+      break;
+    default: 
+      return "light-option";
+      break;
+  }
 }
 
 const myCarousel = ref(null);
@@ -156,9 +221,19 @@ const initialVariants = useResult(
 );
 variants.value = initialVariants;
 
+//METADATA
 const artist = computed(() => product.value.artist?.value ?? "");
 const artist2 = computed(() => product.value.artist2?.value ?? "");
 const sku = computed(() => product.value?.variants?.edges[0]?.node?.sku ?? "");
+const inkColors = computed(() => product.value.inkColors ? JSON.parse(product.value.inkColors.value) : "");
+const papers = computed(() => product.value.papers ? JSON.parse(product.value.papers.value) : "" );
+const binding = computed(() => product.value.binding ? JSON.parse(product.value.binding.value) : "" );
+const process = computed(() => product.value.process ? JSON.parse(product.value.process.value) : "" );
+const dimensions = computed(() => product.value.dimensions ? product.value.dimensions.value : "" );
+const pages = computed(() => product.value.pages ? product.value.pages.value : "" );
+const editionSize = computed(() => product.value.edition_size ? JSON.parse(product.value.edition_size.value) : "" );
+const cover = computed(() => product.value.cover ? product.value.cover.value : "" );
+
 
 const year = computed(() =>  {
   if (product.value.date?.value) {
@@ -166,7 +241,6 @@ const year = computed(() =>  {
     return date.getUTCFullYear();
   } 
 });
-
 const metadata = computed(() => product.value.metadata?.value ?? "");
 
 // Product Image
@@ -263,6 +337,31 @@ onMounted(() => {
 .metadata {
   white-space: pre-wrap;
 }
+
+.metafield-wrapper {
+  @apply  flex flex-wrap py-1 font-mono;
+}
+
+.metafield-wrapper .metafield-label {
+  @apply font-bold;
+}
+
+.metafield-wrapper .ink-chip {
+ @apply text-xs px-2 py-1 rounded cursor-pointer border;
+}
+
+.metafield-wrapper .ink-chip:hover {
+ @apply underline bg-opacity-75;
+}
+
+.metafield-wrapper .dark-option:hover {
+  color: white !important;
+} 
+
+.metafield-wrapper .light-option:hover {
+  color: black !important;
+} 
+
 
 /* .close-icon:hover {
   fill: var(--global-color); 

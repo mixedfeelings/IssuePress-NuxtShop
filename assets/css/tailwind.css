@@ -26,10 +26,13 @@
     --color-orange: rgb(255, 108, 47);
     --color-orchid: rgb(187, 118, 207);
     --color-red: rgb(255 102 94);
-    --color-risofederal-blue: rgb(61, 85, 136);
+    --color-riso-federal-blue: rgb(61, 85, 136);
     --color-scarlet: rgb(246, 80, 88);
     --color-sunflower: rgb(255, 181, 17);
     --color-yellow: rgb(255, 232, 0);
+    --color-hunter-green: rgb(64, 112, 96);
+    --color-teal: rgb(0, 131, 138);
     
+    --color-black: rgb(0,0,0);
     --color-natural: rgb(251, 247, 239);
 }

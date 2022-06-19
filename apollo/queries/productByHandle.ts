@@ -66,10 +66,41 @@ export const productByHandle = gql`
         type
       }
       metadata: metafield(namespace: "issuepress", key: "metadata") {
-          value
-          type
-        }
-
+        value
+        type
+      }
+      inkColors: metafield(namespace: "issuepress", key: "colors") {
+        value
+        type
+      }
+      papers: metafield(namespace: "issuepress", key: "papers") {
+        value
+        type
+      }
+      edition_size: metafield(namespace: "issuepress", key: "edition_size") {
+        value
+        type
+      }
+      cover: metafield(namespace: "issuepress", key: "cover") {
+        value
+        type
+      }
+      binding: metafield(namespace: "issuepress", key: "binding") {
+        value
+        type
+      }
+      process: metafield(namespace: "issuepress", key: "process") {
+        value
+        type
+      }
+      pages: metafield(namespace: "issuepress", key: "pages") {
+        value
+        type
+      }
+      dimensions: metafield(namespace: "issuepress", key: "dimensions") {
+        value
+        type
+      }
     }
   }
 `;
