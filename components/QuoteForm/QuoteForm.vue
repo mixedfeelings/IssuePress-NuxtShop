@@ -420,8 +420,8 @@
             .then(() => this.SuccessMessage = "Thank you! Your Quote request has been submitted!")
             .catch((err) => this.SuccessMessage = `Error: %s ${err}`)
             .finally(() => {
-                console.log("quote: %s", JSON.stringify(this.formData))
-                // console.log(this.encode(this.formData))
+                // console.log("quote: %s", JSON.stringify(this.formData))
+                console.log(this.encode(this.formData))
                 window.scrollTo(0,0);
                 explode();
 
