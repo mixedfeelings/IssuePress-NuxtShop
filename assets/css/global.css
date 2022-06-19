@@ -23,9 +23,8 @@ p a,
 }
 
 p a:hover,
-a:hover,
-button:hover {
-  color: var(--global-color) !important;
+a:hover {
+  color: var(--global-color);
 }
 
 button:hover svg,
@@ -65,6 +64,14 @@ button {
 
 .print-docs .print-docs-body {
   @apply bg-transparent p-6;
+}
+
+.product-description {
+  @apply leading-relaxed;
+}
+
+.product-description a {
+  @apply underline;
 }
 
 @media (min-width: 640px) {
