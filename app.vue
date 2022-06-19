@@ -23,6 +23,22 @@ useMeta({
   htmlAttrs: {
     lang: "en",
   },
+  script: [
+    
+      {
+        hid: 'gtag',
+        src: 'https://www.googletagmanager.com/gtag/js?id=UA-22429627-1', 
+        children: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'UA-22429627-1');
+        `,
+        type: 'text/javascript'
+      }
+    
+  ]
 });
 
  definePageMeta({
