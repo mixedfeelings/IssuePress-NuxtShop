@@ -23,6 +23,7 @@ useMeta({
   htmlAttrs: {
     lang: "en",
   },
+<<<<<<< HEAD
   script: [
     
       {
@@ -38,12 +39,54 @@ useMeta({
         type: 'text/javascript'
       }
     
+=======
+  link: [
+      {
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon.ico',
+      sizes: 'any',
+    },
+      {
+      rel: 'icon',
+      type: 'image/svg+xml',
+      href: '/icon.svg',
+    },
+    {
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon-128.png',
+    },
+    {
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon-192.png',
+    },
+    {
+      rel: 'apple-touch-icon',
+      type: 'image/x-icon',
+      href: '/favicon-180.png',
+    },
+  ],  
+  script: [
+    {
+      src: 'https://www.googletagmanager.com/gtag/js?id=UA-22429627-1', 
+      async: true,
+      type: 'text/javascript'
+    },
+    {
+      children: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        gtag('config', 'UA-22429627-1');
+      `,
+      type: 'text/javascript'
+    }
+>>>>>>> production
   ]
 });
-
- definePageMeta({
-   colorMode: 'auto',
-})
 
 // Global Store Actions
 const { pending, error } = await useAsyncData("shop", () => {

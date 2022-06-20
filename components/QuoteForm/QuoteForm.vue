@@ -152,103 +152,101 @@
     import ConfettiExplosion from "vue-confetti-explosion";
 
     const errors = ref([]);
-    const SuccessMessage = ref(null);
+    const SuccessMessage = ref("");
     const explodeVisible = ref(false);
     
     const quote = ref({
-        botField: null,
-        name: null,
+        botField: "",
+        name: "",
         submitter: {
-            name: null,
-            email: null
+            name: "",
+            email: "",
         },
-        type: null,
+        type: "",
         quantity: '100',
-        otherQuantity: null,
+        otherQuantity: "",
         isRounded: false,
-        cornerRadius: null,
-        dueDate: null,
-        stock: null,
+        cornerRadius: "",
+        dueDate: "",
+        stock: "",
         inkColors: [],
         publication: {
             finishedSize: '5" x 7"',
-            otherSize: null,
+            otherSize: "",
             pages: 16,
             binding: {
                 type: 'Staple',
                 stapleColor: 'Silver',
-                color: null,
+                color: "",
             },
             cover: {
                 plusCover: false,
                 isDoubleSided: false,
                 isLaminated: false,
-                stock: null,
+                stock: "",
                 outsideInkColors: [],
                 insideInkColors: [],
             },
             interior: {
-                inkNotes: null,
+                inkNotes: "",
             },
         },
-        
-
         print: {
             size: '10" x 15"',
-            otherSize: null,
-            isDoubleSided: false,
+            otherSize: "",
+            isDoubleSided: "",
             backInkColors: [],
             scores: 0,
         },
         other: {
-            description: null,
+            description: "",
         },
-        sampleLink: null,
-        notes: null,
+        sampleLink: "",
+        notes: "",
         delivery: {
-            type: null,
-            address: null,
+            type: "",
+            address: "",
         },
-        experience: null,
-        referral: null,
-        projectDescription: null,
+        experience: "",
+        referral: "",
+        projectDescription: "",
         confirmSummary: false,
     });
 
     const formData = ref({ 
-        name: null,
-        submitterName: null,
-        submitterEmail: null,
-        projectDescription: null,
-        type: null,
-        quantity: null,
-        finishedSize: null,
-        paperStock: null, 
-        inkColors: [],
-        publicationPages: null,
-        publicationCoverStock: null,
-        publicationCoverOutsideInkColors: [],
-        publicationCoverInsideInkColors: [],
-        publicationCoverIsLaminated: null,
-        publicationInteriorInkNotes: null,
-        publicationBindingType: null,
-        publicationBindingColor: null,
-        printBackInkColors: [],
-        otherDescription: null,
-        cornerRadius: null,
-        sampleLink: null,
-        notes: null,
-        dueDate: null,
-        deliveryType: null,
-        deliveryAddress: null,
-        risoExperience: null,
-        referral: null
+        name: "",
+        email: "",
+        projectName: "",
+        projectDescription: "",
+        type: "",
+        quantity: "",
+        finishedSize: "",
+        paperStock: "", 
+        inkColors: "",
+        pages: "",
+        coverStock: "",
+        coverOutsideInkColors: "",
+        coverInsideInkColors: "",
+        laminated: "",
+        interiorInkNotes: "",
+        bindingType: "",
+        bindingColor: "",
+        printBackInkColors: "",
+        otherDescription: "",
+        cornerRadius: "",
+        sampleLink: "",
+        notes: "",
+        dueDate: "",
+        deliveryType: "",
+        deliveryAddress: "",
+        experience: "",
+        referral: ""
     });
 
     function setFormData() {
-        formData.value.name = quote.value.name;
-        formData.value.submitterName = quote.value.submitter.name;
-        formData.value.submitterEmail = quote.value.submitter.email;
+        formData.value.name = quote.value.submitter.name;
+        formData.value.email = quote.value.submitter.email;
+        formData.value.projectName = quote.value.name;
         formData.value.projectDescription = quote.value.projectDescription;
         formData.value.type = quote.value.type;
         if (quote.value.otherQuantity) {
@@ -257,41 +255,41 @@
             formData.value.quantity = quote.value.quantity;
         }
         formData.value.paperStock = quote.value.stock;
-        formData.value.inkColors = quote.value.inkColors;
-        formData.value.publicationInteriorInkNotes = quote.value.publication.interior.inkNotes;
-        if (quote.value.type && quote.value.type == "Publication") {
-            formData.value.publicationPages = quote.value.publication.pages;
+        formData.value.inkColors = quote.value.inkColors.join(', ');
+        formData.value.interiorInkNotes = quote.value.publication.interior.inkNotes;
+        if (quote.value.type == "Publication") {
+            formData.value.pages = quote.value.publication.pages.toString();
             if (quote.value.publication.otherSize) {
                 formData.value.finishedSize = quote.value.publication.otherSize; 
             } else {
                 formData.value.finishedSize = quote.value.publication.finishedSize;
             }
             if (quote.value.publication.cover.plusCover) {
-                formData.value.publicationCoverStock = quote.value.publication.cover.stock;
-                formData.value.publicationCoverOutsideInkColors = quote.value.publication.cover.outsideInkColors;
+                formData.value.coverStock = quote.value.publication.cover.stock;
+                formData.value.coverOutsideInkColors = quote.value.publication.cover.outsideInkColors.join(', ');
                 if (quote.value.publication.cover.isDoubleSided) {
-                    formData.value.publicationCoverInsideInkColors = quote.value.publication.cover.insideInkColors;
+                    formData.value.coverInsideInkColors = quote.value.publication.cover.insideInkColors.join(', ');
                 }
-                formData.value.publicationCoverIsLaminated = quote.value.publication.cover.isLaminated;
+                formData.value.laminated = quote.value.publication.cover.isLaminated.toString();
             }
-            formData.value.publicationBindingType = quote.value.publication.binding.type;
-            if (quote.value.publication.binding.type == "Wire-O" || quote.value.publication.binding.type == "Wire-O") {
-                formData.value.publicationBindingColor = quote.value.publication.binding.color; 
+            formData.value.bindingType = quote.value.publication.binding.type;
+            if (quote.value.publication.binding.type == "Wire-O" || quote.value.publication.binding.type == "Spiral") {
+                formData.value.bindingColor = quote.value.publication.binding.color; 
             } else if (quote.value.publication.binding.type == "Staple") {
-                formData.value.publicationBindingColor = quote.value.publication.binding.stapleColor;
+                formData.value.bindingColor = quote.value.publication.binding.stapleColor;
             }
         }
-        if (quote.value.type && quote.value.type == "Print") {
+        if (quote.value.type == "Print") {
             if (quote.value.print.size == "Other" && quote.value.print.otherSize) {
                 formData.value.finishedSize = quote.value.print.otherSize; 
             } else {
                 formData.value.finishedSize = quote.value.print.size;
             }
             if (quote.value.print.isDoubleSided) {
-                formData.value.printBackInkColors = quote.value.print.backInkColors;
+                formData.value.printBackInkColors = quote.value.print.backInkColors.join(', ');
             }
         }
-        if (quote.value.type && quote.value.type == "Other") {
+        if (quote.value.type == "Other") {
             formData.value.otherDescription = quote.value.other.description;
         }
         if (quote.value.isRounded) {
@@ -304,7 +302,7 @@
         if (quote.value.delivery.type == "Ship") {
             formData.value.deliveryAddress = quote.value.delivery.address;
         }
-        formData.value.risoExperience = quote.value.experience;
+        formData.value.experience = quote.value.experience;
         formData.value.referral = quote.value.referral;
     }
 
@@ -414,7 +412,7 @@
                 },
                 body: this.encode({
                 "form-name": "Quotes",
-                ...this.quote
+                ...this.formData
                 }),
             })
             .then(() => this.SuccessMessage = "Thank you! Your Quote request has been submitted!")
