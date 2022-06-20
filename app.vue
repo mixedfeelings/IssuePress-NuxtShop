@@ -23,25 +23,8 @@ useMeta({
   htmlAttrs: {
     lang: "en",
   },
-<<<<<<< HEAD
-  script: [
-    
-      {
-        hid: 'gtag',
-        src: 'https://www.googletagmanager.com/gtag/js?id=UA-22429627-1', 
-        children: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'UA-22429627-1');
-        `,
-        type: 'text/javascript'
-      }
-    
-=======
   link: [
-      {
+    {
       rel: 'icon',
       type: 'image/x-icon',
       href: '/favicon.ico',
@@ -84,8 +67,7 @@ useMeta({
       `,
       type: 'text/javascript'
     }
->>>>>>> production
-  ]
+  ],
 });
 
 // Global Store Actions
