@@ -181,6 +181,7 @@ function lod(color: string) {
     case "RISO-Federal Blue":
     case "Teal":
     case "Hunter Green":
+    case "Purple":
       return "dark-option";
       break;
     default: 

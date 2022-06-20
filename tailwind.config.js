@@ -43,6 +43,7 @@ module.exports = {
         'moss': 'var(--color-moss)',
         'orange':'var(--color-orange)',
         'orchid': 'var(--color-orchid)',
+        'purple': 'var(--color-purple)',
         'red': 'var(--color-red)',
         'risofederal-blue': 'var(--color-risofederal-blue)',
         'scarlet': 'var(--color-scarlet)',
