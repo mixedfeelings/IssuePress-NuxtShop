@@ -191,8 +191,6 @@
                 inkNotes: null,
             },
         },
-        
-
         print: {
             size: '10" x 15"',
             otherSize: null,
@@ -216,33 +214,33 @@
     });
 
     const formData = ref({ 
-        name: null,
-        email: null,
-        projectName: null,
-        projectDescription: null,
-        type: null,
-        quantity: null,
-        finishedSize: null,
-        paperStock: null, 
-        inkColors: null,
-        pages: null,
-        coverStock: null,
-        coverOutsideInkColors: null,
-        coverInsideInkColors: null,
-        laminated: null,
-        interiorInkNotes: null,
-        bindingType: null,
-        bindingColor: null,
-        printBackInkColors: null,
-        otherDescription: null,
-        cornerRadius: null,
-        sampleLink: null,
-        notes: null,
-        dueDate: null,
-        deliveryType: null,
-        deliveryAddress: null,
-        experience: null,
-        referral: null
+        name: "",
+        email: "",
+        projectName: "",
+        projectDescription: "",
+        type: "",
+        quantity: "",
+        finishedSize: "",
+        paperStock: "", 
+        inkColors: "",
+        pages: "",
+        coverStock: "",
+        coverOutsideInkColors: "",
+        coverInsideInkColors: "",
+        laminated: "",
+        interiorInkNotes: "",
+        bindingType: "",
+        bindingColor: "",
+        printBackInkColors: "",
+        otherDescription: "",
+        cornerRadius: "",
+        sampleLink: "",
+        notes: "",
+        dueDate: "",
+        deliveryType: "",
+        deliveryAddress: "",
+        experience: "",
+        referral: ""
     });
 
     function setFormData() {
@@ -260,7 +258,7 @@
         formData.value.inkColors = quote.value.inkColors.join(', ');
         formData.value.interiorInkNotes = quote.value.publication.interior.inkNotes;
         if (quote.value.type == "Publication") {
-            formData.value.pages = quote.value.publication.pages;
+            formData.value.pages = quote.value.publication.pages.toString();
             if (quote.value.publication.otherSize) {
                 formData.value.finishedSize = quote.value.publication.otherSize; 
             } else {
@@ -272,7 +270,7 @@
                 if (quote.value.publication.cover.isDoubleSided) {
                     formData.value.coverInsideInkColors = quote.value.publication.cover.insideInkColors.join(', ');
                 }
-                formData.value.laminated = quote.value.publication.cover.isLaminated;
+                formData.value.laminated = quote.value.publication.cover.isLaminated.toString();
             }
             formData.value.bindingType = quote.value.publication.binding.type;
             if (quote.value.publication.binding.type == "Wire-O" || quote.value.publication.binding.type == "Wire-O") {
