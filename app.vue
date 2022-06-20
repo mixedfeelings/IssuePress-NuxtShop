@@ -22,7 +22,35 @@ import { useShopStore } from "~/stores/shop";
 useMeta({
   htmlAttrs: {
     lang: "en",
-  },  
+  },
+  link: [
+      {
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon.ico',
+      sizes: 'any',
+    },
+      {
+      rel: 'icon',
+      type: 'image/svg+xml',
+      href: '/icon.svg',
+    },
+    {
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon-128.png',
+    },
+    {
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon-192.png',
+    },
+    {
+      rel: 'apple-touch-icon',
+      type: 'image/x-icon',
+      href: '/favicon-180.png',
+    },
+  ],  
   script: [
     {
       src: 'https://www.googletagmanager.com/gtag/js?id=UA-22429627-1', 
