@@ -152,64 +152,64 @@
     import ConfettiExplosion from "vue-confetti-explosion";
 
     const errors = ref([]);
-    const SuccessMessage = ref(null);
+    const SuccessMessage = ref("");
     const explodeVisible = ref(false);
     
     const quote = ref({
-        botField: null,
-        name: null,
+        botField: "",
+        name: "",
         submitter: {
-            name: null,
-            email: null
+            name: "",
+            email: "",
         },
-        type: null,
+        type: "",
         quantity: '100',
-        otherQuantity: null,
+        otherQuantity: "",
         isRounded: false,
-        cornerRadius: null,
-        dueDate: null,
-        stock: null,
+        cornerRadius: "",
+        dueDate: "",
+        stock: "",
         inkColors: [],
         publication: {
             finishedSize: '5" x 7"',
-            otherSize: null,
+            otherSize: "",
             pages: 16,
             binding: {
                 type: 'Staple',
                 stapleColor: 'Silver',
-                color: null,
+                color: "",
             },
             cover: {
                 plusCover: false,
                 isDoubleSided: false,
                 isLaminated: false,
-                stock: null,
+                stock: "",
                 outsideInkColors: [],
                 insideInkColors: [],
             },
             interior: {
-                inkNotes: null,
+                inkNotes: "",
             },
         },
         print: {
             size: '10" x 15"',
-            otherSize: null,
-            isDoubleSided: false,
+            otherSize: "",
+            isDoubleSided: "",
             backInkColors: [],
             scores: 0,
         },
         other: {
-            description: null,
+            description: "",
         },
-        sampleLink: null,
-        notes: null,
+        sampleLink: "",
+        notes: "",
         delivery: {
-            type: null,
-            address: null,
+            type: "",
+            address: "",
         },
-        experience: null,
-        referral: null,
-        projectDescription: null,
+        experience: "",
+        referral: "",
+        projectDescription: "",
         confirmSummary: false,
     });
 
@@ -273,7 +273,7 @@
                 formData.value.laminated = quote.value.publication.cover.isLaminated.toString();
             }
             formData.value.bindingType = quote.value.publication.binding.type;
-            if (quote.value.publication.binding.type == "Wire-O" || quote.value.publication.binding.type == "Wire-O") {
+            if (quote.value.publication.binding.type == "Wire-O" || quote.value.publication.binding.type == "Spiral") {
                 formData.value.bindingColor = quote.value.publication.binding.color; 
             } else if (quote.value.publication.binding.type == "Staple") {
                 formData.value.bindingColor = quote.value.publication.binding.stapleColor;
