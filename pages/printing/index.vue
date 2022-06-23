@@ -16,7 +16,11 @@
         <PrintDocs>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div class="image-caption text-xs ">
-                    <img src="/images/printing/Issue_Press_printing.jpg" class="lg:order-last" />
+                    <img 
+                        src="/images/printing/Issue_Press_printing.jpg" 
+                        class="lg:order-last"
+                        alt="A hand holding a magnifiying loupe over a printed image. The focus of the photograph is set so that most of the image is blurry, except for printed dots in the magnifying glass  "
+                    >
                     <div class="pt-1">
                         Excerpt from <em class="underline"><NuxtLink to="/item/cabin-time-archipelago">Cabin-Time: Archipelago</NuxtLink></em>. Photo by <a href="https://instagram.com/jaimekjohnson" class="underline" target="_blank">Jaimé Johnson</a>
                     </div>

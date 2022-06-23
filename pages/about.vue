@@ -15,17 +15,17 @@
     </Html>
     <section class="px-6 my-8 font-serif text-lg md:text-2xl lg:text-3xl md:leading-10 lg:leading-12 ">
       <p>
-        Issue Press is a tiny publisher and Risograph print shop operated by George Wietor in Grand Rapids, Michigan. Since 2010, it has worked with an elastic mandate to publish captivating works by artists of all mediums that trade in humor, history, and exploration of place. 
+        Issue Press is a tiny publisher and Risograph print shop operated by George Wietor in Grand Rapids, Michigan. Since 2011, it has worked with an elastic mandate to publish captivating works by artists of all mediums that trade in humor, history, and exploration of place. 
       </p>  
       <p>
-        In addition to publishing, Wietor has initiated several side projects dedicated to the growth of the international Riso community, including: <a href="https://stencil.wiki">stencil.wiki</a>; <a href="https://stencil.wiki/atlas">An Atlas of Modern Risography</a>; and with Matt Davis of <a href="https://perfectly-acceptable.com">Perfectly Acceptable Press</a>, Wietor is a cofounder of the <a href="http://risograph.org">North American Risograph Conference (NARC)</a>, a gathering of Riso devotees held biannually in Chicago, Illinois.  
+        In addition to publishing, Wietor has initiated several side projects dedicated to the growth of the international Riso community, including: <a href="https://stencil.wiki">stencil.wiki</a>; <a href="https://stencil.wiki/atlas">An Atlas of Modern Risography</a>; and with Matt Davis of <a href="https://perfectly-acceptable.com">Perfectly Acceptable Press</a>, Wietor is a co-founder of the <a href="http://risograph.org">North American Risograph Conference (NARC)</a>, a gathering of Riso devotees held biannually in Chicago, Illinois.  
       </p>
     </section>
     <section class="bg-natural font-sans py-8">
       <div class="flex flex-col md:flex-row ">
         <div class="w-full md:w-1/2 px-6 pb-4 md:pb-0">
-            <img src="/images/issue-press_bergen-art-book-fair-2022.jpg" class="mb-1"/>
-            <div class="text-center font-mono text-sm px-6">Issue Press at Bergen Art Book Fair 2022</div>
+            <img src="/images/issue-press_bergen-art-book-fair-2022.jpg" class="mb-1" alt="A somewhat meta photo of a polaroid of two people standing between a table full of books and wall covered in prints at an art book fair" >
+            <div class="text-center font-mono text-xs px-6">George of Issue Press with Jessica Williams at the launch of <em><NuxtLink class="underline" to="/item/oslofjord">Oslofjord</NuxtLink></em> at Bergen Art Book Fair 2022. Photo by <a href="https://anki.biz" class="underline">Ann-Kristin Stølan</a> </div>
         </div>
         <div class="w-full md:w-1/2 lg:w-full flex flex-col lg:flex-row px-6">
           <div class="flex flex-col items-center md:items-start h-full ">
