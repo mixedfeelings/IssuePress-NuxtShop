@@ -37,7 +37,7 @@ onClickOutside(cart, () => closeCart);
 
 <style scoped>
 .cart {
-  @apply fixed top-0 bottom-0 right-0 z-20 px-4 pb-4 border-l-2 ;
+  @apply fixed top-0 bottom-0 right-0 z-20 px-4 pb-4 border-l-2 overflow-y-scroll ;
 }
 
 .light .cart {
