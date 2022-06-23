@@ -35,12 +35,13 @@
     "graphql-tag": "^2.12.6",
     "node-fetch": "^3.1.0",
     "nuxt3": "^3.0.0-27414150.3589a2d",
-    "pinia": "^2.0.9",
+    "pinia": "^2.0.14",
     "pinia-plugin-persistedstate-2": "^0.2.8",
     "postcss": "^8.4.5",
     "tailwindcss": "^3.0.8"
   },
   "dependencies": {
+    "pinia-shared-state": "^0.2.5",
     "v3-infinite-loading": "^1.0.6",
     "vue-confetti-explosion": "^1.0.1",
     "vue3-carousel": "^0.1.40"
