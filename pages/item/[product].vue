@@ -8,7 +8,7 @@
           <Meta name="twitter:card" content="summary_large_image" />
           <Meta name="twitter:site" content="@issuepress" />
           <Meta property="twitter:image" :content="product?.images.edges[0]?.node.url" />
-          <Meta property="og:title" :content="meta_title" />
+          <Meta property="og:title" :content="`${meta_title} | Issue Press`" />
           <Meta propert="og:description" :content="product.description" />
           <Meta property="og:url" :content="`https://issue.press${route.path}`" />
           <Meta property="og:type" content="product" />
@@ -32,7 +32,8 @@
             :src="image.node.url" 
             @click="onImageClick(index)"
             class="cursor-pointer"
-          />
+            :alt="image.node.altText ?? `Excerpt of ${meta_title}`"
+          >
         </div>       
       </slide>
       <template #addons>
@@ -141,6 +142,7 @@
             <img 
               :src="image.node.url" 
               style="max-height: 90vh"
+              :alt="image.node.altText ?? `Excerpt of ${meta_title}`"
             >
           </div>       
         </slide>
@@ -289,7 +291,7 @@ const meta_title = computed (() => {
   } else if (artist2.value) {
     tc += ` & ${artist2.value}`;
   }
-  return `${tc} | Issue Press`;
+  return tc;
 });
 
 // Fetch fresh inventory on client
