@@ -29,14 +29,13 @@ function handleClick() {
 </script>
 <style scoped>
 .badge {
-   @apply absolute rounded-full flex items-center justify-center font-bold bg-white tracking-tighter ;
+   @apply absolute rounded-full flex items-center justify-center font-bold font-mono ;
    background-color: var(--global-color);
    color: var(--global-text-color);
    padding: .1rem;
    width: 1.5rem;
    height: 1.5rem;
    border: white 2px solid;
-   text-shadow: 1px;
    font-size: .75rem; 
    top: -.625rem;
    right: -.875rem;
@@ -46,6 +45,7 @@ function handleClick() {
   @apply border-darkest;
 }
 .badge.small {
+  @apply tracking-tighter;
   font-size: .625rem;
 }
 
