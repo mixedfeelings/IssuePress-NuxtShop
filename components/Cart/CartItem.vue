@@ -1,16 +1,19 @@
 <template>
   <div class="flex w-full pb-4 mb-4 border-b-2 border-black">
-    <img
-      :src="image"
-      :alt="item.merchandise.product.title"
-      :width="imageWidth"
-      :height="imageHeight"
-      class="self-start block object-contain w-20 h-auto mr-4"
-    />
+    <div class="w-20 max-h-24 flex items-center justify-center mr-4 ">
+      <img
+        :src="image"
+        :alt="item.merchandise.product.title"
+        :width="imageWidth"
+        :height="imageHeight"
+        class="block object-contain w-auto h-auto max-h-20"
+      >
+    </div>
+
     <div class="w-full flex flex-col justify-between ">
   <div class="flex items-start justify-between w-full text-sm w-full">
       <div class="w-full">
-        <div class="text-base font-serif">{{ item.merchandise.product.title }}</div>
+        <div class="text-sm font-serif">{{ item.merchandise.product.title }}</div>
         <div v-for="option in variantOptions" :key="option.value" class="flex">
           <template v-if="option.value !== 'Default Title'">
             <div class="mr-2">{{ option.name }}:</div>
@@ -26,7 +29,7 @@
         />
       </button>
     </div>
-          <div class="flex items-center justify-between">
+    <div class="flex items-center mt-2 justify-between">
         <CartQuantityPicker v-model="item.quantity" :id="item.id" />
         <div>{{ formattedPrice }}</div>
         </div>
