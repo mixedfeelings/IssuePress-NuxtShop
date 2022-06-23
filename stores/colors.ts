@@ -52,6 +52,7 @@ export const useColorStore = defineStore("color", {
         case "moss":
         case "riso-federal-blue":
         case "purple":
+        case "light-gray":
           return "natural";
           break;
         default: 

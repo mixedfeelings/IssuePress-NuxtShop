@@ -182,6 +182,7 @@ function lod(color: string) {
     case "Teal":
     case "Hunter Green":
     case "Purple":
+    case "Light Gray":
       return "dark-option";
       break;
     default: 
