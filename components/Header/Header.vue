@@ -2,7 +2,7 @@
   <header
     class="header sticky block top-0 w-full z-10 height-ease" :class="isSticky ? 'h-12 shadow-md ' : 'h-16 shadow-none'"
   >
-    <div class="header-inner flex items-center bg-white px-4 w-full h-full">
+    <div class="header-inner flex items-center bg-white pl-4 pr-6 w-full h-full">
       <Hamburger class="md:hidden mr-4" />
       <Logo />
       <Navigation class="md:ml-4" />
