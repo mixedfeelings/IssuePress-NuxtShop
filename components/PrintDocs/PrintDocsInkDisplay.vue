@@ -5,7 +5,7 @@
                 <div class="p100">
                     <div class="color-info desktop-only">
                         <div v-if="ink.name" class="name font-serif"><NuxtLink :to="`/collections/${formatText(ink.name)}`">{{ink.name}}</NuxtLink></div>
-                        <div class="color-info-meta">
+                        <div class="color-info-meta ">
                             <div v-if="ink.pantone" class="pantone">{{ink.pantone}}</div>
                             <div v-if="ink.hex" class="hex">{{ink.hex}}</div>
                             <div v-if="ink.postLabel" class="price">{{ink.postLabel}}</div>
@@ -18,12 +18,6 @@
                 <div class="p25"><span>25%</span></div>
             </div>
         </div>
-        <!-- <div class="color-info mobile-only">
-            <div v-if="ink.name" class="name font-serif">{{ink.name}}</div>
-            <div v-if="ink.pantone" class="pantone">{{ink.pantone}}</div>
-            <div v-if="ink.hex" class="hex">{{ink.hex}}</div>
-            <div v-if="ink.postLabel" class="price">{{ink.postLabel}}</div>
-        </div> -->
     </div>    
 </template>
 <script setup lang="ts">
@@ -116,7 +110,7 @@
 }
 
 .color-ramp .color-info .color-info-meta {
-    @apply w-full flex;
+    @apply w-full flex flex-col gap-y-1;
 }
 
 .color-ramp .color-info {
@@ -135,5 +129,11 @@
 
 .dark .color-wrapper.white .color-ramp-inner{
     @apply bg-darker;
+}
+
+@media (min-width: 640px) {
+    .color-ramp .color-info .color-info-meta {
+        @apply flex-row;
+    }
 }
 </style>
