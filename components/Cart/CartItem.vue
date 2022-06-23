@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full pb-4 mb-4 border-b-2 border-black">
+  <div class="cart-item flex w-full pb-4 mb-4 border-b-2 border-black">
     <div class="w-20 max-h-24 flex items-center justify-center mr-4 ">
       <img
         :src="image"
@@ -26,11 +26,11 @@
           class="inline w-4"
           @click="removeItem"
           @keyup.enter="removeItem"
-        />
+        ></TrashIcon>
       </button>
     </div>
     <div class="flex items-center mt-2 justify-between">
-        <CartQuantityPicker v-model="item.quantity" :id="item.id" />
+        <CartQuantityPicker v-model="item.quantity" :id="item.id" ></CartQuantityPicker>
         <div>{{ formattedPrice }}</div>
         </div>
     </div>
@@ -65,3 +65,12 @@ const formattedPrice = computed(() =>
   formatLocalePrice(props.item?.estimatedCost?.subtotalAmount?.amount, "en-US", currencyCode)
 );
 </script>
+
+<style scoped>
+.cart-item {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-animation: 200ms flipIn forwards;
+  animation: 200ms flipIn forwards;
+}
+</style>
