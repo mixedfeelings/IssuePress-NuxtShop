@@ -48,9 +48,11 @@ button.carousel__prev:hover {
     @apply opacity-100;
 }
 
+button.carousel__next svg,
+button.carousel__prev svg,
 button.carousel__next:hover svg,
 button.carousel__prev:hover svg {
-    fill: white;
+    fill: var(--global-text-color);
 }
 
 button.carousel__next {

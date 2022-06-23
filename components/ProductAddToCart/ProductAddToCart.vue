@@ -48,5 +48,6 @@ const button_class = computed(() =>
 <style scoped>
   button.not-disabled:hover {
     background-color: var(--global-color);
+    color: var(--global-text-color);
   }
 </style>
