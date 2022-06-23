@@ -41,6 +41,7 @@ export const collectionByHandle = gql`
             images(first: 2) {
               edges {
                 node {
+                  altText
                   height
                   id
                   url
