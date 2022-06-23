@@ -56,13 +56,13 @@ button.bg-black,
     @apply opacity-30;  
 }
 
-.dark .form-item input,
 .dark .form-item select,
 .dark .form-item textarea,
 .dark .mc-field-group input {
     @apply bg-dark border-darker text-natural;
 }
 
+.dark .quantity-toggle input,
 .dark .mc-field-group input {
     @apply bg-darkest;
 }
