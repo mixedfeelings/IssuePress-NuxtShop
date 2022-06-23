@@ -64,5 +64,6 @@ const hasNextPage = computed(() => result.value.collections.pageInfo.hasNextPage
 onMounted(() => {
   colorStore.setGlobalColor();
   document.documentElement.style.setProperty('--global-color',`var(--color-${colorStore.globalColor})`);
+  document.documentElement.style.setProperty('--global-text-color',`var(--color-${colorStore.globalTextColor})`);
 });
 </script>

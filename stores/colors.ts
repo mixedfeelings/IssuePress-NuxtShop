@@ -6,7 +6,6 @@ export const useColorStore = defineStore("color", {
       list: [
           'aqua', 
           'blue',
-          'bright-red',
           'burgundy',
           'copper',
           'coral',
@@ -24,10 +23,12 @@ export const useColorStore = defineStore("color", {
           'moss',
           'orange',
           'orchid',
-          'red',
-          'risofederal-blue',
+          'purple',
+          'riso-federal-blue',
+          'scarlet',
           'sunflower',
           'yellow',
+  
       ],
       color: null, //default value
     }
@@ -39,8 +40,24 @@ export const useColorStore = defineStore("color", {
     }
   },
   getters: {
-    globalColor(state) {
+    globalColor(state ) {
       return state.color;
+    },
+    globalTextColor(state) {
+      switch(state.color) {
+        case "black": 
+        case "blue":
+        case "brown": 
+        case "burgundy":
+        case "moss":
+        case "riso-federal-blue":
+        case "purple":
+          return "natural";
+          break;
+        default: 
+          return "black";
+          break;
+      }
     }
   },
 });
