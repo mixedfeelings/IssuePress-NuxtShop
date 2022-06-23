@@ -213,4 +213,7 @@ export const useCartStore = defineStore("cart", {
       return formatLocalePrice(+amount, "en-US", code);
     },
   },
+  share: {
+    omit: ['cartOpen'],
+  }
 });
