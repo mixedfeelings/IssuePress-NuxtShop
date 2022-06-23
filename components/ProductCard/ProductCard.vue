@@ -3,7 +3,7 @@
       <div class="card-image-wrapper" >
         <div class="card-image-inner">
           <ProductImage
-            :alt="product.handle"
+            :alt="altText"
             :height="height"
             :lazy="index > lazyLoadingThreshold"
             :sizes="sizes"
@@ -57,6 +57,7 @@ const productPath = `/item/${props.product.handle}`;
 
 const lazyLoadingThreshold = 7;
 const src = props.product?.images?.edges[0]?.node?.url ?? "";
+const altText = props.product?.images?.edges[0]?.node?.altText ?? props.product?.handle ;
 const width = props.product?.images?.edges[0]?.node?.width ?? "";
 const height = props.product?.images?.edges[0]?.node?.height ?? "";
 const sizes = ``;
