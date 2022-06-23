@@ -29,12 +29,12 @@
             <div class="card-image-wrapper" >
               <div class="card-image-inner">
                 <img
-                  alt="alt"
+                  :alt="collection.node.products.edges[0].node.images?.edges[0]?.node?.altText ? collection.node.products.edges[0].node.images?.edges[0]?.node?.altText : `Image of the most recent project by ${collection.node.title}`"
                   height="auto"
                   loading="lazy'"
                   width="auto"
                   :src="collection.node.products.edges[0].node.images?.edges[0]?.node?.url"
-                />
+                >
               </div>
             </div>
             <div class="card-body">
